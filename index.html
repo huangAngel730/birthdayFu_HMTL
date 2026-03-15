@@ -50,7 +50,7 @@
             background: var(--bg-spring);
         }
 
-        /* 基础样式 */
+        /* 基础样式：全局标题、正文和交互区域布局 */
         .title-section { text-align: center; padding: 60px 20px; background: rgba(255, 255, 255, 0.5); backdrop-filter: blur(8px); border-bottom: 2px solid var(--pink); }
         h1 { font-size: var(--text-title); color: #d81b60; margin: 0; }
         .subtitle { font-size: var(--text-body); color: #666; margin-top: 15px; }
@@ -77,7 +77,7 @@
         .petal { position: fixed; background-color: #ffdae0; border-radius: 150% 0 150% 0; pointer-events: none; opacity: 0.6; animation: fall linear infinite; }
         @keyframes fall { 0% { transform: translateY(-10vh) rotate(0deg); } 100% { transform: translateY(110vh) rotate(360deg); } }
 
-        /* 交互图标样式 */
+        /* 交互图标样式：通用图标、露珠、浇水壶、花盆等基础视觉 */
         .wish-tag { width: 80px; height: 100px; background: #8d6e63; color: #fff; border-radius: 8px; font-size: 16px; writing-mode: vertical-lr; padding: 10px; margin: 10px; border-top: 4px solid #5d4037; }
         .flower-bud, .butterfly, .dandelion, .stone, .mushroom, .wind-bell, .dewdrop, .watering-can, .flower-pot, .painted-stone, .sunset { font-size: 80px; filter: drop-shadow(0 5px 5px rgba(0,0,0,0.1)); cursor: pointer; position: relative; }
         .dewdrop { font-size: 60px; color: #81d4fa; }
@@ -86,6 +86,7 @@
         .hint-text { width: 100%; text-align: center; font-size: var(--text-tag); color: #888; margin-top: -10px; }
         #reveal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(255,255,255,0.7); backdrop-filter: blur(10px); z-index: 2000; display: none; }
 
+        /* 园艺浇水模块：拖拽浇水小游戏布局 */
         .garden-water-game {
             width: 100%;
             display: flex;
@@ -166,6 +167,391 @@
             margin-top: -8px;
         }
 
+        /* 气球升空秀模块：长椅、气球、漂浮照片与彩蛋效果 */
+        .balloon-zone {
+            position: relative;
+            width: 100%;
+            min-height: 330px;
+            overflow: hidden;
+            border-radius: 24px;
+            background: linear-gradient(180deg, rgba(235, 255, 236, .62), rgba(214, 245, 220, .45));
+            padding: 14px 10px 10px;
+        }
+
+        .balloon-status-lock {
+            position: absolute;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 14px;
+            background: rgba(255, 255, 255, .88);
+            border-radius: 999px;
+            padding: 6px 12px;
+            opacity: 0;
+            transition: opacity .25s ease;
+            z-index: 35;
+        }
+
+        .balloon-status-lock.show { opacity: 1; }
+
+        .vintage-bench {
+            position: absolute;
+            bottom: 22px;
+            width: 40%;
+            min-width: 150px;
+            max-width: 220px;
+            height: 112px;
+            background: linear-gradient(180deg, #fefefe, #e8e8e8);
+            border: 2px solid #d8d8d8;
+            border-radius: 18px;
+            box-shadow: inset 0 0 0 2px rgba(255,255,255,.65), 0 8px 16px rgba(0,0,0,.12);
+            left: 10px;
+            z-index: 8;
+            pointer-events: none;
+        }
+
+        .vintage-bench::before {
+            content: "❤";
+            position: absolute;
+            left: 50%;
+            top: 20px;
+            transform: translateX(-50%);
+            color: rgba(200, 135, 155, .55);
+            font-size: 22px;
+            letter-spacing: 12px;
+        }
+
+        .bench-vines {
+            position: absolute;
+            top: 14px;
+            left: 8px;
+            right: 8px;
+            font-size: 16px;
+            color: #71a47c;
+            opacity: .7;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .bench-book {
+            position: absolute;
+            width: 56px;
+            height: 28px;
+            bottom: 18px;
+            left: 48%;
+            transform: translateX(-50%);
+            background: linear-gradient(90deg, #f2e8da 0 48%, #fff7ec 52%);
+            border-radius: 8px;
+            box-shadow: 0 2px 6px rgba(0,0,0,.12);
+            animation: pageFlip 10s ease-in-out infinite;
+        }
+
+        @keyframes pageFlip {
+            0%, 78%, 100% { transform: translateX(-50%) rotate(0deg); }
+            82% { transform: translateX(-50%) rotate(-5deg); }
+            86% { transform: translateX(-50%) rotate(4deg); }
+            90% { transform: translateX(-50%) rotate(0deg); }
+        }
+
+        .balloon-group {
+            position: absolute;
+            left: 40%;
+            bottom: 44px;
+            width: 56%;
+            min-height: 250px;
+            z-index: 12;
+        }
+
+        .balloon-item {
+            position: absolute;
+            width: 90px;
+            height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            touch-action: manipulation;
+            z-index: 15;
+        }
+
+        .balloon-shell {
+            width: 70px;
+            height: 80px;
+            border-radius: 50% 50% 46% 46%;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: balloonBreath 2.6s ease-in-out infinite;
+            box-shadow: inset -8px -12px 18px rgba(0,0,0,.1), 0 8px 14px rgba(0,0,0,.17);
+            transform-origin: center bottom;
+        }
+
+        .balloon-shell::after {
+            content: "";
+            width: 18px;
+            height: 10px;
+            border-radius: 999px;
+            background: rgba(255,255,255,.55);
+            position: absolute;
+            top: 12px;
+            left: 14px;
+            transform: rotate(-20deg);
+        }
+
+        .balloon-shell.pink {
+            background:
+              radial-gradient(circle at 18px 16px, rgba(255,255,255,.55) 0 3px, transparent 4px),
+              radial-gradient(circle at 45px 40px, rgba(255,255,255,.55) 0 2.5px, transparent 4px),
+              linear-gradient(160deg, #ff9cc1, #ff6ea6);
+        }
+
+        .balloon-shell.gold {
+            background: linear-gradient(160deg, #ffe6a7 0%, #f7c45e 45%, #e3a639 100%);
+        }
+
+        .balloon-shell.purple {
+            background:
+              radial-gradient(circle at 17px 24px, rgba(255,255,255,.75) 0 2.5px, transparent 4px),
+              radial-gradient(circle at 50px 40px, rgba(255,255,255,.75) 0 2.5px, transparent 4px),
+              linear-gradient(165deg, #cfadff 0%, #b17bff 55%, #8f61e8 100%);
+        }
+
+        .balloon-shell.purple .pattern { font-size: 13px; color: rgba(255,255,255,.85); }
+
+        .balloon-thumb {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 2px solid rgba(255,255,255,.95);
+            box-shadow: 0 2px 6px rgba(0,0,0,.2);
+            object-fit: cover;
+        }
+
+        .balloon-string {
+            position: absolute;
+            width: 2px;
+            height: 68px;
+            background: linear-gradient(180deg, #f6d37a, #dab567);
+            bottom: -64px;
+            left: 50%;
+            transform: translateX(-50%);
+            transform-origin: top center;
+            animation: stringSway 3s ease-in-out infinite;
+        }
+
+        .string-knot {
+            position: absolute;
+            bottom: -2px;
+            left: 50%;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #d3a44c;
+            transform: translateX(-50%);
+        }
+
+        .balloon-orbit {
+            position: absolute;
+            inset: -6px;
+            pointer-events: none;
+            animation: orbitRotate 4s linear infinite;
+        }
+
+        .balloon-orbit::before {
+            content: "✨";
+            position: absolute;
+            left: 50%;
+            top: -8px;
+            transform: translateX(-50%);
+            font-size: 14px;
+        }
+
+        .ladybug {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            font-size: 18px;
+            left: 52%;
+            bottom: 136px;
+            z-index: 30;
+            animation: ladybugWalk 8s linear infinite;
+            pointer-events: none;
+        }
+
+        @keyframes ladybugWalk {
+            0%, 70%, 100% { opacity: 0; transform: translate3d(0,0,0); }
+            72% { opacity: 1; }
+            88% { opacity: 1; transform: translate3d(54px, -20px, 0); }
+            95% { opacity: 0; }
+        }
+
+        @keyframes orbitRotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+        @keyframes balloonBreath { 0%,100% { transform: scale(1); } 50% { transform: scale(1.05); } }
+        @keyframes stringSway { 0%,100% { transform: translateX(-50%) rotate(-7deg); } 50% { transform: translateX(-50%) rotate(7deg); } }
+
+        .balloon-item.disabled { opacity: .45; filter: grayscale(.2); pointer-events: none; }
+        .balloon-item.active { z-index: 40; }
+
+        .balloon-photo-float {
+            position: fixed;
+            width: 150px;
+            height: 150px;
+            border-radius: 14px;
+            border: 4px solid #fff;
+            box-shadow: 0 12px 22px rgba(0,0,0,.25);
+            overflow: hidden;
+            z-index: 2400;
+            display: none;
+            background: #fff;
+            touch-action: manipulation;
+        }
+
+        .balloon-photo-float img { width: 100%; height: 100%; object-fit: cover; }
+        .balloon-photo-float.fixed { animation: photoHalo 2.2s ease-in-out infinite; }
+        @keyframes photoHalo { 0%,100% { box-shadow: 0 0 0 0 rgba(255, 221, 118, .45), 0 12px 22px rgba(0,0,0,.25);} 50% { box-shadow: 0 0 0 8px rgba(255, 221, 118, .2), 0 12px 22px rgba(0,0,0,.25);} }
+
+        .balloon-ribbon {
+            position: fixed;
+            width: 160px;
+            height: 40px;
+            border-radius: 10px;
+            background: linear-gradient(90deg, rgba(255,255,255,.2), rgba(255,255,255,.38), rgba(255,255,255,.2));
+            color: #fff;
+            text-shadow: 0 1px 3px rgba(0,0,0,.35);
+            font-size: 20px;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 2450;
+            backdrop-filter: blur(1px);
+        }
+
+        .balloon-ribbon::before,
+        .balloon-ribbon::after {
+            content: "";
+            position: absolute;
+            top: 14px;
+            width: 14px;
+            height: 12px;
+            background: rgba(255,255,255,.25);
+        }
+
+        .balloon-ribbon::before { left: -8px; clip-path: polygon(100% 0, 0 50%, 100% 100%); }
+        .balloon-ribbon::after { right: -8px; clip-path: polygon(0 0, 100% 50%, 0 100%); }
+
+        .balloon-memory-back {
+            position: absolute;
+            inset: 0;
+            background: repeating-linear-gradient(0deg, #f8edd8 0 18px, #f4e6cd 18px 36px);
+            color: #6f4d2a;
+            font-size: 18px;
+            line-height: 1.45;
+            padding: 14px;
+            display: none;
+        }
+
+        .balloon-memory-tip {
+            position: absolute;
+            bottom: 8px;
+            left: 8px;
+            right: 8px;
+            font-size: 12px;
+            text-align: center;
+            color: rgba(255,255,255,.9);
+            background: rgba(0,0,0,.32);
+            border-radius: 8px;
+            padding: 2px 6px;
+        }
+
+        .balloon-combo {
+            position: fixed;
+            width: 200px;
+            height: 200px;
+            border-radius: 16px;
+            background: #fff;
+            z-index: 2480;
+            display: none;
+            overflow: hidden;
+            box-shadow: 0 14px 24px rgba(0,0,0,.32);
+        }
+
+        .balloon-combo-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 1fr 1fr;
+            width: 100%;
+            height: 100%;
+            gap: 3px;
+            background: #fff;
+        }
+
+        .balloon-combo-grid img:nth-child(1) { grid-column: 1 / 3; }
+
+        .combo-ring {
+            position: absolute;
+            inset: -12px;
+            pointer-events: none;
+            animation: orbitRotate 5s linear infinite;
+        }
+
+        .combo-ring span { position: absolute; font-size: 18px; }
+        .combo-ring span:nth-child(1) { left: 50%; top: -8px; transform: translateX(-50%); }
+        .combo-ring span:nth-child(2) { right: -8px; top: 50%; transform: translateY(-50%); }
+        .combo-ring span:nth-child(3) { left: -8px; top: 50%; transform: translateY(-50%); }
+
+        .balloon-ultimate-msg {
+            position: fixed;
+            left: 50%;
+            top: calc(50% - 160px);
+            transform: translateX(-50%);
+            font-size: 28px;
+            color: #ffd76f;
+            text-shadow: 0 0 14px rgba(255, 218, 121, .95);
+            z-index: 2490;
+            display: none;
+            text-align: center;
+            width: min(92vw, 420px);
+        }
+
+        .balloon-confetti {
+            position: fixed;
+            z-index: 2410;
+            pointer-events: none;
+            font-size: 12px;
+            animation: confettiDrop 1.2s ease-out forwards;
+        }
+
+        @keyframes confettiDrop {
+            0% { transform: translate3d(0,0,0) rotate(0deg); opacity: 1; }
+            100% { transform: translate3d(var(--cx), var(--cy), 0) rotate(280deg); opacity: 0; }
+        }
+
+        .balloon-tail {
+            position: fixed;
+            z-index: 2405;
+            pointer-events: none;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            animation: tailFade 1s ease-out forwards;
+        }
+
+        @keyframes tailFade {
+            from { opacity: .8; transform: scale(1); }
+            to { opacity: 0; transform: scale(.2); }
+        }
+
+        .performance-lite .balloon-orbit,
+        .performance-lite .ladybug,
+        .performance-lite .balloon-tail,
+        .performance-lite .balloon-confetti { display: none !important; }
+
+        @media (max-width: 420px) {
+            .balloon-group { left: 36%; width: 60%; }
+            .balloon-photo-float { width: 150px; height: 150px; }
+        }
+
+        /* 野餐篮模块：野餐垫、篮子、拍立得和放大查看层 */
         .picnic-zone {
             width: 100%;
             position: relative;
@@ -397,6 +783,7 @@
             box-shadow: 0 4px 14px rgba(0,0,0,.15);
         }
 
+        /* 夕阳剪影模块：夕阳入口、天空转场、终极彩蛋 */
         .sunset-zone {
             width: 45%;
             min-width: 160px;
@@ -633,6 +1020,7 @@
         <p class="subtitle">写给春小燕 · 一起寻找藏在角落的25个瞬间...</p>
     </section>
 
+    <!-- 樱花树心愿牌模块 -->
     <div class="interactive-zone">
         <div style="font-size: 100px; width: 100%; text-align: center;">🌳</div>
         <div style="display:flex; justify-content:center; width:100%;">
@@ -643,12 +1031,14 @@
         <p class="hint-text">春小燕，先点亮樱花树上的心愿牌</p>
     </div>
 
+    <!-- 蒲公英模块 -->
     <div class="interactive-zone">
         <div class="tap-target dandelion" onclick="blowDandelion(this, [4, 5])">🌼</div>
         <p class="hint-text">春小燕，轻轻吹散这朵蒲公英吧</p>
     </div>
 
     <!-- 更多交互区域... -->
+    <!-- 溪边鹅卵石模块 -->
     <div class="interactive-zone" style="background: rgba(135, 206, 235, 0.2); border-radius: 40px; margin: 10px;">
         <div class="tap-target stone" onclick="handleTap(6, this)">🪨</div>
         <div class="tap-target stone" onclick="handleTap(7, this)">🪨</div>
@@ -656,6 +1046,7 @@
         <p class="hint-text">春小燕，溪边鹅卵石下也藏着惊喜</p>
     </div>
 
+    <!-- 郁金香花苞模块 -->
     <div class="interactive-zone" style="background: rgba(233, 249, 238, 0.4); border-radius: 40px; margin: 10px;">
         <div class="tap-target flower-bud" onclick="handleTap(9, this)">🌷</div>
         <div class="tap-target flower-bud" onclick="handleTap(10, this)">🌷</div>
@@ -664,12 +1055,14 @@
         <p class="hint-text">春小燕，看看哪朵郁金香先为你绽放</p>
     </div>
 
+    <!-- 蝴蝶模块 -->
     <div class="interactive-zone">
         <div class="tap-target butterfly" onclick="handleTap(13, this)">🦋</div>
         <div class="tap-target butterfly" onclick="handleTap(14, this)">🦋</div>
         <p class="hint-text">春小燕，抓住那两只为你飞舞的蝴蝶</p>
     </div>
 
+    <!-- 蘑菇模块 -->
     <div class="interactive-zone">
         <div class="tap-target mushroom" onclick="handleTap(15, this)">🍄</div>
         <div class="tap-target mushroom" onclick="handleTap(16, this)">🍄</div>
@@ -677,18 +1070,21 @@
         <p class="hint-text">春小燕，蘑菇伞盖下面也有小秘密</p>
     </div>
 
+    <!-- 露珠模块 -->
     <div class="interactive-zone">
         <div class="tap-target dewdrop" onclick="handleTap(18, this)">💧</div>
         <div class="tap-target dewdrop" onclick="handleTap(19, this)">💧</div>
         <p class="hint-text">春小燕，点点露珠看看倒影里的回忆</p>
     </div>
 
+    <!-- 风铃模块 -->
     <div class="interactive-zone">
         <div class="tap-target wind-bell" onclick="handleTap(20, this)">🎐</div>
         <div class="tap-target wind-bell" onclick="handleTap(21, this)">🎐</div>
         <p class="hint-text">春小燕，听风铃把回忆轻轻说给你听</p>
     </div>
 
+    <!-- 园艺浇水模块 -->
     <div class="interactive-zone">
         <div class="garden-water-game">
             <div id="watering-can-draggable" class="tap-target watering-can water-draggable" aria-label="浇水壶">🚿</div>
@@ -698,12 +1094,50 @@
         <p id="water-status" class="water-status">浇完水后会出现惊喜照片</p>
     </div>
 
+    <!-- 彩绘石模块 -->
     <div class="interactive-zone">
         <div class="tap-target painted-stone" onclick="handleTap(24, this)">🎨🪨</div>
-        <div class="tap-target" style="font-size: 70px;" onclick="handleTap(25, this)">🎈</div>
-        <p class="hint-text">春小燕，最后看看彩绘石和惊喜气球</p>
+        <p class="hint-text">春小燕，彩绘石里也有温柔回忆</p>
     </div>
 
+    <!-- 气球升空秀模块 -->
+    <div class="interactive-zone">
+        <div id="balloon-zone" class="balloon-zone" aria-label="气球升空秀模块">
+            <div id="balloon-status-lock" class="balloon-status-lock">等一等，让祝福飞一会儿~</div>
+            <div class="vintage-bench" aria-hidden="true">
+                <div class="bench-vines">🌿🌿</div>
+                <div class="bench-book"></div>
+            </div>
+            <div class="balloon-group">
+                <div class="ladybug" aria-hidden="true">🐞</div>
+                <div class="balloon-item" data-bid="0" style="left: 6px; bottom: 34px;" aria-label="粉色气球，点击放飞查看回忆照片" role="button">
+                    <div class="balloon-shell pink">
+                        <img class="balloon-thumb" id="balloon-thumb-0" alt="气球照片缩略图1">
+                        <div class="balloon-orbit"></div>
+                    </div>
+                    <div class="balloon-string"><div class="string-knot"></div></div>
+                </div>
+                <div class="balloon-item" data-bid="1" style="left: 86px; bottom: 64px;" aria-label="金色气球，点击放飞查看回忆照片" role="button">
+                    <div class="balloon-shell gold">
+                        <img class="balloon-thumb" id="balloon-thumb-1" alt="气球照片缩略图2">
+                        <div class="balloon-orbit"></div>
+                    </div>
+                    <div class="balloon-string"><div class="string-knot"></div></div>
+                </div>
+                <div class="balloon-item" data-bid="2" style="left: 168px; bottom: 34px;" aria-label="紫色气球，点击放飞查看回忆照片" role="button">
+                    <div class="balloon-shell purple">
+                        <img class="balloon-thumb" id="balloon-thumb-2" alt="气球照片缩略图3">
+                        <div class="pattern">★</div>
+                        <div class="balloon-orbit"></div>
+                    </div>
+                    <div class="balloon-string"><div class="string-knot"></div></div>
+                </div>
+            </div>
+        </div>
+        <p class="hint-text">春小燕，放飞三个气球，让祝福升上天空</p>
+    </div>
+
+    <!-- 野餐篮模块 -->
     <div class="interactive-zone">
         <div class="picnic-zone">
             <div class="picnic-blanket">
@@ -718,6 +1152,7 @@
         <p class="hint-text">春小燕，点开野餐篮，回忆会从篮子里跳出来</p>
     </div>
 
+    <!-- 夕阳剪影模块 -->
     <div id="sunset-zone" class="interactive-zone sunset-zone" aria-label="夕阳剪影区域">
         <div id="sun-pulse" class="sun-pulse"></div>
         <div id="sun-disc" class="sun-disc"></div>
@@ -729,14 +1164,15 @@
     </div>
 </div>
 
-<!-- 固定UI -->
-<div id="honey-pot"><span id="honey-count">0</span><div style="font-size: 45px; margin-top: 25px;">🍯</div></div>
+<!-- 固定 UI：蜂蜜罐计数与音乐控制 -->
+<div id="honey-pot"><span id="honey-count">0/25</span><div style="font-size: 45px; margin-top: 25px;">🍯</div></div>
 <div id="music-player" onclick="switchTrack()" title="点击切换音乐"><div id="music-icon" style="font-size: 40px;">💿</div></div>
 
 <div id="reveal-overlay" onclick="closeReveal()"></div>
 <div id="photo-reveal-box" class="hidden-photo"><img src="" id="reveal-img"></div>
 <div id="lightbox"><div id="lightbox-close" onclick="document.getElementById('lightbox').style.display='none'">×</div><img src="" id="lightbox-img"></div>
 
+<!-- 野餐篮查看层 -->
 <div id="picnic-viewer" class="picnic-viewer" aria-hidden="true">
     <div id="memory-bubble" class="memory-bubble"></div>
     <button id="picnic-close" class="picnic-close" aria-label="关闭照片">×</button>
@@ -745,6 +1181,7 @@
 
 <div id="mini-counter" class="mini-counter">收集册：野餐回忆 3/3</div>
 
+<!-- 夕阳剪影的转场层与彩蛋层 -->
 <div id="sky-overlay" class="sky-overlay"></div>
 <div id="sunset-stage" class="sunset-stage">
     <div id="silhouette-wrap" class="silhouette-wrap">
@@ -759,13 +1196,22 @@
     <div class="ultimate-text">我们的故事，未完待续 🌹</div>
 </div>
 
+<!-- 气球模块的浮层：漂浮照片、组合照片与终极祝福 -->
+<div id="balloon-photo-layer"></div>
+<div id="balloon-combo" class="balloon-combo">
+    <div id="balloon-combo-grid" class="balloon-combo-grid"></div>
+    <div class="combo-ring"><span>🎈</span><span>🎈</span><span>🎈</span></div>
+</div>
+<div id="balloon-ultimate-msg" class="balloon-ultimate-msg">我们一起，飞向更好的天空</div>
+
 <audio id="bg-music"></audio>
 
 <script>
+    // 主照片池：用于大部分隐藏照片的统一索引映射
     const photoUrls = [
         "img/1/IMG_20220820_131125.jpg", "img/1/IMG_20220821_101429.jpg", "img/1/IMG_20220821_134939.jpg",
-        "img/1/IMG_20221003_104432.jpg", "img/1/IMG_20230325_205825.jpg", "img/1/IMG_20230325_205935.jpg",
-        "img/1/IMG_20230622_201648.jpg", "img/1/IMG_20230622_201650.jpg", "img/1/IMG_20230622_201700.jpg",
+        "img/1/IMG_20221003_104432.jpg", "img/1/IMG_20230325_205825.jpg", "img/12/IMG_20220404_211813.jpg",
+        "img/1/IMG_20230622_201648.jpg", "img/4/IMG_20220430_141157.jpg", "img/1/IMG_20230622_201700.jpg",
         "img/2/-1ebe23db85da539b.jpg", "img/2/-4307697817d3c0b1.jpg", "img/2/-75da7e6488bae183.jpg",
         "img/2/MYXJ_20230605201630274_fast.jpg", "img/2/MYXJ_20230605201655911_fast.jpg",
         "img/2/MYXJ_20230605201700593_fast.jpg", "img/2/MYXJ_20230605201720466_fast.jpg",
@@ -776,6 +1222,7 @@
         "img/3/mmexport1651327061476.jpg"
     ];
 
+    // 全局 DOM 引用与交互状态
     const collectedPhotos = new Set();
     const photoRevealBox = document.getElementById('photo-reveal-box');
     const revealImg = document.getElementById('reveal-img');
@@ -803,8 +1250,16 @@
     const silhouetteImg = document.getElementById('silhouette-img');
     const ultimateEgg = document.getElementById('ultimate-egg');
     const thumbRing = document.getElementById('thumb-ring');
+    const balloonZone = document.getElementById('balloon-zone');
+    const balloonStatusLock = document.getElementById('balloon-status-lock');
+    const balloonItems = Array.from(document.querySelectorAll('.balloon-item'));
+    const balloonPhotoLayer = document.getElementById('balloon-photo-layer');
+    const balloonCombo = document.getElementById('balloon-combo');
+    const balloonComboGrid = document.getElementById('balloon-combo-grid');
+    const balloonUltimateMsg = document.getElementById('balloon-ultimate-msg');
     const audio = document.getElementById('bg-music');
     const player = document.getElementById('music-player');
+    // 本地背景音乐列表：进入花园后自动播放，CD 点击切歌
     const baseMusicTracks = [
         { name: 'Happy', url: 'music/eliveta-happy-473961.mp3' },
         { name: 'Spring Sea', url: 'music/musicword-spring-sea-319241.mp3' },
@@ -814,6 +1269,7 @@
         { name: 'Acoustic Guitar', url: 'music/tunetank-happy-acoustic-guitar-349697.mp3' }
     ];
 
+    // Fisher-Yates 洗牌：用于随机化音乐播放顺序
     function shuffleTracks(tracks) {
         const list = [...tracks];
         for (let i = list.length - 1; i > 0; i--) {
@@ -826,22 +1282,67 @@
     let musicTracks = shuffleTracks(baseMusicTracks);
     let currentTrackIndex = 0;
     const fallbackFlower = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'><text x='12' y='94' font-size='84'>🌸</text></svg>";
+    const finalCelebrationPhoto = 'img/8/IMG_20260124_150618_1.jpg';
+    // 野餐篮三张照片的数据源
     const picnicItems = [
-        { index: 22, src: 'spring/pic22.jpg', date: '2019.03.30', flower: '🌼', text: '那一年我们在海边，你说要永远做我的女孩' },
-        { index: 23, src: 'spring/pic23.jpg', date: '2022.夏天', flower: '🌾', text: '笑到停不下来的那个夏天，还在发光' },
-        { index: 24, src: 'spring/pic24.jpg', date: '去年今日', flower: '🌹', text: '每次回头，你都在我身边，真好' }
+        { index: 22, src: 'img//1//IMG_20220821_134939.jpg', date: '2022.08.21', flower: '🌼', text: '那时候的我们还要补课呢' },
+        { index: 23, src: 'img//14//IMG_20240809_211328.jpg', date: '2024.08.09', flower: '🌾', text: '终于毕业啦，我们一起去了西安，毕业快乐！' },
+        { index: 24, src: 'img//8//mmexport1769344735672.jpg', date: '2026.01.25', flower: '🌹', text: '我们还会，一直一直，走下去' }
     ];
     let picnicOpened = false;
     const picnicViewed = new Set();
     let sunsetFinalized = false;
     let sunsetBusy = false;
     let longPressTimer = null;
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const isLowPerformance = reducedMotion || (navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 4);
+    if (isLowPerformance) document.body.classList.add('performance-lite');
 
+    // 气球升空秀的三组数据：缩略图、主图、祝福语与回忆文案
+    const balloonItemsData = [
+        {
+            id: 0,
+            index: 19,
+            thumb: 'spring/balloon1.jpg',
+            photo: 'img\\7\\mmexport1739595717751.jpg',
+            color: '#ff8eb9',
+            bless: '愿我们永远像童话里的角色一样无忧无虑',
+            memory: '这天我们一起去了荒野王国，一个。'
+        },
+        {
+            id: 1,
+            index: 20,
+            thumb: 'spring/balloon2.jpg',
+            photo: 'img\\14\\IMG_20240806_140809.jpg',
+            color: '#f0c36b',
+            bless: '你的笑容是我收藏的宝藏',
+            memory: '那天我们抵达西安，你灿烂的笑容，我一直记到今天。'
+        },
+        {
+            id: 2,
+            index: 21,
+            thumb: 'spring/balloon3.jpg',
+            photo: 'img\\14\\IMG_20250826_171505.jpg',
+            color: '#b28bff',
+            bless: '成为更好的人是我们的约定',
+            memory: '这是我收到过最用心的生日礼物，谢谢你，这让我意识到感情的珍贵。'
+        }
+    ];
+    const balloonState = {
+        locked: false,
+        launched: new Set(),
+        floating: new Map(),
+        mergedDone: false,
+        finaleClosable: false
+    };
+
+    // 加载当前音乐曲目，并同步更新播放器提示文案
     function loadTrack(index) {
         audio.src = encodeURI(musicTracks[index].url);
         player.title = `当前音乐：${musicTracks[index].name}（点击切换）`;
     }
 
+    // 图片兜底：当 spring/ 或本地图片不存在时回退为花朵图标
     function setImgWithFallback(imgEl, src) {
         imgEl.onerror = () => {
             imgEl.onerror = null;
@@ -850,28 +1351,40 @@
         imgEl.src = src;
     }
 
+    // 收集进度统一入口：更新蜂蜜罐计数、夕阳解锁状态和收集完成提示
     function collectPhoto(index) {
         if (!collectedPhotos.has(index)) {
             collectedPhotos.add(index);
-            document.getElementById('honey-count').innerText = collectedPhotos.size;
+            updateHoneyDisplay();
             updateSunPulse();
             if (collectedPhotos.size === 25) {
-                setTimeout(() => alert("🎉 春小燕，你找齐了25个精彩时刻！生日快乐！🎂"), 1000);
+                setTimeout(() => {
+                    alert("🎉 春小燕，你找齐了25个精彩时刻！生日快乐！🎂");
+                    showLargePhoto(finalCelebrationPhoto);
+                }, 1000);
             }
         }
     }
 
+    // 同步底部蜂蜜罐展示为 x/25 格式
+    function updateHoneyDisplay(value = collectedPhotos.size) {
+        document.getElementById('honey-count').innerText = `${value}/25`;
+    }
+
+    // 根据已发现照片数量，切换夕阳外圈脉冲颜色
     function updateSunPulse() {
         if (!sunPulse) return;
         sunPulse.classList.toggle('ready', collectedPhotos.size >= 20);
     }
 
+    // 播放当前音乐，并让右下角 CD 进入旋转状态
     function playCurrentTrack() {
         return audio.play().then(() => {
             player.classList.add('playing');
         });
     }
 
+    // 切换到下一首音乐；播放到末尾时重新洗牌
     function switchTrack() {
         currentTrackIndex += 1;
         if (currentTrackIndex >= musicTracks.length) {
@@ -886,6 +1399,7 @@
 
     loadTrack(currentTrackIndex);
     audio.addEventListener('ended', switchTrack);
+    updateHoneyDisplay();
     updateSunPulse();
 
     let isDraggingCan = false;
@@ -893,6 +1407,7 @@
     const waterPhotoQueue = [22, 23];
     let waterPhotoCursor = 0;
 
+    // 园艺模块：根据拖拽位置高亮植物投放区
     function updateDropzoneHighlight(x, y) {
         const rect = plantDropzone.getBoundingClientRect();
         const inside = x >= rect.left && x <= rect.right && y >= rect.top && y <= rect.bottom;
@@ -900,6 +1415,7 @@
         return inside;
     }
 
+    // 园艺模块：移除拖拽中的浇水壶幽灵层
     function removeGhost() {
         if (canGhost) {
             canGhost.remove();
@@ -907,9 +1423,11 @@
         }
     }
 
+    // 初始化园艺浇水模块：拖拽浇水成功后显示园艺照片
     function initWaterGame() {
         if (!wateringCan || !plantDropzone || !waterStatus) return;
 
+        // 园艺浇水成功时的水滴动画
         function spawnWaterDrops() {
             const rect = plantDropzone.getBoundingClientRect();
             const startX = rect.left + rect.width * 0.5;
@@ -980,6 +1498,264 @@
 
     initWaterGame();
 
+    // 气球模块：动画进行时的防误触提示
+    function showBalloonLock(text = '等一等，让祝福飞一会儿~') {
+        if (!balloonStatusLock) return;
+        balloonStatusLock.textContent = text;
+        balloonStatusLock.classList.add('show');
+    }
+
+    // 隐藏气球模块的防误触提示
+    function hideBalloonLock() {
+        balloonStatusLock?.classList.remove('show');
+    }
+
+    // 气球上升时的光尾粒子
+    function spawnBalloonTail(x, y, color) {
+        if (isLowPerformance) return;
+        const dot = document.createElement('div');
+        dot.className = 'balloon-tail';
+        dot.style.left = `${x}px`;
+        dot.style.top = `${y}px`;
+        dot.style.background = color;
+        balloonPhotoLayer.appendChild(dot);
+        setTimeout(() => dot.remove(), 1000);
+    }
+
+    // 气球爆开后的纸屑庆祝效果
+    function spawnBalloonConfetti(x, y, color) {
+        const count = isLowPerformance ? 10 : 18;
+        for (let i = 0; i < count; i++) {
+            const c = document.createElement('div');
+            c.className = 'balloon-confetti';
+            c.textContent = '✦';
+            c.style.left = `${x}px`;
+            c.style.top = `${y}px`;
+            c.style.color = color;
+            c.style.setProperty('--cx', `${(Math.random() - .5) * 140}px`);
+            c.style.setProperty('--cy', `${40 + Math.random() * 120}px`);
+            balloonPhotoLayer.appendChild(c);
+            setTimeout(() => c.remove(), 1300);
+        }
+    }
+
+    // 创建跟随气球上升的照片层与祝福丝带
+    function createFloatingPhoto(data, startX, startY) {
+        const wrap = document.createElement('div');
+        wrap.className = 'balloon-photo-float';
+        wrap.setAttribute('aria-label', `${data.bless}，点击翻面查看回忆`);
+        wrap.setAttribute('role', 'button');
+
+        const img = document.createElement('img');
+        setImgWithFallback(img, data.photo);
+        const back = document.createElement('div');
+        back.className = 'balloon-memory-back';
+        back.innerText = data.memory;
+        const tip = document.createElement('div');
+        tip.className = 'balloon-memory-tip';
+        tip.innerText = '长按保存这一刻';
+
+        const ribbon = document.createElement('div');
+        ribbon.className = 'balloon-ribbon';
+        ribbon.innerText = data.bless;
+
+        wrap.appendChild(img);
+        wrap.appendChild(back);
+        wrap.appendChild(tip);
+        balloonPhotoLayer.appendChild(wrap);
+        balloonPhotoLayer.appendChild(ribbon);
+
+        wrap.style.left = `${startX - 75}px`;
+        wrap.style.top = `${startY + 22}px`;
+        wrap.style.display = 'block';
+
+        let flipped = false;
+        wrap.addEventListener('click', () => {
+            flipped = !flipped;
+            wrap.style.transform = flipped ? 'rotateY(180deg)' : 'rotateY(0deg)';
+            back.style.display = flipped ? 'block' : 'none';
+            img.style.display = flipped ? 'none' : 'block';
+        });
+
+        wrap.addEventListener('pointerdown', () => {
+            tip.style.display = 'block';
+        });
+
+        return { wrap, ribbon };
+    }
+
+    // 气球升空主流程：解绳、升空、照片放大、丝带出现、爆开与留存
+    function animateBalloonFlight(itemEl, data) {
+        balloonState.locked = true;
+        balloonItems.forEach((it) => {
+            if (it !== itemEl && !balloonState.launched.has(Number(it.dataset.bid))) it.classList.add('disabled');
+        });
+        showBalloonLock('等一等，让祝福飞一会儿~');
+
+        const shell = itemEl.querySelector('.balloon-shell');
+        const rect = shell.getBoundingClientRect();
+        const startX = rect.left + rect.width / 2;
+        const startY = rect.top + rect.height / 2;
+        const floating = createFloatingPhoto(data, startX, startY);
+
+        alert('咻—解开了');
+
+        const startTime = performance.now();
+        const dur = 2500;
+        const statusBarSafe = 22;
+
+        const step = (now) => {
+            const t = Math.min(1, (now - startTime) / dur);
+            const easing = t < .35 ? t * .65 : t < .75 ? .23 + (t - .35) * 1.12 : .68 + (t - .75) * 1.28;
+            const y = startY - easing * (startY + 120);
+            const x = startX + Math.sin(t * Math.PI * 2) * 22;
+            const rotate = t * 360;
+            shell.style.transform = `translate(${x - startX}px, ${y - startY}px) rotate(${rotate}deg)`;
+            itemEl.querySelector('.balloon-string').style.transform = `translateX(-50%) rotate(${Math.sin(t * Math.PI * 5) * 12}deg)`;
+
+            if (t >= 0.33) {
+                const size = 40 + Math.min(110, (t - 0.33) / 0.2 * 110);
+                floating.wrap.style.width = `${size}px`;
+                floating.wrap.style.height = `${size}px`;
+                floating.wrap.style.left = `${x - size / 2}px`;
+                floating.wrap.style.top = `${y + 20}px`;
+                floating.wrap.style.borderRadius = data.id === 1 ? '14px' : '50%';
+            }
+
+            if (t >= 0.5) {
+                floating.wrap.style.width = '150px';
+                floating.wrap.style.height = '150px';
+                floating.wrap.style.left = `${x - 75}px`;
+                floating.wrap.style.top = `${y + 16}px`;
+                floating.wrap.style.borderRadius = data.id === 0 ? '50%' : '14px';
+                floating.wrap.style.boxShadow = '0 0 0 8px rgba(255, 225, 121, .18), 0 12px 22px rgba(0,0,0,.25)';
+            }
+
+            if (t >= 0.66) {
+                floating.ribbon.style.display = 'flex';
+                floating.ribbon.style.left = `${x - 80}px`;
+                floating.ribbon.style.top = `${y + 176}px`;
+            }
+
+            if (!isLowPerformance && t > 0.28 && t < 0.95) {
+                spawnBalloonTail(x - 8, y + 56, data.color);
+            }
+
+            if (t < 1) {
+                requestAnimationFrame(step);
+            } else {
+                shell.style.visibility = 'hidden';
+                itemEl.querySelector('.balloon-string').style.visibility = 'hidden';
+                const finalTop = Math.max(statusBarSafe, window.innerHeight * 0.2 - 80);
+                floating.wrap.style.top = `${finalTop}px`;
+                floating.ribbon.style.top = `${finalTop + 160}px`;
+                floating.wrap.classList.add('fixed');
+                balloonState.floating.set(data.id, floating);
+                spawnBalloonConfetti(x, 14, data.color);
+                alert('啵');
+                collectPhoto(data.index);
+
+                balloonState.locked = false;
+                hideBalloonLock();
+                balloonItems.forEach((it) => it.classList.remove('disabled'));
+
+                if (balloonState.launched.size === 3 && balloonState.floating.size === 3 && !balloonState.mergedDone) {
+                    setTimeout(triggerBalloonFinale, 700);
+                }
+            }
+        };
+
+        requestAnimationFrame(step);
+    }
+
+    // 三个气球全部完成后的合体彩蛋：三图汇聚、组合拼贴、烟花和终极祝福
+    function triggerBalloonFinale() {
+        balloonState.mergedDone = true;
+        const entries = Array.from(balloonState.floating.values());
+        entries.forEach((f, i) => {
+            f.wrap.style.transition = 'all 1.5s cubic-bezier(.22,.9,.35,1)';
+            f.ribbon.style.transition = 'all 1.5s cubic-bezier(.22,.9,.35,1)';
+            f.wrap.style.left = `${window.innerWidth / 2 - 75 + (i - 1) * 8}px`;
+            f.wrap.style.top = `${window.innerHeight / 2 - 100 + i * 6}px`;
+            f.ribbon.style.opacity = '0';
+        });
+
+        setTimeout(() => {
+            balloonCombo.style.display = 'block';
+            balloonCombo.style.left = `${window.innerWidth / 2 - 100}px`;
+            balloonCombo.style.top = `${window.innerHeight / 2 - 100}px`;
+            balloonComboGrid.innerHTML = '';
+            balloonItemsData.forEach((b) => {
+                const img = document.createElement('img');
+                img.style.width = '100%';
+                img.style.height = '100%';
+                img.style.objectFit = 'cover';
+                setImgWithFallback(img, b.photo);
+                balloonComboGrid.appendChild(img);
+            });
+            entries.forEach((f) => {
+                f.wrap.style.display = 'none';
+                f.ribbon.style.display = 'none';
+            });
+
+            runFireworks(1000);
+            balloonUltimateMsg.style.display = 'block';
+            alert('✨ 恭喜解锁气球回忆合集 ✨');
+            setTimeout(() => {
+                balloonUltimateMsg.style.display = 'none';
+            }, 3000);
+            setTimeout(() => {
+                balloonState.finaleClosable = true;
+            }, 0);
+
+            collectPhoto(25);
+            document.getElementById('honey-pot').style.boxShadow = '0 0 16px 6px rgba(255,216,102,.65)';
+        }, 1500);
+    }
+
+    // 点击任意空白区域后关闭气球终场拼贴，避免持续挡住视野
+    function closeBalloonFinale() {
+        if (!balloonState.mergedDone) return;
+        balloonCombo.style.display = 'none';
+        balloonUltimateMsg.style.display = 'none';
+        balloonState.finaleClosable = false;
+    }
+
+    // 初始化气球升空秀模块的点击绑定与缩略图加载
+    function initBalloonModule() {
+        if (!balloonItems.length) return;
+        balloonItemsData.forEach((item) => {
+            const thumb = document.getElementById(`balloon-thumb-${item.id}`);
+            if (thumb) setImgWithFallback(thumb, item.thumb);
+        });
+
+        // 此处为气球升空模块，移动端点击区域已放大
+        balloonItems.forEach((itemEl) => {
+            itemEl.addEventListener('click', () => {
+                const id = Number(itemEl.dataset.bid);
+                if (balloonState.locked) return;
+                if (balloonState.launched.has(id)) {
+                    const f = balloonState.floating.get(id);
+                    if (f) f.wrap.click();
+                    return;
+                }
+                itemEl.classList.add('active');
+                balloonState.launched.add(id);
+                animateBalloonFlight(itemEl, balloonItemsData[id]);
+            });
+        });
+    }
+
+    initBalloonModule();
+
+    document.addEventListener('click', (event) => {
+        if (!balloonState.finaleClosable || balloonCombo.style.display !== 'block') return;
+        const clickedFloatingPhoto = event.target.closest('.balloon-photo-float');
+        if (clickedFloatingPhoto) return;
+        closeBalloonFinale();
+    });
+
+    // 野餐篮打开时的彩色烟雾与纸屑粒子
     function createSmokeConfetti() {
         const hostRect = picnicBasket.getBoundingClientRect();
         const colors = ['#ff6fa7', '#c88cff', '#ffd966'];
@@ -997,6 +1773,7 @@
         }
     }
 
+    // 构建野餐垫上的三张拍立得卡片
     function buildPicnicCards() {
         picnicPolaroids.innerHTML = '';
         const poses = [
@@ -1040,6 +1817,7 @@
         });
     }
 
+    // 打开某张野餐回忆卡：小花飘走、卡片放大、气泡祝福出现
     function openPicnicCard(item, cardEl) {
         const flowerEl = cardEl.querySelector('.flower-pin');
         if (flowerEl) {
@@ -1068,6 +1846,7 @@
         }
     }
 
+    // 关闭野餐回忆查看层
     function closePicnicViewer() {
         picnicViewer.classList.remove('show');
     }
@@ -1089,6 +1868,7 @@
         if (e.target === picnicViewer) closePicnicViewer();
     });
 
+    // 夕阳变身时，从中心向外扩散的星光粒子
     function sparkleAroundSun() {
         const rect = sunDisc.getBoundingClientRect();
         for (let i = 0; i < 34; i++) {
@@ -1104,6 +1884,7 @@
         }
     }
 
+    // 通用烟花粒子动画：用于夕阳终极彩蛋和气球合集彩蛋
     function runFireworks(duration = 5000) {
         const timer = setInterval(() => {
             const cx = 60 + Math.random() * (window.innerWidth - 120);
@@ -1123,6 +1904,7 @@
         setTimeout(() => clearInterval(timer), duration);
     }
 
+    // 夕阳长按 3 秒后的终极彩蛋：爱心、缩略图环与最终祝福
     function startUltimateEgg() {
         ultimateEgg.classList.add('show');
         thumbRing.innerHTML = '';
@@ -1149,6 +1931,7 @@
         setTimeout(() => closeSunsetSequence(true), 5000);
     }
 
+    // 关闭夕阳最终阶段，并在完成时标记为已通关状态
     function closeSunsetSequence(completed = false) {
         sunsetStage.classList.remove('show');
         ultimateEgg.classList.remove('show');
@@ -1157,11 +1940,12 @@
         if (completed && !sunsetFinalized) {
             sunsetFinalized = true;
             sunsetZone.classList.add('sunset-completed');
-            document.getElementById('honey-count').innerText = '25';
+            updateHoneyDisplay(25);
             document.getElementById('honey-pot').style.boxShadow = '0 0 20px 8px rgba(255,215,0,.65)';
         }
     }
 
+    // 夕阳主流程：天空变色、夕阳膨胀、剪影照片登场
     function triggerSunsetSequence() {
         if (sunsetBusy || sunsetFinalized) return;
         sunsetBusy = true;
@@ -1177,6 +1961,7 @@
         }, 1400);
     }
 
+    // 夕阳点击不足条件时的提示气泡
     function showSunHint(text) {
         sunHint.textContent = text;
         sunHint.classList.add('show');
@@ -1201,6 +1986,7 @@
     let startY = 0;
     let isPan = false;
 
+    // 将双指缩放和平移结果应用到夕阳剪影大图上
     function applySilhouetteTransform() {
         silhouetteImg.style.transform = `translate(${translateX}px, ${translateY}px) scale(${scale})`;
     }
@@ -1255,6 +2041,7 @@
     });
     ultimateEgg?.addEventListener('click', () => closeSunsetSequence(true));
 
+    // 首屏暗号校验：正确后解锁花园并尝试自动播放音乐
     function checkPin() {
         const input = document.getElementById('pin-input').value;
         if (input === '0330') {
@@ -1274,6 +2061,7 @@
         }
     }
 
+    // 通用照片点击入口：显示照片弹层并记录收集进度
     function handleTap(index, element) {
         if (collectedPhotos.size >= 25) return; // 全部找齐逻辑
         if (collectedPhotos.has(index)) { showLargePhoto(photoUrls[index-1]); return; }
@@ -1285,9 +2073,21 @@
         collectPhoto(index);
     }
 
+    // 关闭通用照片弹层
     function closeReveal() { photoRevealBox.classList.remove('active'); revealOverlay.style.display = 'none'; }
-    function showLargePhoto(url) { const lb = document.getElementById('lightbox'); const img = document.getElementById('lightbox-img'); img.src = url; lb.style.display = 'flex'; }
+
+    // 进入全屏灯箱查看大图
+    function showLargePhoto(url) {
+        const lb = document.getElementById('lightbox');
+        const img = document.getElementById('lightbox-img');
+        setImgWithFallback(img, url);
+        lb.style.display = 'flex';
+    }
+
+    // 蒲公英模块：顺序放出两张照片
     function blowDandelion(el, indices) { el.innerText = "🌬️✨"; setTimeout(() => { el.style.opacity = '0'; handleTap(indices[0], el); setTimeout(() => handleTap(indices[1], el), 800); }, 500); }
+
+    // 全局花瓣飘落背景动画
     function createPetal() {
         const petal = document.createElement('div');
         petal.className = 'petal';
