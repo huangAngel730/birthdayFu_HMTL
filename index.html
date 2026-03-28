@@ -1193,6 +1193,35 @@
                 } catch (e) { console.error('fallback checkPin error', e); }
             };
         }
+        // 早期回退：在主脚本加载前提供最小的 handleTap/closeReveal，防止页面中大量 inline onclick 报错
+        if (typeof window.handleTap !== 'function') {
+            window.handleTap = function (index, el) {
+                try {
+                    const i = Number(index);
+                    const src = (window.photoUrls && window.photoUrls[i]) ? window.photoUrls[i] : (window.fallbackFlower || '');
+                    const revealImg = document.getElementById('reveal-img');
+                    const revealOverlay = document.getElementById('reveal-overlay');
+                    const photoRevealBox = document.getElementById('photo-reveal-box');
+                    if (revealImg && src) {
+                        revealImg.onerror = null;
+                        revealImg.src = src;
+                    }
+                    if (revealOverlay) revealOverlay.style.display = 'block';
+                    if (photoRevealBox) photoRevealBox.classList.add('active');
+                    if (typeof window.collectPhoto === 'function') window.collectPhoto(i);
+                } catch (e) { console.error('fallback handleTap error', e); }
+            };
+        }
+        if (typeof window.closeReveal !== 'function') {
+            window.closeReveal = function () {
+                try {
+                    const photoRevealBox = document.getElementById('photo-reveal-box');
+                    const revealOverlay = document.getElementById('reveal-overlay');
+                    if (photoRevealBox) photoRevealBox.classList.remove('active');
+                    if (revealOverlay) revealOverlay.style.display = 'none';
+                } catch (e) { console.error('fallback closeReveal error', e); }
+            };
+        }
     </script>
 </div>
 
@@ -1382,7 +1411,6 @@
 <!-- 气球模块的浮层：漂浮照片、组合照片与终极祝福 -->
 <div id="balloon-photo-layer"></div>
 <div id="balloon-combo" class="balloon-combo">
-    <
     <div class="combo-ring"><span>🎈</span><span>🎈</span><span>🎈</span></div>
 </div>
 <div id="balloon-ultimate-msg" class="balloon-ultimate-msg">我们一起，飞向更好的天空</div>
@@ -1479,6 +1507,40 @@
     const balloonUltimateMsg = document.getElementById('balloon-ultimate-msg');
     const audio = document.getElementById('bg-music');
     const player = document.getElementById('music-player');
+    
+    // 简易交互处理：展示照片并记录收集（如果原实现缺失，此处提供基本回退）
+    function handleTap(index, el) {
+        try {
+            const i = Number(index);
+            const src = (photoUrls && photoUrls[i]) ? photoUrls[i] : fallbackFlower;
+            console.log('handleTap', { index: i, src });
+            if (revealImg) setImgWithFallback(revealImg, src);
+            if (revealOverlay) revealOverlay.style.display = 'block';
+            if (photoRevealBox) photoRevealBox.classList.add('active');
+            if (typeof collectPhoto === 'function') collectPhoto(i);
+        } catch (e) {
+            console.error('handleTap error', e);
+        }
+    }
+
+    function closeReveal() {
+        try {
+            if (photoRevealBox) photoRevealBox.classList.remove('active');
+            if (revealOverlay) revealOverlay.style.display = 'none';
+        } catch (e) { console.error('closeReveal error', e); }
+    }
+    // 临时调试：记录页面点击与关键状态，方便排查 onclick 是否被触发
+    (function () {
+        console.log('debug init', {
+            accessLockVisible: !!document.getElementById('access-lock') && getComputedStyle(document.getElementById('access-lock')).display !== 'none',
+            gardenUnlocked: document.getElementById('garden-container') && document.getElementById('garden-container').classList.contains('unlocked')
+        });
+        document.addEventListener('click', function (e) {
+            try {
+                console.log('DOM click', { tag: e.target.tagName, cls: e.target.className, id: e.target.id, text: (e.target.innerText||'').slice(0,40) });
+            } catch (err) { console.error('click debug error', err); }
+        }, true);
+    })();
     // 本地背景音乐列表：进入花园后自动播放，CD 点击切歌
     const baseMusicTracks = [
         { name: 'Spring Sea', url: 'music/musicword-spring-sea-319241.mp3' },
