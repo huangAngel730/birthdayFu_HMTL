@@ -78,175 +78,8 @@
         @keyframes fall { 0% { transform: translateY(-10vh) rotate(0deg); } 100% { transform: translateY(110vh) rotate(360deg); } }
 
         /* 交互图标样式：通用图标、露珠、浇水壶、花盆等基础视觉 */
-        .wish-tag { width: 80px; height: 160px; /* 增加高度以适应文字 */
-            background: linear-gradient(180deg, #ffe9e6, #ffd7d1);
-            border-top: 4px solid #ffb6b0;
-            color: #4a2b2b;
-            border-radius: 8px;
-            font-size: 16px;
-            writing-mode: vertical-lr;
-            padding: 10px;
-            margin: 10px;
-            box-shadow: 0 6px 12px rgba(0,0,0,.12);
-        }
-        .wish-tree::after {
-            content: "";
-            position: absolute;
-            left: 50%;
-            top: 20px;
-            transform: translateX(-50%) translateY(-6px);
-            /* 更长的横向椭圆＋多层云状渐变，模拟自然树冠 */
-            width: 92%;
-            height: 210px;
-            border-radius: 60% 60% 45% 45% / 50% 50% 55% 55%;
-            background:
-                radial-gradient(78px 56px at 14% 62%, rgba(255, 210, 220, .86), rgba(255, 210, 220, 0) 72%),
-                radial-gradient(110px 72px at 32% 36%, rgba(255, 195, 210, .9), rgba(255, 195, 210, 0) 72%),
-                radial-gradient(140px 92px at 50% 22%, rgba(255, 180, 205, .96), rgba(255, 180, 205, .06) 72%),
-                radial-gradient(110px 72px at 68% 36%, rgba(255, 195, 210, .9), rgba(255, 195, 210, 0) 72%),
-                radial-gradient(78px 56px at 86% 62%, rgba(255, 210, 220, .86), rgba(255, 210, 220, 0) 72%),
-                radial-gradient(260px 128px at 50% 62%, rgba(255, 192, 210, .96), rgba(255, 192, 210, .28) 72%, rgba(255, 192, 210, .08) 100%);
-            box-shadow: inset 0 -18px 32px rgba(207, 118, 163, .28), 0 12px 28px rgba(184, 115, 149, .18);
-            z-index: 0;
-            pointer-events: none;
-        }
-            left: 50%;
-            bottom: 8px;
-            transform: translateX(-50%);
-            width: 88px;
-            height: 172px;
-            border-radius: 42px 42px 18px 18px;
-            background: linear-gradient(180deg, #b57b56 0%, #94603e 58%, #7b4f34 100%);
-            box-shadow: inset -8px 0 0 rgba(255,255,255,.16), 0 10px 20px rgba(88, 53, 34, .24);
-            z-index: 1;
-        }
-        .wish-tree::after {
-            content: "";
-            position: absolute;
-            left: 50%;
-            top: 26px;
-            transform: translateX(-50%);
-            width: 86%;
-            height: 190px;
-            border-radius: 50%;
-            background:
-                radial-gradient(78px 56px at 18% 60%, rgba(255, 204, 226, .86), rgba(255, 204, 226, 0) 72%),
-                radial-gradient(108px 72px at 34% 36%, rgba(255, 190, 217, .9), rgba(255, 190, 217, 0) 72%),
-                radial-gradient(128px 78px at 50% 24%, rgba(255, 174, 206, .96), rgba(255, 174, 206, .06) 72%),
-                radial-gradient(108px 72px at 66% 36%, rgba(255, 190, 217, .9), rgba(255, 190, 217, 0) 72%),
-                radial-gradient(78px 56px at 82% 60%, rgba(255, 204, 226, .86), rgba(255, 204, 226, 0) 72%),
-                radial-gradient(220px 118px at 50% 58%, rgba(255, 180, 211, .96), rgba(255, 180, 211, .32) 72%, rgba(255, 180, 211, .08) 100%);
-            box-shadow: inset 0 -14px 24px rgba(207, 118, 163, .3), 0 10px 22px rgba(184, 115, 149, .24);
-            z-index: 0;
-            pointer-events: none;
-        }
-        .wish-tree .wish-tag {
-            position: absolute;
-            margin: 0;
-            width: 84px;
-            height: 108px;
-            background: linear-gradient(180deg, #ffe9e6, #ffd7d1);
-            border-top: 4px solid #ffb6b0;
-            color: #4a2b2b;
-            box-shadow: 0 6px 12px rgba(0,0,0,.12);
-            z-index: 3;
-        }
-        .wish-tag.tag-1 { left: 18%; top: 98px; transform: rotate(-10deg); }
-        .wish-tag.tag-2 { left: 45%; top: 78px; transform: rotate(4deg); }
-        .wish-tag.tag-3 { left: 72%; top: 102px; transform: rotate(10deg); }
-
-        @media (max-width: 420px) {
-            .wish-tree { width: min(90vw, 520px); height: 286px; }
-            .wish-tree .wish-tag { width: 78px; height: 102px; font-size: 15px; }
-            .wish-tag.tag-1 { left: 12%; top: 106px; }
-            .wish-tag.tag-2 { left: 42%; top: 82px; }
-            .wish-tag.tag-3 { left: 70%; top: 108px; }
-        }
+        .wish-tag { width: 80px; height: 100px; background: #8d6e63; color: #fff; border-radius: 8px; font-size: 16px; writing-mode: vertical-lr; padding: 10px; margin: 10px; border-top: 4px solid #5d4037; }
         .flower-bud, .butterfly, .dandelion, .stone, .mushroom, .wind-bell, .dewdrop, .watering-can, .flower-pot, .painted-stone, .sunset { font-size: 80px; filter: drop-shadow(0 5px 5px rgba(0,0,0,0.1)); cursor: pointer; position: relative; }
-        .stone.rolling {
-            pointer-events: none;
-            animation: pebbleRollReveal 620ms cubic-bezier(.18,.78,.32,1) forwards;
-        }
-        .stone.revealed {
-            opacity: 0.9;
-            filter: drop-shadow(0 6px 8px rgba(0,0,0,0.14));
-            transform: translateX(14px) rotate(135deg);
-        }
-        @keyframes pebbleRollReveal {
-            0% { transform: translateX(0) rotate(0deg) scale(1); }
-            70% { transform: translateX(14px) rotate(135deg) scale(0.96); }
-            100% { transform: translateX(14px) rotate(135deg) scale(1); }
-        }
-
-        /* 蝴蝶模块：在可点击区域持续飞行，需追踪点击移动中的蝴蝶 */
-        .butterfly-zone {
-            position: relative;
-            min-height: 230px;
-            overflow: hidden;
-            background: linear-gradient(180deg, rgba(233, 249, 255, 0.48), rgba(248, 255, 241, 0.6));
-            border-radius: 34px;
-        }
-
-        .butterfly-zone .butterfly {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 92px;
-            height: 92px;
-            margin: 0;
-            opacity: 0;
-            touch-action: manipulation;
-            will-change: transform;
-        }
-
-        .butterfly-glyph {
-            display: block;
-            line-height: 1;
-            animation: wingFlap 420ms ease-in-out infinite;
-            transform-origin: center center;
-        }
-
-        @keyframes wingFlap {
-            0%, 100% { transform: scale(0.94) rotate(-6deg); }
-            50% { transform: scale(1.06) rotate(6deg); }
-        }
-
-        .butterfly-zone .hint-text {
-            position: absolute;
-            left: 10px;
-            right: 10px;
-            bottom: 8px;
-            margin-top: 0;
-            z-index: 2;
-        }
-
-        .performance-lite .butterfly-glyph {
-            animation-duration: 900ms;
-        }
-
-        .wind-bell.ringing {
-            animation: bellSwing 620ms ease-in-out;
-            transform-origin: top center;
-        }
-
-        @keyframes bellSwing {
-            0% { transform: rotate(0deg); }
-            22% { transform: rotate(14deg); }
-            45% { transform: rotate(-10deg); }
-            70% { transform: rotate(6deg); }
-            100% { transform: rotate(0deg); }
-        }
-
-        .flower-bud.blooming {
-            animation: tulipBloom 620ms ease-out forwards;
-        }
-
-        @keyframes tulipBloom {
-            0% { transform: scale(0.88) rotate(-6deg); filter: drop-shadow(0 4px 4px rgba(0,0,0,0.1)); }
-            45% { transform: scale(1.16) rotate(4deg); filter: drop-shadow(0 0 10px rgba(255, 112, 176, 0.45)); }
-            100% { transform: scale(1) rotate(0deg); filter: drop-shadow(0 5px 5px rgba(0,0,0,0.1)); }
-        }
-
         .dewdrop { font-size: 60px; color: #81d4fa; }
         .watering-can { font-size: 100px; color: #ffab91; }
         .flower-pot { font-size: 90px; color: #a1887f; }
@@ -1177,23 +1010,6 @@
     <p style="color: #666; margin-bottom: 20px;">嘿春小燕！输入你的生日日期作为开启暗号吧<br>(提示：4位数字)</p>
     <input type="tel" id="pin-input" placeholder="输入暗号" maxlength="4">
     <button id="unlock-btn" onclick="checkPin()">开启秘密花园</button>
-    <script>
-        // 早期回退：在主脚本加载前保证全局函数存在，避免 onclick 报错
-        if (typeof window.checkPin !== 'function') {
-            window.checkPin = function () {
-                try {
-                    const inputEl = document.getElementById('pin-input');
-                    const raw = inputEl ? inputEl.value : '';
-                    const digits = String(raw).replace(/\D/g, '');
-                    if (digits.length !== 4) { alert('请输入4位数字暗号'); inputEl && inputEl.focus(); return; }
-                    const accessLock = document.getElementById('access-lock');
-                    const garden = document.getElementById('garden-container');
-                    if (accessLock) accessLock.style.display = 'none';
-                    if (garden) garden.classList.add('unlocked');
-                } catch (e) { console.error('fallback checkPin error', e); }
-            };
-        }
-    </script>
 </div>
 
 <!-- 主内容容器 -->
@@ -1204,12 +1020,13 @@
         <p class="subtitle">写给春小燕 · 一起寻找藏在角落的25个瞬间...</p>
     </section>
 
-    <!-- 樱花树
-    <div class="interactive-zone wish-tree-zone">
-        <div class="wish-tree" aria-label="心愿树">
-            <div class="tap-target wish-tag tag-1" onclick="handleTap(1, this)">【快乐无限】</div>
-            <div class="tap-target wish-tag tag-2" onclick="handleTap(2, this)">【勇往直前】</div>
-            <div class="tap-target wish-tag tag-3" onclick="handleTap(3, this)">【梦想成真】</div>
+    <!-- 樱花树心愿牌模块 -->
+    <div class="interactive-zone">
+        <div style="font-size: 100px; width: 100%; text-align: center;">🌳</div>
+        <div style="display:flex; justify-content:center; width:100%;">
+            <div class="tap-target wish-tag" onclick="handleTap(1, this)">【快乐无限】</div>
+            <div class="tap-target wish-tag" onclick="handleTap(2, this)">【永远十八】</div>
+            <div class="tap-target wish-tag" onclick="handleTap(3, this)">【暴富暴美】</div>
         </div>
         <p class="hint-text">春小燕，先点亮樱花树上的心愿牌</p>
     </div>
@@ -1239,9 +1056,9 @@
     </div>
 
     <!-- 蝴蝶模块 -->
-    <div id="butterfly-zone" class="interactive-zone butterfly-zone">
-        <div class="tap-target butterfly" data-photo-index="13" aria-label="飞行蝴蝶，点击解锁回忆1" role="button"><span class="butterfly-glyph">🦋</span></div>
-        <div class="tap-target butterfly" data-photo-index="14" aria-label="飞行蝴蝶，点击解锁回忆2" role="button"><span class="butterfly-glyph">🦋</span></div>
+    <div class="interactive-zone">
+        <div class="tap-target butterfly" onclick="handleTap(13, this)">🦋</div>
+        <div class="tap-target butterfly" onclick="handleTap(14, this)">🦋</div>
         <p class="hint-text">春小燕，抓住那两只为你飞舞的蝴蝶</p>
     </div>
 
@@ -1382,7 +1199,7 @@
 <!-- 气球模块的浮层：漂浮照片、组合照片与终极祝福 -->
 <div id="balloon-photo-layer"></div>
 <div id="balloon-combo" class="balloon-combo">
-    <
+    <div id="balloon-combo-grid" class="balloon-combo-grid"></div>
     <div class="combo-ring"><span>🎈</span><span>🎈</span><span>🎈</span></div>
 </div>
 <div id="balloon-ultimate-msg" class="balloon-ultimate-msg">我们一起，飞向更好的天空</div>
@@ -1405,6 +1222,53 @@
         "img/3/mmexport1651327061476.jpg"
     ];
 
+    // 全局 DOM 引用与交互状态
+    const collectedPhotos = new Set();
+    const photoRevealBox = document.getElementById('photo-reveal-box');
+    const revealImg = document.getElementById('reveal-img');
+    const revealOverlay = document.getElementById('reveal-overlay');
+    const wateringCan = document.getElementById('watering-can-draggable');
+    const plantDropzone = document.getElementById('plant-dropzone');
+    const waterStatus = document.getElementById('water-status');
+    const picnicBasket = document.getElementById('picnic-basket');
+    const picnicPolaroids = document.getElementById('picnic-polaroids');
+    const picnicComplete = document.getElementById('picnic-complete');
+    const picnicViewer = document.getElementById('picnic-viewer');
+    const picnicViewImg = document.getElementById('picnic-view-img');
+    const picnicViewCard = document.getElementById('picnic-view-card');
+    const picnicClose = document.getElementById('picnic-close');
+    const memoryBubble = document.getElementById('memory-bubble');
+    const miniCounter = document.getElementById('mini-counter');
+    const sunPulse = document.getElementById('sun-pulse');
+    const sunClick = document.getElementById('sun-click');
+    const sunHint = document.getElementById('sunset-hint');
+    const sunsetZone = document.getElementById('sunset-zone');
+    const sunDisc = document.getElementById('sun-disc');
+    const skyOverlay = document.getElementById('sky-overlay');
+    const sunsetStage = document.getElementById('sunset-stage');
+    const silhouetteWrap = document.getElementById('silhouette-wrap');
+    const silhouetteImg = document.getElementById('silhouette-img');
+    const ultimateEgg = document.getElementById('ultimate-egg');
+    const thumbRing = document.getElementById('thumb-ring');
+    const balloonZone = document.getElementById('balloon-zone');
+    const balloonStatusLock = document.getElementById('balloon-status-lock');
+    const balloonItems = Array.from(document.querySelectorAll('.balloon-item'));
+    const balloonPhotoLayer = document.getElementById('balloon-photo-layer');
+    const balloonCombo = document.getElementById('balloon-combo');
+    const balloonComboGrid = document.getElementById('balloon-combo-grid');
+    const balloonUltimateMsg = document.getElementById('balloon-ultimate-msg');
+    const audio = document.getElementById('bg-music');
+    const player = document.getElementById('music-player');
+    // 本地背景音乐列表：进入花园后自动播放，CD 点击切歌
+    const baseMusicTracks = [
+        { name: 'Happy', url: 'music/eliveta-happy-473961.mp3' },
+        { name: 'Spring Sea', url: 'music/musicword-spring-sea-319241.mp3' },
+        { name: 'Romantic Blues', url: 'music/Romantic Christmas Blues by 回响-完整版.mp3' },
+        { name: 'Piano For Spring', url: 'music/sonican-piano-for-spring-336603.mp3' },
+        { name: 'Happy Acoustic', url: 'music/the_mountain-happy-acoustic-140458.mp3' },
+        { name: 'Acoustic Guitar', url: 'music/tunetank-happy-acoustic-guitar-349697.mp3' }
+    ];
+
     // Fisher-Yates 洗牌：用于随机化音乐播放顺序
     function shuffleTracks(tracks) {
         const list = [...tracks];
@@ -1415,64 +1279,826 @@
         return list;
     }
 
-    // 音乐播放器逻辑
-    const baseMusicTracks = [
-        { name: 'Happy', url: 'music/eliveta-happy-473961.mp3' },
-        { name: 'Spring Sea', url: 'music/musicword-spring-sea-319241.mp3' },
-        { name: 'Romantic Blues', url: 'music/Romantic Christmas Blues by 回响-完整版.mp3' },
-        { name: 'Piano For Spring', url: 'music/sonican-piano-for-spring-336603.mp3' },
-        { name: 'Happy Acoustic', url: 'music/the_mountain-happy-acoustic-140458.mp3' },
-        { name: 'Acoustic Guitar', url: 'music/tunetank-happy-acoustic-guitar-349697.mp3' }
-    ];
-
     let musicTracks = shuffleTracks(baseMusicTracks);
     let currentTrackIndex = 0;
-    const audio = document.getElementById('bg-music');
-    const player = document.getElementById('music-player');
+    const fallbackFlower = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'><text x='12' y='94' font-size='84'>🌸</text></svg>";
+    const finalCelebrationPhoto = 'img/8/IMG_20260124_150618_1.jpg';
+    // 野餐篮三张照片的数据源
+    const picnicItems = [
+        { index: 22, src: 'img//1//IMG_20220821_134939.jpg', date: '2022.08.21', flower: '🌼', text: '那时候的我们还要补课呢' },
+        { index: 23, src: 'img//14//IMG_20240809_211328.jpg', date: '2024.08.09', flower: '🌾', text: '终于毕业啦，我们一起去了西安，毕业快乐！' },
+        { index: 24, src: 'img//8//mmexport1769344735672.jpg', date: '2026.01.25', flower: '🌹', text: '我们还会，一直一直，走下去' }
+    ];
+    let picnicOpened = false;
+    const picnicViewed = new Set();
+    let sunsetFinalized = false;
+    let sunsetBusy = false;
+    let longPressTimer = null;
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const isLowPerformance = reducedMotion || (navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 4);
+    if (isLowPerformance) document.body.classList.add('performance-lite');
 
-    function switchTrack() {
-        if (!audio.paused) {
-            audio.pause();
+    // 气球升空秀的三组数据：缩略图、主图、祝福语与回忆文案
+    const balloonItemsData = [
+        {
+            id: 0,
+            index: 19,
+            thumb: 'spring/balloon1.jpg',
+            photo: 'img\\7\\mmexport1739595717751.jpg',
+            color: '#ff8eb9',
+            bless: '愿我们永远像童话里的角色一样无忧无虑',
+            memory: '这天我们一起去了荒野王国，一个。'
+        },
+        {
+            id: 1,
+            index: 20,
+            thumb: 'spring/balloon2.jpg',
+            photo: 'img\\14\\IMG_20240806_140809.jpg',
+            color: '#f0c36b',
+            bless: '你的笑容是我收藏的宝藏',
+            memory: '那天我们抵达西安，你灿烂的笑容，我一直记到今天。'
+        },
+        {
+            id: 2,
+            index: 21,
+            thumb: 'spring/balloon3.jpg',
+            photo: 'img\\14\\IMG_20250826_171505.jpg',
+            color: '#b28bff',
+            bless: '成为更好的人是我们的约定',
+            memory: '这是我收到过最用心的生日礼物，谢谢你，这让我意识到感情的珍贵。'
         }
-        currentTrackIndex = (currentTrackIndex + 1) % musicTracks.length;
-        audio.src = musicTracks[currentTrackIndex].url;
-        audio.play();
+    ];
+    const balloonState = {
+        locked: false,
+        launched: new Set(),
+        floating: new Map(),
+        mergedDone: false,
+        finaleClosable: false
+    };
+
+    // 加载当前音乐曲目，并同步更新播放器提示文案
+    function loadTrack(index) {
+        audio.src = encodeURI(musicTracks[index].url);
+        player.title = `当前音乐：${musicTracks[index].name}（点击切换）`;
     }
 
-    player.addEventListener('click', switchTrack);
+    // 图片兜底：当 spring/ 或本地图片不存在时回退为花朵图标
+    function setImgWithFallback(imgEl, src) {
+        imgEl.onerror = () => {
+            imgEl.onerror = null;
+            imgEl.src = fallbackFlower;
+        };
+        imgEl.src = src;
+    }
 
-    // 气球交互逻辑
-    const balloonItems = Array.from(document.querySelectorAll('.balloon-item'));
-    balloonItems.forEach((balloon, index) => {
-        balloon.addEventListener('click', () => {
-            const photoRevealBox = document.getElementById('photo-reveal-box');
-            const revealImg = document.getElementById('reveal-img');
-            revealImg.src = photoUrls[index];
-            photoRevealBox.classList.add('active');
+    // 收集进度统一入口：更新蜂蜜罐计数、夕阳解锁状态和收集完成提示
+    function collectPhoto(index) {
+        if (!collectedPhotos.has(index)) {
+            collectedPhotos.add(index);
+            updateHoneyDisplay();
+            updateSunPulse();
+            if (collectedPhotos.size === 25) {
+                setTimeout(() => {
+                    alert("🎉 春小燕，你找齐了25个精彩时刻！生日快乐！🎂");
+                    showLargePhoto(finalCelebrationPhoto);
+                }, 1000);
+            }
+        }
+    }
+
+    // 同步底部蜂蜜罐展示为 x/25 格式
+    function updateHoneyDisplay(value = collectedPhotos.size) {
+        document.getElementById('honey-count').innerText = `${value}/25`;
+    }
+
+    // 根据已发现照片数量，切换夕阳外圈脉冲颜色
+    function updateSunPulse() {
+        if (!sunPulse) return;
+        sunPulse.classList.toggle('ready', collectedPhotos.size >= 20);
+    }
+
+    // 播放当前音乐，并让右下角 CD 进入旋转状态
+    function playCurrentTrack() {
+        return audio.play().then(() => {
+            player.classList.add('playing');
         });
+    }
+
+    // 切换到下一首音乐；播放到末尾时重新洗牌
+    function switchTrack() {
+        currentTrackIndex += 1;
+        if (currentTrackIndex >= musicTracks.length) {
+            musicTracks = shuffleTracks(baseMusicTracks);
+            currentTrackIndex = 0;
+        }
+        loadTrack(currentTrackIndex);
+        playCurrentTrack().catch(() => {
+            alert('音乐切换成功，但浏览器限制了自动播放，请再点一次CD。');
+        });
+    }
+
+    loadTrack(currentTrackIndex);
+    audio.addEventListener('ended', switchTrack);
+    updateHoneyDisplay();
+    updateSunPulse();
+
+    let isDraggingCan = false;
+    let canGhost = null;
+    const waterPhotoQueue = [22, 23];
+    let waterPhotoCursor = 0;
+
+    // 园艺模块：根据拖拽位置高亮植物投放区
+    function updateDropzoneHighlight(x, y) {
+        const rect = plantDropzone.getBoundingClientRect();
+        const inside = x >= rect.left && x <= rect.right && y >= rect.top && y <= rect.bottom;
+        plantDropzone.classList.toggle('active', inside);
+        return inside;
+    }
+
+    // 园艺模块：移除拖拽中的浇水壶幽灵层
+    function removeGhost() {
+        if (canGhost) {
+            canGhost.remove();
+            canGhost = null;
+        }
+    }
+
+    // 初始化园艺浇水模块：拖拽浇水成功后显示园艺照片
+    function initWaterGame() {
+        if (!wateringCan || !plantDropzone || !waterStatus) return;
+
+        // 园艺浇水成功时的水滴动画
+        function spawnWaterDrops() {
+            const rect = plantDropzone.getBoundingClientRect();
+            const startX = rect.left + rect.width * 0.5;
+            const startY = rect.top - 6;
+            for (let i = 0; i < 7; i++) {
+                const drop = document.createElement('div');
+                drop.className = 'water-drop';
+                drop.textContent = '💧';
+                drop.style.left = `${startX + (Math.random() * 44 - 22)}px`;
+                drop.style.top = `${startY + Math.random() * 8}px`;
+                drop.style.animationDelay = `${i * 55}ms`;
+                document.body.appendChild(drop);
+                setTimeout(() => drop.remove(), 900);
+            }
+        }
+
+        wateringCan.addEventListener('pointerdown', (event) => {
+            isDraggingCan = true;
+            wateringCan.setPointerCapture(event.pointerId);
+
+            canGhost = document.createElement('div');
+            canGhost.className = 'drag-ghost';
+            canGhost.textContent = '🚿';
+            document.body.appendChild(canGhost);
+            canGhost.style.left = `${event.clientX}px`;
+            canGhost.style.top = `${event.clientY}px`;
+            waterStatus.textContent = '拖到右侧植物上方松手即可浇水';
+        });
+
+        wateringCan.addEventListener('pointermove', (event) => {
+            if (!isDraggingCan || !canGhost) return;
+            event.preventDefault();
+            canGhost.style.left = `${event.clientX}px`;
+            canGhost.style.top = `${event.clientY}px`;
+            updateDropzoneHighlight(event.clientX, event.clientY);
+        });
+
+        const endDrag = (event) => {
+            if (!isDraggingCan) return;
+            isDraggingCan = false;
+            const hit = updateDropzoneHighlight(event.clientX, event.clientY);
+            plantDropzone.classList.remove('active');
+            removeGhost();
+
+            if (hit) {
+                spawnWaterDrops();
+                plantDropzone.classList.add('watered');
+                plantDropzone.classList.add('grow');
+                plantDropzone.textContent = '🌱';
+                waterStatus.textContent = '浇水成功！惊喜照片正在出现...';
+                const photoIndex = waterPhotoQueue[waterPhotoCursor];
+                waterPhotoCursor = (waterPhotoCursor + 1) % waterPhotoQueue.length;
+                setTimeout(() => {
+                    plantDropzone.classList.remove('grow');
+                }, 720);
+                setTimeout(() => {
+                    handleTap(photoIndex, plantDropzone);
+                    waterStatus.textContent = '可继续浇水，反复触发惊喜照片 ✨';
+                }, 450);
+            } else {
+                waterStatus.textContent = '还没浇到植物，再试一次～';
+            }
+        };
+
+        wateringCan.addEventListener('pointerup', endDrag);
+        wateringCan.addEventListener('pointercancel', endDrag);
+    }
+
+    initWaterGame();
+
+    // 气球模块：动画进行时的防误触提示
+    function showBalloonLock(text = '等一等，让祝福飞一会儿~') {
+        if (!balloonStatusLock) return;
+        balloonStatusLock.textContent = text;
+        balloonStatusLock.classList.add('show');
+    }
+
+    // 隐藏气球模块的防误触提示
+    function hideBalloonLock() {
+        balloonStatusLock?.classList.remove('show');
+    }
+
+    // 气球上升时的光尾粒子
+    function spawnBalloonTail(x, y, color) {
+        if (isLowPerformance) return;
+        const dot = document.createElement('div');
+        dot.className = 'balloon-tail';
+        dot.style.left = `${x}px`;
+        dot.style.top = `${y}px`;
+        dot.style.background = color;
+        balloonPhotoLayer.appendChild(dot);
+        setTimeout(() => dot.remove(), 1000);
+    }
+
+    // 气球爆开后的纸屑庆祝效果
+    function spawnBalloonConfetti(x, y, color) {
+        const count = isLowPerformance ? 10 : 18;
+        for (let i = 0; i < count; i++) {
+            const c = document.createElement('div');
+            c.className = 'balloon-confetti';
+            c.textContent = '✦';
+            c.style.left = `${x}px`;
+            c.style.top = `${y}px`;
+            c.style.color = color;
+            c.style.setProperty('--cx', `${(Math.random() - .5) * 140}px`);
+            c.style.setProperty('--cy', `${40 + Math.random() * 120}px`);
+            balloonPhotoLayer.appendChild(c);
+            setTimeout(() => c.remove(), 1300);
+        }
+    }
+
+    // 创建跟随气球上升的照片层与祝福丝带
+    function createFloatingPhoto(data, startX, startY) {
+        const wrap = document.createElement('div');
+        wrap.className = 'balloon-photo-float';
+        wrap.setAttribute('aria-label', `${data.bless}，点击翻面查看回忆`);
+        wrap.setAttribute('role', 'button');
+
+        const img = document.createElement('img');
+        setImgWithFallback(img, data.photo);
+        const back = document.createElement('div');
+        back.className = 'balloon-memory-back';
+        back.innerText = data.memory;
+        const tip = document.createElement('div');
+        tip.className = 'balloon-memory-tip';
+        tip.innerText = '长按保存这一刻';
+
+        const ribbon = document.createElement('div');
+        ribbon.className = 'balloon-ribbon';
+        ribbon.innerText = data.bless;
+
+        wrap.appendChild(img);
+        wrap.appendChild(back);
+        wrap.appendChild(tip);
+        balloonPhotoLayer.appendChild(wrap);
+        balloonPhotoLayer.appendChild(ribbon);
+
+        wrap.style.left = `${startX - 75}px`;
+        wrap.style.top = `${startY + 22}px`;
+        wrap.style.display = 'block';
+
+        let flipped = false;
+        wrap.addEventListener('click', () => {
+            flipped = !flipped;
+            wrap.style.transform = flipped ? 'rotateY(180deg)' : 'rotateY(0deg)';
+            back.style.display = flipped ? 'block' : 'none';
+            img.style.display = flipped ? 'none' : 'block';
+        });
+
+        wrap.addEventListener('pointerdown', () => {
+            tip.style.display = 'block';
+        });
+
+        return { wrap, ribbon };
+    }
+
+    // 气球升空主流程：解绳、升空、照片放大、丝带出现、爆开与留存
+    function animateBalloonFlight(itemEl, data) {
+        balloonState.locked = true;
+        balloonItems.forEach((it) => {
+            if (it !== itemEl && !balloonState.launched.has(Number(it.dataset.bid))) it.classList.add('disabled');
+        });
+        showBalloonLock('等一等，让祝福飞一会儿~');
+
+        const shell = itemEl.querySelector('.balloon-shell');
+        const rect = shell.getBoundingClientRect();
+        const startX = rect.left + rect.width / 2;
+        const startY = rect.top + rect.height / 2;
+        const floating = createFloatingPhoto(data, startX, startY);
+
+        alert('咻—解开了');
+
+        const startTime = performance.now();
+        const dur = 2500;
+        const statusBarSafe = 22;
+
+        const step = (now) => {
+            const t = Math.min(1, (now - startTime) / dur);
+            const easing = t < .35 ? t * .65 : t < .75 ? .23 + (t - .35) * 1.12 : .68 + (t - .75) * 1.28;
+            const y = startY - easing * (startY + 120);
+            const x = startX + Math.sin(t * Math.PI * 2) * 22;
+            const rotate = t * 360;
+            shell.style.transform = `translate(${x - startX}px, ${y - startY}px) rotate(${rotate}deg)`;
+            itemEl.querySelector('.balloon-string').style.transform = `translateX(-50%) rotate(${Math.sin(t * Math.PI * 5) * 12}deg)`;
+
+            if (t >= 0.33) {
+                const size = 40 + Math.min(110, (t - 0.33) / 0.2 * 110);
+                floating.wrap.style.width = `${size}px`;
+                floating.wrap.style.height = `${size}px`;
+                floating.wrap.style.left = `${x - size / 2}px`;
+                floating.wrap.style.top = `${y + 20}px`;
+                floating.wrap.style.borderRadius = data.id === 1 ? '14px' : '50%';
+            }
+
+            if (t >= 0.5) {
+                floating.wrap.style.width = '150px';
+                floating.wrap.style.height = '150px';
+                floating.wrap.style.left = `${x - 75}px`;
+                floating.wrap.style.top = `${y + 16}px`;
+                floating.wrap.style.borderRadius = data.id === 0 ? '50%' : '14px';
+                floating.wrap.style.boxShadow = '0 0 0 8px rgba(255, 225, 121, .18), 0 12px 22px rgba(0,0,0,.25)';
+            }
+
+            if (t >= 0.66) {
+                floating.ribbon.style.display = 'flex';
+                floating.ribbon.style.left = `${x - 80}px`;
+                floating.ribbon.style.top = `${y + 176}px`;
+            }
+
+            if (!isLowPerformance && t > 0.28 && t < 0.95) {
+                spawnBalloonTail(x - 8, y + 56, data.color);
+            }
+
+            if (t < 1) {
+                requestAnimationFrame(step);
+            } else {
+                shell.style.visibility = 'hidden';
+                itemEl.querySelector('.balloon-string').style.visibility = 'hidden';
+                const finalTop = Math.max(statusBarSafe, window.innerHeight * 0.2 - 80);
+                floating.wrap.style.top = `${finalTop}px`;
+                floating.ribbon.style.top = `${finalTop + 160}px`;
+                floating.wrap.classList.add('fixed');
+                balloonState.floating.set(data.id, floating);
+                spawnBalloonConfetti(x, 14, data.color);
+                alert('啵');
+                collectPhoto(data.index);
+
+                balloonState.locked = false;
+                hideBalloonLock();
+                balloonItems.forEach((it) => it.classList.remove('disabled'));
+
+                if (balloonState.launched.size === 3 && balloonState.floating.size === 3 && !balloonState.mergedDone) {
+                    setTimeout(triggerBalloonFinale, 700);
+                }
+            }
+        };
+
+        requestAnimationFrame(step);
+    }
+
+    // 三个气球全部完成后的合体彩蛋：三图汇聚、组合拼贴、烟花和终极祝福
+    function triggerBalloonFinale() {
+        balloonState.mergedDone = true;
+        const entries = Array.from(balloonState.floating.values());
+        entries.forEach((f, i) => {
+            f.wrap.style.transition = 'all 1.5s cubic-bezier(.22,.9,.35,1)';
+            f.ribbon.style.transition = 'all 1.5s cubic-bezier(.22,.9,.35,1)';
+            f.wrap.style.left = `${window.innerWidth / 2 - 75 + (i - 1) * 8}px`;
+            f.wrap.style.top = `${window.innerHeight / 2 - 100 + i * 6}px`;
+            f.ribbon.style.opacity = '0';
+        });
+
+        setTimeout(() => {
+            balloonCombo.style.display = 'block';
+            balloonCombo.style.left = `${window.innerWidth / 2 - 100}px`;
+            balloonCombo.style.top = `${window.innerHeight / 2 - 100}px`;
+            balloonComboGrid.innerHTML = '';
+            balloonItemsData.forEach((b) => {
+                const img = document.createElement('img');
+                img.style.width = '100%';
+                img.style.height = '100%';
+                img.style.objectFit = 'cover';
+                setImgWithFallback(img, b.photo);
+                balloonComboGrid.appendChild(img);
+            });
+            entries.forEach((f) => {
+                f.wrap.style.display = 'none';
+                f.ribbon.style.display = 'none';
+            });
+
+            runFireworks(1000);
+            balloonUltimateMsg.style.display = 'block';
+            alert('✨ 恭喜解锁气球回忆合集 ✨');
+            setTimeout(() => {
+                balloonUltimateMsg.style.display = 'none';
+            }, 3000);
+            setTimeout(() => {
+                balloonState.finaleClosable = true;
+            }, 0);
+
+            collectPhoto(25);
+            document.getElementById('honey-pot').style.boxShadow = '0 0 16px 6px rgba(255,216,102,.65)';
+        }, 1500);
+    }
+
+    // 点击任意空白区域后关闭气球终场拼贴，避免持续挡住视野
+    function closeBalloonFinale() {
+        if (!balloonState.mergedDone) return;
+        balloonCombo.style.display = 'none';
+        balloonUltimateMsg.style.display = 'none';
+        balloonState.finaleClosable = false;
+    }
+
+    // 初始化气球升空秀模块的点击绑定与缩略图加载
+    function initBalloonModule() {
+        if (!balloonItems.length) return;
+        balloonItemsData.forEach((item) => {
+            const thumb = document.getElementById(`balloon-thumb-${item.id}`);
+            if (thumb) setImgWithFallback(thumb, item.thumb);
+        });
+
+        // 此处为气球升空模块，移动端点击区域已放大
+        balloonItems.forEach((itemEl) => {
+            itemEl.addEventListener('click', () => {
+                const id = Number(itemEl.dataset.bid);
+                if (balloonState.locked) return;
+                if (balloonState.launched.has(id)) {
+                    const f = balloonState.floating.get(id);
+                    if (f) f.wrap.click();
+                    return;
+                }
+                itemEl.classList.add('active');
+                balloonState.launched.add(id);
+                animateBalloonFlight(itemEl, balloonItemsData[id]);
+            });
+        });
+    }
+
+    initBalloonModule();
+
+    document.addEventListener('click', (event) => {
+        if (!balloonState.finaleClosable || balloonCombo.style.display !== 'block') return;
+        const clickedFloatingPhoto = event.target.closest('.balloon-photo-float');
+        if (clickedFloatingPhoto) return;
+        closeBalloonFinale();
     });
 
-    // 野餐篮交互逻辑
-    const picnicBasket = document.getElementById('picnic-basket');
-    const picnicPolaroids = document.getElementById('picnic-polaroids');
-    const picnicComplete = document.getElementById('picnic-complete');
-    const picnicViewer = document.getElementById('picnic-viewer');
-    const picnicViewImg = document.getElementById('picnic-view-img');
-    const picnicItems = [
-        { src: 'img//1//IMG_20220821_134939.jpg', text: '那时候的我们还要补课呢' },
-        { src: 'img//14//IMG_20240809_211328.jpg', text: '终于毕业啦，我们一起去了西安，毕业快乐！' },
-        { src: 'img//8//mmexport1769344735672.jpg', text: '我们还会，一直一直，走下去' }
-    ];
+    // 野餐篮打开时的彩色烟雾与纸屑粒子
+    function createSmokeConfetti() {
+        const hostRect = picnicBasket.getBoundingClientRect();
+        const colors = ['#ff6fa7', '#c88cff', '#ffd966'];
+        for (let i = 0; i < 22; i++) {
+            const p = document.createElement('div');
+            p.className = 'star-particle';
+            p.textContent = '✦';
+            p.style.color = colors[i % colors.length];
+            p.style.left = `${hostRect.left + 45 + (Math.random() * 18 - 9)}px`;
+            p.style.top = `${hostRect.top + 18}px`;
+            p.style.setProperty('--dx', `${Math.random() * 120 - 60}px`);
+            p.style.setProperty('--dy', `${-40 - Math.random() * 120}px`);
+            document.body.appendChild(p);
+            setTimeout(() => p.remove(), 1300);
+        }
+    }
 
-    picnicBasket.addEventListener('click', () => {
-        picnicPolaroids.innerHTML = picnicItems.map(item => `<div class='polaroid'><img src='${item.src}' alt=''><div class='stamp'>${item.text}</div></div>`).join('');
-        picnicComplete.classList.add('show');
-    });
+    // 构建野餐垫上的三张拍立得卡片
+    function buildPicnicCards() {
+        picnicPolaroids.innerHTML = '';
+        const poses = [
+            { left: 8, top: 10, rot: -5 },
+            { left: 86, top: 2, rot: 8 },
+            { left: 162, top: 16, rot: -12 }
+        ];
+        picnicItems.forEach((item, i) => {
+            const card = document.createElement('div');
+            card.className = 'polaroid';
+            card.style.left = `${poses[i].left}px`;
+            card.style.top = `${poses[i].top}px`;
+            card.style.transform = `translateY(0) rotate(${poses[i].rot}deg)`;
+            card.dataset.index = String(item.index);
 
-    picnicComplete.addEventListener('click', () => {
+            const img = document.createElement('img');
+            img.style.width = '100%';
+            img.style.height = '100%';
+            img.style.objectFit = 'cover';
+            setImgWithFallback(img, item.src);
+
+            const flower = document.createElement('div');
+            flower.className = 'flower-pin';
+            flower.textContent = item.flower;
+
+            const stamp = document.createElement('div');
+            stamp.className = 'stamp';
+            stamp.textContent = item.date;
+
+            card.appendChild(img);
+            card.appendChild(flower);
+            card.appendChild(stamp);
+
+            card.addEventListener('pointerdown', () => card.classList.add('touching'));
+            card.addEventListener('pointerup', () => card.classList.remove('touching'));
+            card.addEventListener('pointercancel', () => card.classList.remove('touching'));
+            card.addEventListener('click', () => openPicnicCard(item, card));
+
+            picnicPolaroids.appendChild(card);
+            setTimeout(() => card.classList.add('show'), i * 150);
+        });
+    }
+
+    // 打开某张野餐回忆卡：小花飘走、卡片放大、气泡祝福出现
+    function openPicnicCard(item, cardEl) {
+        const flowerEl = cardEl.querySelector('.flower-pin');
+        if (flowerEl) {
+            flowerEl.animate([
+                { transform: 'translateY(0) scale(1)', opacity: 1 },
+                { transform: 'translateY(-30px) rotate(24deg) scale(.8)', opacity: 0 }
+            ], { duration: 550, easing: 'ease-out' });
+        }
+        setImgWithFallback(picnicViewImg, item.src);
         picnicViewer.classList.add('show');
-        picnicViewImg.src = picnicItems[2].src;
+        memoryBubble.textContent = item.text;
+        memoryBubble.classList.remove('show');
+        void memoryBubble.offsetWidth;
+        memoryBubble.classList.add('show');
+        picnicViewCard.style.transform = 'rotateY(180deg) scale(1.02)';
+        setTimeout(() => { picnicViewCard.style.transform = 'rotateY(0deg) scale(1)'; }, 450);
+        picnicViewed.add(item.index);
+        collectPhoto(item.index);
+
+        if (picnicViewed.size === 3) {
+            picnicComplete.classList.add('show');
+            setTimeout(() => {
+                picnicComplete.classList.remove('show');
+                miniCounter.style.display = 'block';
+            }, 5000);
+        }
+    }
+
+    // 关闭野餐回忆查看层
+    function closePicnicViewer() {
+        picnicViewer.classList.remove('show');
+    }
+
+    if (picnicBasket) {
+        picnicBasket.addEventListener('click', () => {
+            if (picnicOpened) return;
+            picnicOpened = true;
+            picnicBasket.classList.add('opened');
+            alert('咔哒——');
+            createSmokeConfetti();
+            setTimeout(buildPicnicCards, 360);
+        });
+    }
+
+    picnicClose?.addEventListener('click', closePicnicViewer);
+    picnicViewCard?.addEventListener('click', closePicnicViewer);
+    picnicViewer?.addEventListener('click', (e) => {
+        if (e.target === picnicViewer) closePicnicViewer();
     });
+
+    // 夕阳变身时，从中心向外扩散的星光粒子
+    function sparkleAroundSun() {
+        const rect = sunDisc.getBoundingClientRect();
+        for (let i = 0; i < 34; i++) {
+            const p = document.createElement('div');
+            p.className = 'star-particle';
+            p.textContent = '✦';
+            p.style.left = `${rect.left + rect.width / 2}px`;
+            p.style.top = `${rect.top + rect.height / 2}px`;
+            p.style.setProperty('--dx', `${(Math.random() - .5) * 380}px`);
+            p.style.setProperty('--dy', `${(Math.random() - .5) * 380}px`);
+            document.body.appendChild(p);
+            setTimeout(() => p.remove(), 1300);
+        }
+    }
+
+    // 通用烟花粒子动画：用于夕阳终极彩蛋和气球合集彩蛋
+    function runFireworks(duration = 5000) {
+        const timer = setInterval(() => {
+            const cx = 60 + Math.random() * (window.innerWidth - 120);
+            const cy = 80 + Math.random() * (window.innerHeight - 180);
+            for (let i = 0; i < 18; i++) {
+                const f = document.createElement('div');
+                f.className = 'firework';
+                f.style.left = `${cx}px`;
+                f.style.top = `${cy}px`;
+                f.style.setProperty('--fx', `${Math.cos((i / 18) * Math.PI * 2) * (40 + Math.random() * 50)}px`);
+                f.style.setProperty('--fy', `${Math.sin((i / 18) * Math.PI * 2) * (40 + Math.random() * 50)}px`);
+                f.style.background = ['#ffd166', '#ff4fa8', '#9b8cff'][i % 3];
+                document.body.appendChild(f);
+                setTimeout(() => f.remove(), 1300);
+            }
+        }, 360);
+        setTimeout(() => clearInterval(timer), duration);
+    }
+
+    // 夕阳长按 3 秒后的终极彩蛋：爱心、缩略图环与最终祝福
+    function startUltimateEgg() {
+        ultimateEgg.classList.add('show');
+        thumbRing.innerHTML = '';
+        const discovered = Array.from(collectedPhotos).slice(0, 24);
+        const total = Math.max(12, discovered.length);
+        for (let i = 0; i < total; i++) {
+            const idx = discovered[i % discovered.length] || ((i % 24) + 1);
+            const angle = (i / total) * Math.PI * 2;
+            const x = 145 + Math.cos(angle) * 110 - 25;
+            const y = 145 + Math.sin(angle) * 110 - 25;
+            const item = document.createElement('div');
+            item.className = 'mini-thumb';
+            item.style.left = `${x}px`;
+            item.style.top = `${y}px`;
+            const img = document.createElement('img');
+            img.style.width = '100%';
+            img.style.height = '100%';
+            img.style.objectFit = 'cover';
+            setImgWithFallback(img, photoUrls[idx - 1] || `spring/pic${idx}.jpg`);
+            item.appendChild(img);
+            thumbRing.appendChild(item);
+        }
+        runFireworks(5000);
+        setTimeout(() => closeSunsetSequence(true), 5000);
+    }
+
+    // 关闭夕阳最终阶段，并在完成时标记为已通关状态
+    function closeSunsetSequence(completed = false) {
+        sunsetStage.classList.remove('show');
+        ultimateEgg.classList.remove('show');
+        skyOverlay.classList.remove('show');
+        sunsetBusy = false;
+        if (completed && !sunsetFinalized) {
+            sunsetFinalized = true;
+            sunsetZone.classList.add('sunset-completed');
+            updateHoneyDisplay(25);
+            document.getElementById('honey-pot').style.boxShadow = '0 0 20px 8px rgba(255,215,0,.65)';
+        }
+    }
+
+    // 夕阳主流程：天空变色、夕阳膨胀、剪影照片登场
+    function triggerSunsetSequence() {
+        if (sunsetBusy || sunsetFinalized) return;
+        sunsetBusy = true;
+        skyOverlay.classList.add('show');
+        sunDisc.style.transform = 'scale(1.65)';
+        setTimeout(() => {
+            sunsetStage.classList.add('show');
+            setImgWithFallback(silhouetteImg, 'spring/pic25.jpg');
+            sparkleAroundSun();
+        }, 900);
+        setTimeout(() => {
+            sunDisc.style.transform = 'scale(1)';
+        }, 1400);
+    }
+
+    // 夕阳点击不足条件时的提示气泡
+    function showSunHint(text) {
+        sunHint.textContent = text;
+        sunHint.classList.add('show');
+        setTimeout(() => sunHint.classList.remove('show'), 2000);
+    }
+
+    sunClick?.addEventListener('click', () => {
+        if (sunsetFinalized) return;
+        if (collectedPhotos.size < 20) {
+            showSunHint('还需要再探索一会儿哦🌅');
+            return;
+        }
+        triggerSunsetSequence();
+    });
+
+    let scale = 1;
+    let translateX = 0;
+    let translateY = 0;
+    let startDistance = 0;
+    let startScale = 1;
+    let startX = 0;
+    let startY = 0;
+    let isPan = false;
+
+    // 将双指缩放和平移结果应用到夕阳剪影大图上
+    function applySilhouetteTransform() {
+        silhouetteImg.style.transform = `translate(${translateX}px, ${translateY}px) scale(${scale})`;
+    }
+
+    silhouetteWrap?.addEventListener('touchstart', (e) => {
+        if (e.touches.length === 2) {
+            const dx = e.touches[0].clientX - e.touches[1].clientX;
+            const dy = e.touches[0].clientY - e.touches[1].clientY;
+            startDistance = Math.hypot(dx, dy);
+            startScale = scale;
+        } else if (e.touches.length === 1) {
+            isPan = true;
+            startX = e.touches[0].clientX - translateX;
+            startY = e.touches[0].clientY - translateY;
+            longPressTimer = setTimeout(() => {
+                startUltimateEgg();
+            }, 3000);
+        }
+    }, { passive: true });
+
+    silhouetteWrap?.addEventListener('touchmove', (e) => {
+        if (e.touches.length === 2) {
+            const dx = e.touches[0].clientX - e.touches[1].clientX;
+            const dy = e.touches[0].clientY - e.touches[1].clientY;
+            const dist = Math.hypot(dx, dy);
+            scale = Math.min(3, Math.max(1, startScale * (dist / (startDistance || dist))));
+            applySilhouetteTransform();
+            if (longPressTimer) clearTimeout(longPressTimer);
+        } else if (e.touches.length === 1 && isPan) {
+            translateX = e.touches[0].clientX - startX;
+            translateY = e.touches[0].clientY - startY;
+            applySilhouetteTransform();
+            if (Math.abs(translateX) > 8 || Math.abs(translateY) > 8) {
+                if (longPressTimer) clearTimeout(longPressTimer);
+            }
+        }
+    }, { passive: true });
+
+    const clearPress = () => {
+        isPan = false;
+        if (longPressTimer) {
+            clearTimeout(longPressTimer);
+            longPressTimer = null;
+        }
+    };
+
+    silhouetteWrap?.addEventListener('touchend', clearPress);
+    silhouetteWrap?.addEventListener('touchcancel', clearPress);
+
+    sunsetStage?.addEventListener('click', (e) => {
+        if (e.target === sunsetStage) closeSunsetSequence(true);
+    });
+    ultimateEgg?.addEventListener('click', () => closeSunsetSequence(true));
+
+    // 首屏暗号校验：正确后解锁花园并尝试自动播放音乐
+    function checkPin() {
+        const input = document.getElementById('pin-input').value;
+        if (input === '0330') {
+            document.getElementById('access-lock').style.display = 'none';
+            const garden = document.getElementById('garden-container');
+            garden.classList.add('unlocked');
+            setInterval(createPetal, 400);
+            playCurrentTrack().then(() => {
+                player.classList.add('playing');
+                alert("🌸 欢迎你，春小燕！\n花园已经为你奏响音乐，开始寻找合照吧！");
+            }).catch(() => {
+                alert("🌸 欢迎你，春小燕！\n音乐因浏览器限制未自动播放，点右下角CD即可播放。");
+            });
+        } else {
+            alert("❌ 春小燕，再想想暗号呀～");
+            document.getElementById('pin-input').value = '';
+        }
+    }
+
+    // 通用照片点击入口：显示照片弹层并记录收集进度
+    function handleTap(index, element) {
+        if (collectedPhotos.size >= 25) return; // 全部找齐逻辑
+        if (collectedPhotos.has(index)) { showLargePhoto(photoUrls[index-1]); return; }
+        
+        revealImg.src = photoUrls[index-1];
+        revealOverlay.style.display = 'block';
+        photoRevealBox.classList.add('active');
+        
+        collectPhoto(index);
+    }
+
+    // 关闭通用照片弹层
+    function closeReveal() { photoRevealBox.classList.remove('active'); revealOverlay.style.display = 'none'; }
+
+    // 进入全屏灯箱查看大图
+    function showLargePhoto(url) {
+        const lb = document.getElementById('lightbox');
+        const img = document.getElementById('lightbox-img');
+        setImgWithFallback(img, url);
+        lb.style.display = 'flex';
+    }
+
+    // 蒲公英模块：顺序放出两张照片
+    function blowDandelion(el, indices) { el.innerText = "🌬️✨"; setTimeout(() => { el.style.opacity = '0'; handleTap(indices[0], el); setTimeout(() => handleTap(indices[1], el), 800); }, 500); }
+
+    // 全局花瓣飘落背景动画
+    function createPetal() {
+        const petal = document.createElement('div');
+        petal.className = 'petal';
+        petal.style.left = Math.random() * 100 + 'vw';
+        petal.style.width = Math.random() * 15 + 10 + 'px';
+        petal.style.height = petal.style.width;
+        petal.style.animationDuration = Math.random() * 5 + 3 + 's';
+        document.querySelector('.petal-container').appendChild(petal);
+        setTimeout(() => petal.remove(), 8000);
+    }
 </script>
+
 </body>
 </html>

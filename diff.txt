@@ -1,0 +1,3515 @@
+﻿diff --git a/index.html b/index.html
+index 29b5def..cec3348 100644
+--- a/index.html
++++ b/index.html
+@@ -78,8 +78,175 @@
+         @keyframes fall { 0% { transform: translateY(-10vh) rotate(0deg); } 100% { transform: translateY(110vh) rotate(360deg); } }
+ 
+         /* 浜や簰鍥炬爣鏍峰紡锛氶€氱敤鍥炬爣銆侀湶鐝犮€佹祰姘村６銆佽姳鐩嗙瓑鍩虹瑙嗚 */
+-        .wish-tag { width: 80px; height: 100px; background: #8d6e63; color: #fff; border-radius: 8px; font-size: 16px; writing-mode: vertical-lr; padding: 10px; margin: 10px; border-top: 4px solid #5d4037; }
++        .wish-tag { width: 80px; height: 160px; /* 澧炲姞楂樺害浠ラ€傚簲鏂囧瓧 */
++            background: linear-gradient(180deg, #ffe9e6, #ffd7d1);
++            border-top: 4px solid #ffb6b0;
++            color: #4a2b2b;
++            border-radius: 8px;
++            font-size: 16px;
++            writing-mode: vertical-lr;
++            padding: 10px;
++            margin: 10px;
++            box-shadow: 0 6px 12px rgba(0,0,0,.12);
++        }
++        .wish-tree::after {
++            content: "";
++            position: absolute;
++            left: 50%;
++            top: 20px;
++            transform: translateX(-50%) translateY(-6px);
++            /* 鏇撮暱鐨勬í鍚戞き鍦嗭紜澶氬眰浜戠姸娓愬彉锛屾ā鎷熻嚜鐒舵爲鍐?*/
++            width: 92%;
++            height: 210px;
++            border-radius: 60% 60% 45% 45% / 50% 50% 55% 55%;
++            background:
++                radial-gradient(78px 56px at 14% 62%, rgba(255, 210, 220, .86), rgba(255, 210, 220, 0) 72%),
++                radial-gradient(110px 72px at 32% 36%, rgba(255, 195, 210, .9), rgba(255, 195, 210, 0) 72%),
++                radial-gradient(140px 92px at 50% 22%, rgba(255, 180, 205, .96), rgba(255, 180, 205, .06) 72%),
++                radial-gradient(110px 72px at 68% 36%, rgba(255, 195, 210, .9), rgba(255, 195, 210, 0) 72%),
++                radial-gradient(78px 56px at 86% 62%, rgba(255, 210, 220, .86), rgba(255, 210, 220, 0) 72%),
++                radial-gradient(260px 128px at 50% 62%, rgba(255, 192, 210, .96), rgba(255, 192, 210, .28) 72%, rgba(255, 192, 210, .08) 100%);
++            box-shadow: inset 0 -18px 32px rgba(207, 118, 163, .28), 0 12px 28px rgba(184, 115, 149, .18);
++            z-index: 0;
++            pointer-events: none;
++        }
++            left: 50%;
++            bottom: 8px;
++            transform: translateX(-50%);
++            width: 88px;
++            height: 172px;
++            border-radius: 42px 42px 18px 18px;
++            background: linear-gradient(180deg, #b57b56 0%, #94603e 58%, #7b4f34 100%);
++            box-shadow: inset -8px 0 0 rgba(255,255,255,.16), 0 10px 20px rgba(88, 53, 34, .24);
++            z-index: 1;
++        }
++        .wish-tree::after {
++            content: "";
++            position: absolute;
++            left: 50%;
++            top: 26px;
++            transform: translateX(-50%);
++            width: 86%;
++            height: 190px;
++            border-radius: 50%;
++            background:
++                radial-gradient(78px 56px at 18% 60%, rgba(255, 204, 226, .86), rgba(255, 204, 226, 0) 72%),
++                radial-gradient(108px 72px at 34% 36%, rgba(255, 190, 217, .9), rgba(255, 190, 217, 0) 72%),
++                radial-gradient(128px 78px at 50% 24%, rgba(255, 174, 206, .96), rgba(255, 174, 206, .06) 72%),
++                radial-gradient(108px 72px at 66% 36%, rgba(255, 190, 217, .9), rgba(255, 190, 217, 0) 72%),
++                radial-gradient(78px 56px at 82% 60%, rgba(255, 204, 226, .86), rgba(255, 204, 226, 0) 72%),
++                radial-gradient(220px 118px at 50% 58%, rgba(255, 180, 211, .96), rgba(255, 180, 211, .32) 72%, rgba(255, 180, 211, .08) 100%);
++            box-shadow: inset 0 -14px 24px rgba(207, 118, 163, .3), 0 10px 22px rgba(184, 115, 149, .24);
++            z-index: 0;
++            pointer-events: none;
++        }
++        .wish-tree .wish-tag {
++            position: absolute;
++            margin: 0;
++            width: 84px;
++            height: 108px;
++            background: linear-gradient(180deg, #ffe9e6, #ffd7d1);
++            border-top: 4px solid #ffb6b0;
++            color: #4a2b2b;
++            box-shadow: 0 6px 12px rgba(0,0,0,.12);
++            z-index: 3;
++        }
++        .wish-tag.tag-1 { left: 18%; top: 98px; transform: rotate(-10deg); }
++        .wish-tag.tag-2 { left: 45%; top: 78px; transform: rotate(4deg); }
++        .wish-tag.tag-3 { left: 72%; top: 102px; transform: rotate(10deg); }
++
++        @media (max-width: 420px) {
++            .wish-tree { width: min(90vw, 520px); height: 286px; }
++            .wish-tree .wish-tag { width: 78px; height: 102px; font-size: 15px; }
++            .wish-tag.tag-1 { left: 12%; top: 106px; }
++            .wish-tag.tag-2 { left: 42%; top: 82px; }
++            .wish-tag.tag-3 { left: 70%; top: 108px; }
++        }
+         .flower-bud, .butterfly, .dandelion, .stone, .mushroom, .wind-bell, .dewdrop, .watering-can, .flower-pot, .painted-stone, .sunset { font-size: 80px; filter: drop-shadow(0 5px 5px rgba(0,0,0,0.1)); cursor: pointer; position: relative; }
++        .stone.rolling {
++            pointer-events: none;
++            animation: pebbleRollReveal 620ms cubic-bezier(.18,.78,.32,1) forwards;
++        }
++        .stone.revealed {
++            opacity: 0.9;
++            filter: drop-shadow(0 6px 8px rgba(0,0,0,0.14));
++            transform: translateX(14px) rotate(135deg);
++        }
++        @keyframes pebbleRollReveal {
++            0% { transform: translateX(0) rotate(0deg) scale(1); }
++            70% { transform: translateX(14px) rotate(135deg) scale(0.96); }
++            100% { transform: translateX(14px) rotate(135deg) scale(1); }
++        }
++
++        /* 铦磋澏妯″潡锛氬湪鍙偣鍑诲尯鍩熸寔缁琛岋紝闇€杩借釜鐐瑰嚮绉诲姩涓殑铦磋澏 */
++        .butterfly-zone {
++            position: relative;
++            min-height: 230px;
++            overflow: hidden;
++            background: linear-gradient(180deg, rgba(233, 249, 255, 0.48), rgba(248, 255, 241, 0.6));
++            border-radius: 34px;
++        }
++
++        .butterfly-zone .butterfly {
++            position: absolute;
++            top: 0;
++            left: 0;
++            width: 92px;
++            height: 92px;
++            margin: 0;
++            opacity: 0;
++            touch-action: manipulation;
++            will-change: transform;
++        }
++
++        .butterfly-glyph {
++            display: block;
++            line-height: 1;
++            animation: wingFlap 420ms ease-in-out infinite;
++            transform-origin: center center;
++        }
++
++        @keyframes wingFlap {
++            0%, 100% { transform: scale(0.94) rotate(-6deg); }
++            50% { transform: scale(1.06) rotate(6deg); }
++        }
++
++        .butterfly-zone .hint-text {
++            position: absolute;
++            left: 10px;
++            right: 10px;
++            bottom: 8px;
++            margin-top: 0;
++            z-index: 2;
++        }
++
++        .performance-lite .butterfly-glyph {
++            animation-duration: 900ms;
++        }
++
++        .wind-bell.ringing {
++            animation: bellSwing 620ms ease-in-out;
++            transform-origin: top center;
++        }
++
++        @keyframes bellSwing {
++            0% { transform: rotate(0deg); }
++            22% { transform: rotate(14deg); }
++            45% { transform: rotate(-10deg); }
++            70% { transform: rotate(6deg); }
++            100% { transform: rotate(0deg); }
++        }
++
++        .flower-bud.blooming {
++            animation: tulipBloom 620ms ease-out forwards;
++        }
++
++        @keyframes tulipBloom {
++            0% { transform: scale(0.88) rotate(-6deg); filter: drop-shadow(0 4px 4px rgba(0,0,0,0.1)); }
++            45% { transform: scale(1.16) rotate(4deg); filter: drop-shadow(0 0 10px rgba(255, 112, 176, 0.45)); }
++            100% { transform: scale(1) rotate(0deg); filter: drop-shadow(0 5px 5px rgba(0,0,0,0.1)); }
++        }
++
+         .dewdrop { font-size: 60px; color: #81d4fa; }
+         .watering-can { font-size: 100px; color: #ffab91; }
+         .flower-pot { font-size: 90px; color: #a1887f; }
+@@ -1010,6 +1177,23 @@
+     <p style="color: #666; margin-bottom: 20px;">鍢挎槬灏忕嚂锛佽緭鍏ヤ綘鐨勭敓鏃ユ棩鏈熶綔涓哄紑鍚殫鍙峰惂<br>(鎻愮ず锛?浣嶆暟瀛?</p>
+     <input type="tel" id="pin-input" placeholder="杈撳叆鏆楀彿" maxlength="4">
+     <button id="unlock-btn" onclick="checkPin()">寮€鍚瀵嗚姳鍥?/button>
++    <script>
++        // 鏃╂湡鍥為€€锛氬湪涓昏剼鏈姞杞藉墠淇濊瘉鍏ㄥ眬鍑芥暟瀛樺湪锛岄伩鍏?onclick 鎶ラ敊
++        if (typeof window.checkPin !== 'function') {
++            window.checkPin = function () {
++                try {
++                    const inputEl = document.getElementById('pin-input');
++                    const raw = inputEl ? inputEl.value : '';
++                    const digits = String(raw).replace(/\D/g, '');
++                    if (digits.length !== 4) { alert('璇疯緭鍏?浣嶆暟瀛楁殫鍙?); inputEl && inputEl.focus(); return; }
++                    const accessLock = document.getElementById('access-lock');
++                    const garden = document.getElementById('garden-container');
++                    if (accessLock) accessLock.style.display = 'none';
++                    if (garden) garden.classList.add('unlocked');
++                } catch (e) { console.error('fallback checkPin error', e); }
++            };
++        }
++    </script>
+ </div>
+ 
+ <!-- 涓诲唴瀹瑰鍣?-->
+@@ -1020,13 +1204,12 @@
+         <p class="subtitle">鍐欑粰鏄ュ皬鐕?路 涓€璧峰鎵捐棌鍦ㄨ钀界殑25涓灛闂?..</p>
+     </section>
+ 
+-    <!-- 妯辫姳鏍戝績鎰跨墝妯″潡 -->
+-    <div class="interactive-zone">
+-        <div style="font-size: 100px; width: 100%; text-align: center;">馃尦</div>
+-        <div style="display:flex; justify-content:center; width:100%;">
+-            <div class="tap-target wish-tag" onclick="handleTap(1, this)">銆愬揩涔愭棤闄愩€?/div>
+-            <div class="tap-target wish-tag" onclick="handleTap(2, this)">銆愭案杩滃崄鍏€?/div>
+-            <div class="tap-target wish-tag" onclick="handleTap(3, this)">銆愭毚瀵屾毚缇庛€?/div>
++    <!-- 妯辫姳鏍?+    <div class="interactive-zone wish-tree-zone">
++        <div class="wish-tree" aria-label="蹇冩効鏍?>
++            <div class="tap-target wish-tag tag-1" onclick="handleTap(1, this)">銆愬揩涔愭棤闄愩€?/div>
++            <div class="tap-target wish-tag tag-2" onclick="handleTap(2, this)">銆愬媷寰€鐩村墠銆?/div>
++            <div class="tap-target wish-tag tag-3" onclick="handleTap(3, this)">銆愭ⅵ鎯虫垚鐪熴€?/div>
+         </div>
+         <p class="hint-text">鏄ュ皬鐕曪紝鍏堢偣浜ū鑺辨爲涓婄殑蹇冩効鐗?/p>
+     </div>
+@@ -1056,9 +1239,9 @@
+     </div>
+ 
+     <!-- 铦磋澏妯″潡 -->
+-    <div class="interactive-zone">
+-        <div class="tap-target butterfly" onclick="handleTap(13, this)">馃</div>
+-        <div class="tap-target butterfly" onclick="handleTap(14, this)">馃</div>
++    <div id="butterfly-zone" class="interactive-zone butterfly-zone">
++        <div class="tap-target butterfly" data-photo-index="13" aria-label="椋炶铦磋澏锛岀偣鍑昏В閿佸洖蹇?" role="button"><span class="butterfly-glyph">馃</span></div>
++        <div class="tap-target butterfly" data-photo-index="14" aria-label="椋炶铦磋澏锛岀偣鍑昏В閿佸洖蹇?" role="button"><span class="butterfly-glyph">馃</span></div>
+         <p class="hint-text">鏄ュ皬鐕曪紝鎶撲綇閭ｄ袱鍙负浣犻鑸炵殑铦磋澏</p>
+     </div>
+ 
+@@ -1199,7 +1382,7 @@
+ <!-- 姘旂悆妯″潡鐨勬诞灞傦細婕傛诞鐓х墖銆佺粍鍚堢収鐗囦笌缁堟瀬绁濈 -->
+ <div id="balloon-photo-layer"></div>
+ <div id="balloon-combo" class="balloon-combo">
+-    <div id="balloon-combo-grid" class="balloon-combo-grid"></div>
++    <
+     <div class="combo-ring"><span>馃巿</span><span>馃巿</span><span>馃巿</span></div>
+ </div>
+ <div id="balloon-ultimate-msg" class="balloon-ultimate-msg">鎴戜滑涓€璧凤紝椋炲悜鏇村ソ鐨勫ぉ绌?/div>
+@@ -1208,8 +1391,43 @@
+ 
+ <script>
+     // 涓荤収鐗囨睜锛氱敤浜庡ぇ閮ㄥ垎闅愯棌鐓х墖鐨勭粺涓€绱㈠紩鏄犲皠
++
++    // 璁块棶閿佹鏌ヤ笌瑙ｉ攣閫昏緫锛堣嫢鐐瑰嚮鏃犲弽搴旓紝閫氬父鏄洜涓烘鍑芥暟涓嶅瓨鍦級
++    function checkPin() {
++        const inputEl = document.getElementById('pin-input');
++        const raw = inputEl ? inputEl.value : '';
++        const digits = String(raw).replace(/\D/g, '');
++        console.log('checkPin called', { raw, digits });
++
++        if (digits.length !== 4) {
++            alert('璇疯緭鍏?浣嶆暟瀛楁殫鍙凤紙浠呮暟瀛楋級');
++            inputEl && inputEl.focus();
++            return;
++        }
++
++        // 濡傛灉闇€瑕佸浐瀹氭殫鍙凤紙渚嬪 "0330"锛夛紝鍙互鍦ㄦ澶勬浛鎹负鍏蜂綋鍊?+        // const secret = '0330'; if (digits !== secret) { alert('鏆楀彿閿欒'); inputEl && inputEl.focus(); return; }
++
++        // 鎴愬姛瑙ｉ攣 UI
++        const accessLock = document.getElementById('access-lock');
++        const garden = document.getElementById('garden-container');
++        if (accessLock) accessLock.style.display = 'none';
++        if (garden) garden.classList.add('unlocked');
++
++        // 鍚屾鏄剧ず瑙勮寖鍖栫殑杈撳叆锛堥伩鍏嶇壒娈婂瓧绗﹂€犳垚璇垽锛?+        if (inputEl) inputEl.value = digits;
++
++        // 灏濊瘯鍚姩鑳屾櫙闊充箰锛堣嫢瀹氫箟浜嗙浉鍏冲嚱鏁帮級
++        try { if (typeof loadTrack === 'function') loadTrack(currentTrackIndex); if (typeof playCurrentTrack === 'function') playCurrentTrack().catch(()=>{}); } catch (e) { /* ignore */ }
++    }
++
++    // 鏀寔鍦ㄨ緭鍏ユ鎸夊洖杞︾洿鎺ヨВ閿?+    (function () {
++        const pinEl = document.getElementById('pin-input');
++        if (pinEl) pinEl.addEventListener('keydown', (e) => { if (e.key === 'Enter') checkPin(); });
++    })();
+     const photoUrls = [
+-        "img/1/IMG_20220820_131125.jpg", "img/1/IMG_20220821_101429.jpg", "img/1/IMG_20220821_134939.jpg",
++        "img/4/IMG_20220430_184329.jpg", "img/7/mmexport1739595746367.jpg", "img/1/IMG_20220821_134939.jpg",
+         "img/1/IMG_20221003_104432.jpg", "img/1/IMG_20230325_205825.jpg", "img/12/IMG_20220404_211813.jpg",
+         "img/1/IMG_20230622_201648.jpg", "img/4/IMG_20220430_141157.jpg", "img/1/IMG_20230622_201700.jpg",
+         "img/2/-1ebe23db85da539b.jpg", "img/2/-4307697817d3c0b1.jpg", "img/2/-75da7e6488bae183.jpg",
+@@ -1227,6 +1445,8 @@
+     const photoRevealBox = document.getElementById('photo-reveal-box');
+     const revealImg = document.getElementById('reveal-img');
+     const revealOverlay = document.getElementById('reveal-overlay');
++    const butterflyZone = document.getElementById('butterfly-zone');
++    const butterflyTargets = Array.from(document.querySelectorAll('#butterfly-zone .butterfly'));
+     const wateringCan = document.getElementById('watering-can-draggable');
+     const plantDropzone = document.getElementById('plant-dropzone');
+     const waterStatus = document.getElementById('water-status');
+@@ -1261,7 +1481,6 @@
+     const player = document.getElementById('music-player');
+     // 鏈湴鑳屾櫙闊充箰鍒楄〃锛氳繘鍏ヨ姳鍥悗鑷姩鎾斁锛孋D 鐐瑰嚮鍒囨瓕
+     const baseMusicTracks = [
+-        { name: 'Happy', url: 'music/eliveta-happy-473961.mp3' },
+         { name: 'Spring Sea', url: 'music/musicword-spring-sea-319241.mp3' },
+         { name: 'Romantic Blues', url: 'music/Romantic Christmas Blues by 鍥炲搷-瀹屾暣鐗?mp3' },
+         { name: 'Piano For Spring', url: 'music/sonican-piano-for-spring-336603.mp3' },
+@@ -1282,7 +1501,7 @@
+     let musicTracks = shuffleTracks(baseMusicTracks);
+     let currentTrackIndex = 0;
+     const fallbackFlower = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'><text x='12' y='94' font-size='84'>馃尭</text></svg>";
+-    const finalCelebrationPhoto = 'img/8/IMG_20260124_150618_1.jpg';
++  
+     // 閲庨绡笁寮犵収鐗囩殑鏁版嵁婧?     const picnicItems = [
+         { index: 22, src: 'img//1//IMG_20220821_134939.jpg', date: '2022.08.21', flower: '馃尲', text: '閭ｆ椂鍊欑殑鎴戜滑杩樿琛ヨ鍛? },
+@@ -1496,609 +1715,2713 @@
+         wateringCan.addEventListener('pointercancel', endDrag);
+     }
+ 
+-    initWaterGame();
++    // 铦磋澏妯″潡锛氬湪鍖哄煙鍐呴殢鏈洪琛岋紝鐢ㄦ埛闇€鐐瑰嚮绉诲姩涓殑铦磋澏瑙﹀彂鐓х墖
++    function initButterflyModule() {
++        if (!butterflyZone || !butterflyTargets.length) return;
+ 
+-    // 姘旂悆妯″潡锛氬姩鐢昏繘琛屾椂鐨勯槻璇Е鎻愮ず
+-    function showBalloonLock(text = '绛変竴绛夛紝璁╃绂忛涓€浼氬効~') {
+-        if (!balloonStatusLock) return;
+-        balloonStatusLock.textContent = text;
+-        balloonStatusLock.classList.add('show');
+-    }
+-
+-    // 闅愯棌姘旂悆妯″潡鐨勯槻璇Е鎻愮ず
+-    function hideBalloonLock() {
+-        balloonStatusLock?.classList.remove('show');
+-    }
+-
+-    // 姘旂悆涓婂崌鏃剁殑鍏夊熬绮掑瓙
+-    function spawnBalloonTail(x, y, color) {
+-        if (isLowPerformance) return;
+-        const dot = document.createElement('div');
+-        dot.className = 'balloon-tail';
+-        dot.style.left = `${x}px`;
+-        dot.style.top = `${y}px`;
+-        dot.style.background = color;
+-        balloonPhotoLayer.appendChild(dot);
+-        setTimeout(() => dot.remove(), 1000);
+-    }
+-
+-    // 姘旂悆鐖嗗紑鍚庣殑绾稿睉搴嗙鏁堟灉
+-    function spawnBalloonConfetti(x, y, color) {
+-        const count = isLowPerformance ? 10 : 18;
+-        for (let i = 0; i < count; i++) {
+-            const c = document.createElement('div');
+-            c.className = 'balloon-confetti';
+-            c.textContent = '鉁?;
+-            c.style.left = `${x}px`;
+-            c.style.top = `${y}px`;
+-            c.style.color = color;
+-            c.style.setProperty('--cx', `${(Math.random() - .5) * 140}px`);
+-            c.style.setProperty('--cy', `${40 + Math.random() * 120}px`);
+-            balloonPhotoLayer.appendChild(c);
+-            setTimeout(() => c.remove(), 1300);
+-        }
+-    }
+-
+-    // 鍒涘缓璺熼殢姘旂悆涓婂崌鐨勭収鐗囧眰涓庣绂忎笣甯?-    function createFloatingPhoto(data, startX, startY) {
+-        const wrap = document.createElement('div');
+-        wrap.className = 'balloon-photo-float';
+-        wrap.setAttribute('aria-label', `${data.bless}锛岀偣鍑荤炕闈㈡煡鐪嬪洖蹇哷);
+-        wrap.setAttribute('role', 'button');
+-
+-        const img = document.createElement('img');
+-        setImgWithFallback(img, data.photo);
+-        const back = document.createElement('div');
+-        back.className = 'balloon-memory-back';
+-        back.innerText = data.memory;
+-        const tip = document.createElement('div');
+-        tip.className = 'balloon-memory-tip';
+-        tip.innerText = '闀挎寜淇濆瓨杩欎竴鍒?;
+-
+-        const ribbon = document.createElement('div');
+-        ribbon.className = 'balloon-ribbon';
+-        ribbon.innerText = data.bless;
+-
+-        wrap.appendChild(img);
+-        wrap.appendChild(back);
+-        wrap.appendChild(tip);
+-        balloonPhotoLayer.appendChild(wrap);
+-        balloonPhotoLayer.appendChild(ribbon);
+-
+-        wrap.style.left = `${startX - 75}px`;
+-        wrap.style.top = `${startY + 22}px`;
+-        wrap.style.display = 'block';
+-
+-        let flipped = false;
+-        wrap.addEventListener('click', () => {
+-            flipped = !flipped;
+-            wrap.style.transform = flipped ? 'rotateY(180deg)' : 'rotateY(0deg)';
+-            back.style.display = flipped ? 'block' : 'none';
+-            img.style.display = flipped ? 'none' : 'block';
+-        });
++        const states = butterflyTargets.map((el) => ({ el, x: 0, y: 0, timer: null }));
++
++        function getBounds() {
++            return {
++                xMax: Math.max(20, butterflyZone.clientWidth - 96),
++                yMax: Math.max(28, butterflyZone.clientHeight - 124)
++            };
++        }
+ 
+-        wrap.addEventListener('pointerdown', () => {
+-            tip.style.display = 'block';
++        function moveButterfly(state, immediate = false) {
++            const bounds = getBounds();
++            const nextX = Math.random() * bounds.xMax;
++            const nextY = Math.random() * bounds.yMax;
++            const duration = reducedMotion ? (2200 + Math.random() * 700) : (1300 + Math.random() * 1200);
++            const tilt = Math.random() * 24 - 12;
++            const direction = nextX >= state.x ? 1 : -1;
++
++            state.el.style.transition = immediate ? 'none' : `transform ${duration}ms cubic-bezier(.2,.78,.2,1), opacity 220ms ease`;
++            state.el.style.transform = `translate(${nextX}px, ${nextY}px) scaleX(${direction}) rotate(${tilt}deg)`;
++            state.el.style.opacity = '1';
++
++            state.x = nextX;
++            state.y = nextY;
++            clearTimeout(state.timer);
++            state.timer = setTimeout(() => moveButterfly(state), duration + 140 + Math.random() * 600);
++        }
++
++        states.forEach((state, idx) => {
++            const photoIndex = Number(state.el.dataset.photoIndex);
++            state.el.addEventListener('click', () => handleTap(photoIndex, state.el));
++
++            // 鍏堟斁缃垵濮嬪潗鏍囷紝鍐嶅惎鍔ㄩ琛屽姩鐢?+            setTimeout(() => moveButterfly(state, true), idx * 90);
++            setTimeout(() => moveButterfly(state), 150 + idx * 120);
+         });
+ 
+-        return { wrap, ribbon };
++        window.addEventListener('resize', () => {
++            states.forEach((state) => moveButterfly(state, true));
++        }, { passive: true });
+     }
+ 
+-    // 姘旂悆鍗囩┖涓绘祦绋嬶細瑙ｇ怀銆佸崌绌恒€佺収鐗囨斁澶с€佷笣甯﹀嚭鐜般€佺垎寮€涓庣暀瀛?-    function animateBalloonFlight(itemEl, data) {
+-        balloonState.locked = true;
+-        balloonItems.forEach((it) => {
+-            if (it !== itemEl && !balloonState.launched.has(Number(it.dataset.bid))) it.classList.add('disabled');
+-        });
+-        showBalloonLock('绛変竴绛夛紝璁╃绂忛涓€浼氬効~');
+-
+-        const shell = itemEl.querySelector('.balloon-shell');
+-        const rect = shell.getBoundingClientRect();
+-        const startX = rect.left + rect.width / 2;
+-        const startY = rect.top + rect.height / 2;
+-        const floating = createFloatingPhoto(data, startX, startY);
+-
+-        alert('鍜烩€旇В寮€浜?);
+-
+-        const startTime = performance.now();
+-        const dur = 2500;
+-        const statusBarSafe = 22;
+-
+-        const step = (now) => {
+-            const t = Math.min(1, (now - startTime) / dur);
+-            const easing = t < .35 ? t * .65 : t < .75 ? .23 + (t - .35) * 1.12 : .68 + (t - .75) * 1.28;
+-            const y = startY - easing * (startY + 120);
+-            const x = startX + Math.sin(t * Math.PI * 2) * 22;
+-            const rotate = t * 360;
+-            shell.style.transform = `translate(${x - startX}px, ${y - startY}px) rotate(${rotate}deg)`;
+-            itemEl.querySelector('.balloon-string').style.transform = `translateX(-50%) rotate(${Math.sin(t * Math.PI * 5) * 12}deg)`;
+-
+-            if (t >= 0.33) {
+-                const size = 40 + Math.min(110, (t - 0.33) / 0.2 * 110);
+-                floating.wrap.style.width = `${size}px`;
+-                floating.wrap.style.height = `${size}px`;
+-                floating.wrap.style.left = `${x - size / 2}px`;
+-                floating.wrap.style.top = `${y + 20}px`;
+-                floating.wrap.style.borderRadius = data.id === 1 ? '14px' : '50%';
+-            }
++    initButterflyModule();
+ 
+-            if (t >= 0.5) {
+-                floating.wrap.style.width = '150px';
+-                floating.wrap.style.height = '150px';
+-                floating.wrap.style.left = `${x - 75}px`;
+-                floating.wrap.style.top = `${y + 16}px`;
+-                floating.wrap.style.borderRadius = data.id === 0 ? '50%' : '14px';
+-                floating.wrap.style.boxShadow = '0 0 0 8px rgba(255, 225, 121, .18), 0 12px 22px rgba(0,0,0,.25)';
+-            }
++    initWaterGame();
+ 
+-            if (t >= 0.66) {
+-                floating.ribbon.style.display = 'flex';
+-                floating.ribbon.style.left = `${x - 80}px`;
+-                floating.ribbon.style.top = `${y + 176}px`;
+-            }
++    // 姘旂悆鍗囩┖绉€鐨勪笁缁勬暟鎹細缂╃暐鍥俱€佷富鍥俱€佺绂忚涓庡洖蹇嗘枃妗?+    const balloonItemsData = [
++        {
++            id: 0,
++            index: 19,
++            thumb: 'spring/balloon1.jpg',
++            photo: 'img\\7\\mmexport1739595717751.jpg',
++            color: '#ff8eb9',
++            bless: '鎰挎垜浠案杩滃儚绔ヨ瘽閲岀殑瑙掕壊涓€鏍锋棤蹇ф棤铏?,
++            memory: '杩欏ぉ鎴戜滑涓€璧峰幓浜嗚崚閲庣帇鍥斤紝涓€涓€?
++        },
++        {
++            id: 1,
++            index: 20,
++            thumb: 'spring/balloon2.jpg',
++            photo: 'img\\14\\IMG_20240806_140809.jpg',
++            color: '#f0c36b',
++            bless: '浣犵殑绗戝鏄垜鏀惰棌鐨勫疂钘?,
++            memory: '閭ｅぉ鎴戜滑鎶佃揪瑗垮畨锛屼綘鐏跨儌鐨勭瑧瀹癸紝鎴戜竴鐩磋鍒颁粖澶┿€?
++        },
++        {
++            id: 2,
++            index: 21,
++            thumb: 'spring/balloon3.jpg',
++            photo: 'img\\14\\IMG_20250826_171505.jpg',
++            color: '#b28bff',
++            bless: '鎴愪负鏇村ソ鐨勪汉鏄垜浠殑绾﹀畾',
++            memory: '杩欐槸鎴戞敹鍒拌繃鏈€鐢ㄥ績鐨勭敓鏃ョぜ鐗╋紝璋㈣阿浣狅紝杩欒鎴戞剰璇嗗埌鎰熸儏鐨勭弽璐点€?
++        }
++    ];
++    const balloonState = {
++        locked: false,
++        launched: new Set(),
++        floating: new Map(),
++        mergedDone: false,
++        finaleClosable: false
++    };
+ 
+-            if (!isLowPerformance && t > 0.28 && t < 0.95) {
+-                spawnBalloonTail(x - 8, y + 56, data.color);
+-            }
++    // 鍔犺浇褰撳墠闊充箰鏇茬洰锛屽苟鍚屾鏇存柊鎾斁鍣ㄦ彁绀烘枃妗?+    function loadTrack(index) {
++        audio.src = encodeURI(musicTracks[index].url);
++        player.title = `褰撳墠闊充箰锛?{musicTracks[index].name}锛堢偣鍑诲垏鎹級`;
++    }
+ 
+-            if (t < 1) {
+-                requestAnimationFrame(step);
+-            } else {
+-                shell.style.visibility = 'hidden';
+-                itemEl.querySelector('.balloon-string').style.visibility = 'hidden';
+-                const finalTop = Math.max(statusBarSafe, window.innerHeight * 0.2 - 80);
+-                floating.wrap.style.top = `${finalTop}px`;
+-                floating.ribbon.style.top = `${finalTop + 160}px`;
+-                floating.wrap.classList.add('fixed');
+-                balloonState.floating.set(data.id, floating);
+-                spawnBalloonConfetti(x, 14, data.color);
+-                alert('鍟?);
+-                collectPhoto(data.index);
+-
+-                balloonState.locked = false;
+-                hideBalloonLock();
+-                balloonItems.forEach((it) => it.classList.remove('disabled'));
+-
+-                if (balloonState.launched.size === 3 && balloonState.floating.size === 3 && !balloonState.mergedDone) {
+-                    setTimeout(triggerBalloonFinale, 700);
+-                }
+-            }
++    // 鍥剧墖鍏滃簳锛氬綋 spring/ 鎴栨湰鍦板浘鐗囦笉瀛樺湪鏃跺洖閫€涓鸿姳鏈靛浘鏍?+    function setImgWithFallback(imgEl, src) {
++        imgEl.onerror = () => {
++            imgEl.onerror = null;
++            imgEl.src = fallbackFlower;
+         };
++        imgEl.src = src;
++    }
+ 
+-        requestAnimationFrame(step);
++    // 鏀堕泦杩涘害缁熶竴鍏ュ彛锛氭洿鏂拌渹铚滅綈璁℃暟銆佸闃宠В閿佺姸鎬佸拰鏀堕泦瀹屾垚鎻愮ず
++    function collectPhoto(index) {
++        if (!collectedPhotos.has(index)) {
++            collectedPhotos.add(index);
++            updateHoneyDisplay();
++            updateSunPulse();
++            if (collectedPhotos.size === 25) {
++                setTimeout(() => {
++                    alert("馃帀 鏄ュ皬鐕曪紝浣犳壘榻愪簡25涓簿褰╂椂鍒伙紒鐢熸棩蹇箰锛侌煄?);
++                    showLargePhoto(finalCelebrationPhoto);
++                }, 1000);
++            }
++        }
+     }
+ 
+-    // 涓変釜姘旂悆鍏ㄩ儴瀹屾垚鍚庣殑鍚堜綋褰╄泲锛氫笁鍥炬眹鑱氥€佺粍鍚堟嫾璐淬€佺儫鑺卞拰缁堟瀬绁濈
+-    function triggerBalloonFinale() {
+-        balloonState.mergedDone = true;
+-        const entries = Array.from(balloonState.floating.values());
+-        entries.forEach((f, i) => {
+-            f.wrap.style.transition = 'all 1.5s cubic-bezier(.22,.9,.35,1)';
+-            f.ribbon.style.transition = 'all 1.5s cubic-bezier(.22,.9,.35,1)';
+-            f.wrap.style.left = `${window.innerWidth / 2 - 75 + (i - 1) * 8}px`;
+-            f.wrap.style.top = `${window.innerHeight / 2 - 100 + i * 6}px`;
+-            f.ribbon.style.opacity = '0';
+-        });
++    // 鍚屾搴曢儴铚傝湝缃愬睍绀轰负 x/25 鏍煎紡
++    function updateHoneyDisplay(value = collectedPhotos.size) {
++        document.getElementById('honey-count').innerText = `${value}/25`;
++    }
+ 
+-        setTimeout(() => {
+-            balloonCombo.style.display = 'block';
+-            balloonCombo.style.left = `${window.innerWidth / 2 - 100}px`;
+-            balloonCombo.style.top = `${window.innerHeight / 2 - 100}px`;
+-            balloonComboGrid.innerHTML = '';
+-            balloonItemsData.forEach((b) => {
+-                const img = document.createElement('img');
+-                img.style.width = '100%';
+-                img.style.height = '100%';
+-                img.style.objectFit = 'cover';
+-                setImgWithFallback(img, b.photo);
+-                balloonComboGrid.appendChild(img);
+-            });
+-            entries.forEach((f) => {
+-                f.wrap.style.display = 'none';
+-                f.ribbon.style.display = 'none';
+-            });
+-
+-            runFireworks(1000);
+-            balloonUltimateMsg.style.display = 'block';
+-            alert('鉁?鎭枩瑙ｉ攣姘旂悆鍥炲繂鍚堥泦 鉁?);
+-            setTimeout(() => {
+-                balloonUltimateMsg.style.display = 'none';
+-            }, 3000);
+-            setTimeout(() => {
+-                balloonState.finaleClosable = true;
+-            }, 0);
+-
+-            collectPhoto(25);
+-            document.getElementById('honey-pot').style.boxShadow = '0 0 16px 6px rgba(255,216,102,.65)';
+-        }, 1500);
+-    }
+-
+-    // 鐐瑰嚮浠绘剰绌虹櫧鍖哄煙鍚庡叧闂皵鐞冪粓鍦烘嫾璐达紝閬垮厤鎸佺画鎸′綇瑙嗛噹
+-    function closeBalloonFinale() {
+-        if (!balloonState.mergedDone) return;
+-        balloonCombo.style.display = 'none';
+-        balloonUltimateMsg.style.display = 'none';
+-        balloonState.finaleClosable = false;
+-    }
+-
+-    // 鍒濆鍖栨皵鐞冨崌绌虹妯″潡鐨勭偣鍑荤粦瀹氫笌缂╃暐鍥惧姞杞?-    function initBalloonModule() {
+-        if (!balloonItems.length) return;
+-        balloonItemsData.forEach((item) => {
+-            const thumb = document.getElementById(`balloon-thumb-${item.id}`);
+-            if (thumb) setImgWithFallback(thumb, item.thumb);
+-        });
++    // 鏍规嵁宸插彂鐜扮収鐗囨暟閲忥紝鍒囨崲澶曢槼澶栧湀鑴夊啿棰滆壊
++    function updateSunPulse() {
++        if (!sunPulse) return;
++        sunPulse.classList.toggle('ready', collectedPhotos.size >= 20);
++    }
+ 
+-        // 姝ゅ涓烘皵鐞冨崌绌烘ā鍧楋紝绉诲姩绔偣鍑诲尯鍩熷凡鏀惧ぇ
+-        balloonItems.forEach((itemEl) => {
+-            itemEl.addEventListener('click', () => {
+-                const id = Number(itemEl.dataset.bid);
+-                if (balloonState.locked) return;
+-                if (balloonState.launched.has(id)) {
+-                    const f = balloonState.floating.get(id);
+-                    if (f) f.wrap.click();
+-                    return;
+-                }
+-                itemEl.classList.add('active');
+-                balloonState.launched.add(id);
+-                animateBalloonFlight(itemEl, balloonItemsData[id]);
+-            });
++    // 鎾斁褰撳墠闊充箰锛屽苟璁╁彸涓嬭 CD 杩涘叆鏃嬭浆鐘舵€?+    function playCurrentTrack() {
++        return audio.play().then(() => {
++            player.classList.add('playing');
+         });
+     }
+ 
+-    initBalloonModule();
+-
+-    document.addEventListener('click', (event) => {
+-        if (!balloonState.finaleClosable || balloonCombo.style.display !== 'block') return;
+-        const clickedFloatingPhoto = event.target.closest('.balloon-photo-float');
+-        if (clickedFloatingPhoto) return;
+-        closeBalloonFinale();
+-    });
+-
+-    // 閲庨绡墦寮€鏃剁殑褰╄壊鐑熼浘涓庣焊灞戠矑瀛?-    function createSmokeConfetti() {
+-        const hostRect = picnicBasket.getBoundingClientRect();
+-        const colors = ['#ff6fa7', '#c88cff', '#ffd966'];
+-        for (let i = 0; i < 22; i++) {
+-            const p = document.createElement('div');
+-            p.className = 'star-particle';
+-            p.textContent = '鉁?;
+-            p.style.color = colors[i % colors.length];
+-            p.style.left = `${hostRect.left + 45 + (Math.random() * 18 - 9)}px`;
+-            p.style.top = `${hostRect.top + 18}px`;
+-            p.style.setProperty('--dx', `${Math.random() * 120 - 60}px`);
+-            p.style.setProperty('--dy', `${-40 - Math.random() * 120}px`);
+-            document.body.appendChild(p);
+-            setTimeout(() => p.remove(), 1300);
+-        }
+-    }
+-
+-    // 鏋勫缓閲庨鍨笂鐨勪笁寮犳媿绔嬪緱鍗＄墖
+-    function buildPicnicCards() {
+-        picnicPolaroids.innerHTML = '';
+-        const poses = [
+-            { left: 8, top: 10, rot: -5 },
+-            { left: 86, top: 2, rot: 8 },
+-            { left: 162, top: 16, rot: -12 }
+-        ];
+-        picnicItems.forEach((item, i) => {
+-            const card = document.createElement('div');
+-            card.className = 'polaroid';
+-            card.style.left = `${poses[i].left}px`;
+-            card.style.top = `${poses[i].top}px`;
+-            card.style.transform = `translateY(0) rotate(${poses[i].rot}deg)`;
+-            card.dataset.index = String(item.index);
+-
+-            const img = document.createElement('img');
+-            img.style.width = '100%';
+-            img.style.height = '100%';
+-            img.style.objectFit = 'cover';
+-            setImgWithFallback(img, item.src);
+-
+-            const flower = document.createElement('div');
+-            flower.className = 'flower-pin';
+-            flower.textContent = item.flower;
+-
+-            const stamp = document.createElement('div');
+-            stamp.className = 'stamp';
+-            stamp.textContent = item.date;
+-
+-            card.appendChild(img);
+-            card.appendChild(flower);
+-            card.appendChild(stamp);
+-
+-            card.addEventListener('pointerdown', () => card.classList.add('touching'));
+-            card.addEventListener('pointerup', () => card.classList.remove('touching'));
+-            card.addEventListener('pointercancel', () => card.classList.remove('touching'));
+-            card.addEventListener('click', () => openPicnicCard(item, card));
+-
+-            picnicPolaroids.appendChild(card);
+-            setTimeout(() => card.classList.add('show'), i * 150);
++    // 鍒囨崲鍒颁笅涓€棣栭煶涔愶紱鎾斁鍒版湯灏炬椂閲嶆柊娲楃墝
++    function switchTrack() {
++        currentTrackIndex += 1;
++        if (currentTrackIndex >= musicTracks.length) {
++            musicTracks = shuffleTracks(baseMusicTracks);
++            currentTrackIndex = 0;
++        }
++        loadTrack(currentTrackIndex);
++        playCurrentTrack().catch(() => {
++            alert('闊充箰鍒囨崲鎴愬姛锛屼絾娴忚鍣ㄩ檺鍒朵簡鑷姩鎾斁锛岃鍐嶇偣涓€娆D銆?);
+         });
+     }
+ 
+-    // 鎵撳紑鏌愬紶閲庨鍥炲繂鍗★細灏忚姳椋樿蛋銆佸崱鐗囨斁澶с€佹皵娉＄绂忓嚭鐜?-    function openPicnicCard(item, cardEl) {
+-        const flowerEl = cardEl.querySelector('.flower-pin');
+-        if (flowerEl) {
+-            flowerEl.animate([
+-                { transform: 'translateY(0) scale(1)', opacity: 1 },
+-                { transform: 'translateY(-30px) rotate(24deg) scale(.8)', opacity: 0 }
+-            ], { duration: 550, easing: 'ease-out' });
+-        }
+-        setImgWithFallback(picnicViewImg, item.src);
+-        picnicViewer.classList.add('show');
+-        memoryBubble.textContent = item.text;
+-        memoryBubble.classList.remove('show');
+-        void memoryBubble.offsetWidth;
+-        memoryBubble.classList.add('show');
+-        picnicViewCard.style.transform = 'rotateY(180deg) scale(1.02)';
+-        setTimeout(() => { picnicViewCard.style.transform = 'rotateY(0deg) scale(1)'; }, 450);
+-        picnicViewed.add(item.index);
+-        collectPhoto(item.index);
+-
+-        if (picnicViewed.size === 3) {
+-            picnicComplete.classList.add('show');
+-            setTimeout(() => {
+-                picnicComplete.classList.remove('show');
+-                miniCounter.style.display = 'block';
+-            }, 5000);
+-        }
+-    }
+-
+-    // 鍏抽棴閲庨鍥炲繂鏌ョ湅灞?-    function closePicnicViewer() {
+-        picnicViewer.classList.remove('show');
+-    }
+-
+-    if (picnicBasket) {
+-        picnicBasket.addEventListener('click', () => {
+-            if (picnicOpened) return;
+-            picnicOpened = true;
+-            picnicBasket.classList.add('opened');
+-            alert('鍜斿搾鈥斺€?);
+-            createSmokeConfetti();
+-            setTimeout(buildPicnicCards, 360);
+-        });
++    loadTrack(currentTrackIndex);
++    audio.addEventListener('ended', switchTrack);
++    updateHoneyDisplay();
++    updateSunPulse();
++
++    let isDraggingCan = false;
++    let canGhost = null;
++    const waterPhotoQueue = [22, 23];
++    let waterPhotoCursor = 0;
++
++    // 鍥壓妯″潡锛氭牴鎹嫋鎷戒綅缃珮浜鐗╂姇鏀惧尯
++    function updateDropzoneHighlight(x, y) {
++        const rect = plantDropzone.getBoundingClientRect();
++        const inside = x >= rect.left && x <= rect.right && y >= rect.top && y <= rect.bottom;
++        plantDropzone.classList.toggle('active', inside);
++        return inside;
+     }
+ 
+-    picnicClose?.addEventListener('click', closePicnicViewer);
+-    picnicViewCard?.addEventListener('click', closePicnicViewer);
+-    picnicViewer?.addEventListener('click', (e) => {
+-        if (e.target === picnicViewer) closePicnicViewer();
+-    });
+-
+-    // 澶曢槼鍙樿韩鏃讹紝浠庝腑蹇冨悜澶栨墿鏁ｇ殑鏄熷厜绮掑瓙
+-    function sparkleAroundSun() {
+-        const rect = sunDisc.getBoundingClientRect();
+-        for (let i = 0; i < 34; i++) {
+-            const p = document.createElement('div');
+-            p.className = 'star-particle';
+-            p.textContent = '鉁?;
+-            p.style.left = `${rect.left + rect.width / 2}px`;
+-            p.style.top = `${rect.top + rect.height / 2}px`;
+-            p.style.setProperty('--dx', `${(Math.random() - .5) * 380}px`);
+-            p.style.setProperty('--dy', `${(Math.random() - .5) * 380}px`);
+-            document.body.appendChild(p);
+-            setTimeout(() => p.remove(), 1300);
+-        }
+-    }
+-
+-    // 閫氱敤鐑熻姳绮掑瓙鍔ㄧ敾锛氱敤浜庡闃崇粓鏋佸僵铔嬪拰姘旂悆鍚堥泦褰╄泲
+-    function runFireworks(duration = 5000) {
+-        const timer = setInterval(() => {
+-            const cx = 60 + Math.random() * (window.innerWidth - 120);
+-            const cy = 80 + Math.random() * (window.innerHeight - 180);
+-            for (let i = 0; i < 18; i++) {
+-                const f = document.createElement('div');
+-                f.className = 'firework';
+-                f.style.left = `${cx}px`;
+-                f.style.top = `${cy}px`;
+-                f.style.setProperty('--fx', `${Math.cos((i / 18) * Math.PI * 2) * (40 + Math.random() * 50)}px`);
+-                f.style.setProperty('--fy', `${Math.sin((i / 18) * Math.PI * 2) * (40 + Math.random() * 50)}px`);
+-                f.style.background = ['#ffd166', '#ff4fa8', '#9b8cff'][i % 3];
+-                document.body.appendChild(f);
+-                setTimeout(() => f.remove(), 1300);
+-            }
+-        }, 360);
+-        setTimeout(() => clearInterval(timer), duration);
+-    }
+-
+-    // 澶曢槼闀挎寜 3 绉掑悗鐨勭粓鏋佸僵铔嬶細鐖卞績銆佺缉鐣ュ浘鐜笌鏈€缁堢绂?-    function startUltimateEgg() {
+-        ultimateEgg.classList.add('show');
+-        thumbRing.innerHTML = '';
+-        const discovered = Array.from(collectedPhotos).slice(0, 24);
+-        const total = Math.max(12, discovered.length);
+-        for (let i = 0; i < total; i++) {
+-            const idx = discovered[i % discovered.length] || ((i % 24) + 1);
+-            const angle = (i / total) * Math.PI * 2;
+-            const x = 145 + Math.cos(angle) * 110 - 25;
+-            const y = 145 + Math.sin(angle) * 110 - 25;
+-            const item = document.createElement('div');
+-            item.className = 'mini-thumb';
+-            item.style.left = `${x}px`;
+-            item.style.top = `${y}px`;
+-            const img = document.createElement('img');
+-            img.style.width = '100%';
+-            img.style.height = '100%';
+-            img.style.objectFit = 'cover';
+-            setImgWithFallback(img, photoUrls[idx - 1] || `spring/pic${idx}.jpg`);
+-            item.appendChild(img);
+-            thumbRing.appendChild(item);
+-        }
+-        runFireworks(5000);
+-        setTimeout(() => closeSunsetSequence(true), 5000);
+-    }
+-
+-    // 鍏抽棴澶曢槼鏈€缁堥樁娈碉紝骞跺湪瀹屾垚鏃舵爣璁颁负宸查€氬叧鐘舵€?-    function closeSunsetSequence(completed = false) {
+-        sunsetStage.classList.remove('show');
+-        ultimateEgg.classList.remove('show');
+-        skyOverlay.classList.remove('show');
+-        sunsetBusy = false;
+-        if (completed && !sunsetFinalized) {
+-            sunsetFinalized = true;
+-            sunsetZone.classList.add('sunset-completed');
+-            updateHoneyDisplay(25);
+-            document.getElementById('honey-pot').style.boxShadow = '0 0 20px 8px rgba(255,215,0,.65)';
+-        }
+-    }
+-
+-    // 澶曢槼涓绘祦绋嬶細澶╃┖鍙樿壊銆佸闃宠啫鑳€銆佸壀褰辩収鐗囩櫥鍦?-    function triggerSunsetSequence() {
+-        if (sunsetBusy || sunsetFinalized) return;
+-        sunsetBusy = true;
+-        skyOverlay.classList.add('show');
+-        sunDisc.style.transform = 'scale(1.65)';
+-        setTimeout(() => {
+-            sunsetStage.classList.add('show');
+-            setImgWithFallback(silhouetteImg, 'spring/pic25.jpg');
+-            sparkleAroundSun();
+-        }, 900);
+-        setTimeout(() => {
+-            sunDisc.style.transform = 'scale(1)';
+-        }, 1400);
+-    }
+-
+-    // 澶曢槼鐐瑰嚮涓嶈冻鏉′欢鏃剁殑鎻愮ず姘旀场
+-    function showSunHint(text) {
+-        sunHint.textContent = text;
+-        sunHint.classList.add('show');
+-        setTimeout(() => sunHint.classList.remove('show'), 2000);
+-    }
+-
+-    sunClick?.addEventListener('click', () => {
+-        if (sunsetFinalized) return;
+-        if (collectedPhotos.size < 20) {
+-            showSunHint('杩橀渶瑕佸啀鎺㈢储涓€浼氬効鍝︷煂?);
+-            return;
++    // 鍥壓妯″潡锛氱Щ闄ゆ嫋鎷戒腑鐨勬祰姘村６骞界伒灞?+    function removeGhost() {
++        if (canGhost) {
++            canGhost.remove();
++            canGhost = null;
+         }
+-        triggerSunsetSequence();
+-    });
+-
+-    let scale = 1;
+-    let translateX = 0;
+-    let translateY = 0;
+-    let startDistance = 0;
+-    let startScale = 1;
+-    let startX = 0;
+-    let startY = 0;
+-    let isPan = false;
+-
+-    // 灏嗗弻鎸囩缉鏀惧拰骞崇Щ缁撴灉搴旂敤鍒板闃冲壀褰卞ぇ鍥句笂
+-    function applySilhouetteTransform() {
+-        silhouetteImg.style.transform = `translate(${translateX}px, ${translateY}px) scale(${scale})`;
+-    }
+-
+-    silhouetteWrap?.addEventListener('touchstart', (e) => {
+-        if (e.touches.length === 2) {
+-            const dx = e.touches[0].clientX - e.touches[1].clientX;
+-            const dy = e.touches[0].clientY - e.touches[1].clientY;
+-            startDistance = Math.hypot(dx, dy);
+-            startScale = scale;
+-        } else if (e.touches.length === 1) {
+-            isPan = true;
+-            startX = e.touches[0].clientX - translateX;
+-            startY = e.touches[0].clientY - translateY;
+-            longPressTimer = setTimeout(() => {
+-                startUltimateEgg();
+-            }, 3000);
+-        }
+-    }, { passive: true });
+-
+-    silhouetteWrap?.addEventListener('touchmove', (e) => {
+-        if (e.touches.length === 2) {
+-            const dx = e.touches[0].clientX - e.touches[1].clientX;
+-            const dy = e.touches[0].clientY - e.touches[1].clientY;
+-            const dist = Math.hypot(dx, dy);
+-            scale = Math.min(3, Math.max(1, startScale * (dist / (startDistance || dist))));
+-            applySilhouetteTransform();
+-            if (longPressTimer) clearTimeout(longPressTimer);
+-        } else if (e.touches.length === 1 && isPan) {
+-            translateX = e.touches[0].clientX - startX;
+-            translateY = e.touches[0].clientY - startY;
+-            applySilhouetteTransform();
+-            if (Math.abs(translateX) > 8 || Math.abs(translateY) > 8) {
+-                if (longPressTimer) clearTimeout(longPressTimer);
++    }
++
++    // 鍒濆鍖栧洯鑹烘祰姘存ā鍧楋細鎷栨嫿娴囨按鎴愬姛鍚庢樉绀哄洯鑹虹収鐗?+    function initWaterGame() {
++        if (!wateringCan || !plantDropzone || !waterStatus) return;
++
++        // 鍥壓娴囨按鎴愬姛鏃剁殑姘存淮鍔ㄧ敾
++        function spawnWaterDrops() {
++            const rect = plantDropzone.getBoundingClientRect();
++            const startX = rect.left + rect.width * 0.5;
++            const startY = rect.top - 6;
++            for (let i = 0; i < 7; i++) {
++                const drop = document.createElement('div');
++                drop.className = 'water-drop';
++                drop.textContent = '馃挧';
++                drop.style.left = `${startX + (Math.random() * 44 - 22)}px`;
++                drop.style.top = `${startY + Math.random() * 8}px`;
++                drop.style.animationDelay = `${i * 55}ms`;
++                document.body.appendChild(drop);
++                setTimeout(() => drop.remove(), 900);
+             }
+         }
+-    }, { passive: true });
+ 
+-    const clearPress = () => {
+-        isPan = false;
+-        if (longPressTimer) {
+-            clearTimeout(longPressTimer);
+-            longPressTimer = null;
+-        }
+-    };
++        wateringCan.addEventListener('pointerdown', (event) => {
++            isDraggingCan = true;
++            wateringCan.setPointerCapture(event.pointerId);
++
++            canGhost = document.createElement('div');
++            canGhost.className = 'drag-ghost';
++            canGhost.textContent = '馃毧';
++            document.body.appendChild(canGhost);
++            canGhost.style.left = `${event.clientX}px`;
++            canGhost.style.top = `${event.clientY}px`;
++            waterStatus.textContent = '鎷栧埌鍙充晶妞嶇墿涓婃柟鏉炬墜鍗冲彲娴囨按';
++        });
+ 
+-    silhouetteWrap?.addEventListener('touchend', clearPress);
+-    silhouetteWrap?.addEventListener('touchcancel', clearPress);
++        wateringCan.addEventListener('pointermove', (event) => {
++            if (!isDraggingCan || !canGhost) return;
++            event.preventDefault();
++            canGhost.style.left = `${event.clientX}px`;
++            canGhost.style.top = `${event.clientY}px`;
++            updateDropzoneHighlight(event.clientX, event.clientY);
++        });
+ 
+-    sunsetStage?.addEventListener('click', (e) => {
+-        if (e.target === sunsetStage) closeSunsetSequence(true);
+-    });
+-    ultimateEgg?.addEventListener('click', () => closeSunsetSequence(true));
++        const endDrag = (event) => {
++            if (!isDraggingCan) return;
++            isDraggingCan = false;
++            const hit = updateDropzoneHighlight(event.clientX, event.clientY);
++            plantDropzone.classList.remove('active');
++            removeGhost();
+ 
+-    // 棣栧睆鏆楀彿鏍￠獙锛氭纭悗瑙ｉ攣鑺卞洯骞跺皾璇曡嚜鍔ㄦ挱鏀鹃煶涔?-    function checkPin() {
+-        const input = document.getElementById('pin-input').value;
+-        if (input === '0330') {
+-            document.getElementById('access-lock').style.display = 'none';
+-            const garden = document.getElementById('garden-container');
+-            garden.classList.add('unlocked');
+-            setInterval(createPetal, 400);
+-            playCurrentTrack().then(() => {
+-                player.classList.add('playing');
+-                alert("馃尭 娆㈣繋浣狅紝鏄ュ皬鐕曪紒\n鑺卞洯宸茬粡涓轰綘濂忓搷闊充箰锛屽紑濮嬪鎵惧悎鐓у惂锛?);
+-            }).catch(() => {
+-                alert("馃尭 娆㈣繋浣狅紝鏄ュ皬鐕曪紒\n闊充箰鍥犳祻瑙堝櫒闄愬埗鏈嚜鍔ㄦ挱鏀撅紝鐐瑰彸涓嬭CD鍗冲彲鎾斁銆?);
+-            });
+-        } else {
+-            alert("鉂?鏄ュ皬鐕曪紝鍐嶆兂鎯虫殫鍙峰憖锝?);
+-            document.getElementById('pin-input').value = '';
+-        }
+-    }
+-
+-    // 閫氱敤鐓х墖鐐瑰嚮鍏ュ彛锛氭樉绀虹収鐗囧脊灞傚苟璁板綍鏀堕泦杩涘害
+-    function handleTap(index, element) {
+-        if (collectedPhotos.size >= 25) return; // 鍏ㄩ儴鎵鹃綈閫昏緫
+-        if (collectedPhotos.has(index)) { showLargePhoto(photoUrls[index-1]); return; }
+-        
+-        revealImg.src = photoUrls[index-1];
+-        revealOverlay.style.display = 'block';
+-        photoRevealBox.classList.add('active');
+-        
+-        collectPhoto(index);
+-    }
+-
+-    // 鍏抽棴閫氱敤鐓х墖寮瑰眰
+-    function closeReveal() { photoRevealBox.classList.remove('active'); revealOverlay.style.display = 'none'; }
+-
+-    // 杩涘叆鍏ㄥ睆鐏鏌ョ湅澶у浘
+-    function showLargePhoto(url) {
+-        const lb = document.getElementById('lightbox');
+-        const img = document.getElementById('lightbox-img');
+-        setImgWithFallback(img, url);
+-        lb.style.display = 'flex';
+-    }
+-
+-    // 钂插叕鑻辨ā鍧楋細椤哄簭鏀惧嚭涓ゅ紶鐓х墖
+-    function blowDandelion(el, indices) { el.innerText = "馃尙锔忊湪"; setTimeout(() => { el.style.opacity = '0'; handleTap(indices[0], el); setTimeout(() => handleTap(indices[1], el), 800); }, 500); }
+-
+-    // 鍏ㄥ眬鑺辩摚椋樿惤鑳屾櫙鍔ㄧ敾
+-    function createPetal() {
+-        const petal = document.createElement('div');
+-        petal.className = 'petal';
+-        petal.style.left = Math.random() * 100 + 'vw';
+-        petal.style.width = Math.random() * 15 + 10 + 'px';
+-        petal.style.height = petal.style.width;
+-        petal.style.animationDuration = Math.random() * 5 + 3 + 's';
+-        document.querySelector('.petal-container').appendChild(petal);
+-        setTimeout(() => petal.remove(), 8000);
+-    }
+-</script>
+-
+-</body>
+-</html>
++            if (hit) {
++                spawnWaterDrops();
++                plantDropzone.classList.add('watered');
++                plantDropzone.classList.add('grow');
++                plantDropzone.textContent = '馃尡';
++                waterStatus.textContent = '娴囨按鎴愬姛锛佹儕鍠滅収鐗囨鍦ㄥ嚭鐜?..';
++                const photoIndex = waterPhotoQueue[waterPhotoCursor];
++                waterPhotoCursor = (waterPhotoCursor + 1) % waterPhotoQueue.length;
++                setTimeout(() => {
++                    plantDropzone.classList.remove('grow');
++                }, 720);
++                setTimeout(() => {
++                    handleTap(photoIndex, plantDropzone);
++                    waterStatus.textContent = '鍙户缁祰姘达紝鍙嶅瑙﹀彂鎯婂枩鐓х墖 鉁?;
++                }, 450);
++            } else {
++                waterStatus.textContent = '杩樻病娴囧埌妞嶇墿锛屽啀璇曚竴娆★綖';
++            }
++        };
++
++        wateringCan.addEventListener('pointerup', endDrag);
++        wateringCan.addEventListener('pointercancel', endDrag);
++    }
++
++    // 铦磋澏妯″潡锛氬湪鍖哄煙鍐呴殢鏈洪琛岋紝鐢ㄦ埛闇€鐐瑰嚮绉诲姩涓殑铦磋澏瑙﹀彂鐓х墖
++    function initButterflyModule() {
++        if (!butterflyZone || !butterflyTargets.length) return;
++
++        const states = butterflyTargets.map((el) => ({ el, x: 0, y: 0, timer: null }));
++
++        function getBounds() {
++            return {
++                xMax: Math.max(20, butterflyZone.clientWidth - 96),
++                yMax: Math.max(28, butterflyZone.clientHeight - 124)
++            };
++        }
++
++        function moveButterfly(state, immediate = false) {
++            const bounds = getBounds();
++            const nextX = Math.random() * bounds.xMax;
++            const nextY = Math.random() * bounds.yMax;
++            const duration = reducedMotion ? (2200 + Math.random() * 700) : (1300 + Math.random() * 1200);
++            const tilt = Math.random() * 24 - 12;
++            const direction = nextX >= state.x ? 1 : -1;
++
++            state.el.style.transition = immediate ? 'none' : `transform ${duration}ms cubic-bezier(.2,.78,.2,1), opacity 220ms ease`;
++            state.el.style.transform = `translate(${nextX}px, ${nextY}px) scaleX(${direction}) rotate(${tilt}deg)`;
++            state.el.style.opacity = '1';
++
++            state.x = nextX;
++            state.y = nextY;
++            clearTimeout(state.timer);
++            state.timer = setTimeout(() => moveButterfly(state), duration + 140 + Math.random() * 600);
++        }
++
++        states.forEach((state, idx) => {
++            const photoIndex = Number(state.el.dataset.photoIndex);
++            state.el.addEventListener('click', () => handleTap(photoIndex, state.el));
++
++            // 鍏堟斁缃垵濮嬪潗鏍囷紝鍐嶅惎鍔ㄩ琛屽姩鐢?+            setTimeout(() => moveButterfly(state, true), idx * 90);
++            setTimeout(() => moveButterfly(state), 150 + idx * 120);
++        });
++
++        window.addEventListener('resize', () => {
++            states.forEach((state) => moveButterfly(state, true));
++        }, { passive: true });
++    }
++
++    initButterflyModule();
++
++    initWaterGame();
++
++    // 姘旂悆鍗囩┖绉€鐨勪笁缁勬暟鎹細缂╃暐鍥俱€佷富鍥俱€佺绂忚涓庡洖蹇嗘枃妗?+    const balloonItemsData = [
++        {
++            id: 0,
++            index: 19,
++            thumb: 'spring/balloon1.jpg',
++            photo: 'img\\7\\mmexport1739595717751.jpg',
++            color: '#ff8eb9',
++            bless: '鎰挎垜浠案杩滃儚绔ヨ瘽閲岀殑瑙掕壊涓€鏍锋棤蹇ф棤铏?,
++            memory: '杩欏ぉ鎴戜滑涓€璧峰幓浜嗚崚閲庣帇鍥斤紝涓€涓€?
++        },
++        {
++            id: 1,
++            index: 20,
++            thumb: 'spring/balloon2.jpg',
++            photo: 'img\\14\\IMG_20240806_140809.jpg',
++            color: '#f0c36b',
++            bless: '浣犵殑绗戝鏄垜鏀惰棌鐨勫疂钘?,
++            memory: '閭ｅぉ鎴戜滑鎶佃揪瑗垮畨锛屼綘鐏跨儌鐨勭瑧瀹癸紝鎴戜竴鐩磋鍒颁粖澶┿€?
++        },
++        {
++            id: 2,
++            index: 21,
++            thumb: 'spring/balloon3.jpg',
++            photo: 'img\\14\\IMG_20250826_171505.jpg',
++            color: '#b28bff',
++            bless: '鎴愪负鏇村ソ鐨勪汉鏄垜浠殑绾﹀畾',
++            memory: '杩欐槸鎴戞敹鍒拌繃鏈€鐢ㄥ績鐨勭敓鏃ョぜ鐗╋紝璋㈣阿浣狅紝杩欒鎴戞剰璇嗗埌鎰熸儏鐨勭弽璐点€?
++        }
++    ];
++    const balloonState = {
++        locked: false,
++        launched: new Set(),
++        floating: new Map(),
++        mergedDone: false,
++        finaleClosable: false
++    };
++
++    // 鍔犺浇褰撳墠闊充箰鏇茬洰锛屽苟鍚屾鏇存柊鎾斁鍣ㄦ彁绀烘枃妗?+    function loadTrack(index) {
++        audio.src = encodeURI(musicTracks[index].url);
++        player.title = `褰撳墠闊充箰锛?{musicTracks[index].name}锛堢偣鍑诲垏鎹級`;
++    }
++
++    // 鍥剧墖鍏滃簳锛氬綋 spring/ 鎴栨湰鍦板浘鐗囦笉瀛樺湪鏃跺洖閫€涓鸿姳鏈靛浘鏍?+    function setImgWithFallback(imgEl, src) {
++        imgEl.onerror = () => {
++            imgEl.onerror = null;
++            imgEl.src = fallbackFlower;
++        };
++        imgEl.src = src;
++    }
++
++    // 鏀堕泦杩涘害缁熶竴鍏ュ彛锛氭洿鏂拌渹铚滅綈璁℃暟銆佸闃宠В閿佺姸鎬佸拰鏀堕泦瀹屾垚鎻愮ず
++    function collectPhoto(index) {
++        if (!collectedPhotos.has(index)) {
++            collectedPhotos.add(index);
++            updateHoneyDisplay();
++            updateSunPulse();
++            if (collectedPhotos.size === 25) {
++                setTimeout(() => {
++                    alert("馃帀 鏄ュ皬鐕曪紝浣犳壘榻愪簡25涓簿褰╂椂鍒伙紒鐢熸棩蹇箰锛侌煄?);
++                    showLargePhoto(finalCelebrationPhoto);
++                }, 1000);
++            }
++        }
++    }
++
++    // 鍚屾搴曢儴铚傝湝缃愬睍绀轰负 x/25 鏍煎紡
++    function updateHoneyDisplay(value = collectedPhotos.size) {
++        document.getElementById('honey-count').innerText = `${value}/25`;
++    }
++
++    // 鏍规嵁宸插彂鐜扮収鐗囨暟閲忥紝鍒囨崲澶曢槼澶栧湀鑴夊啿棰滆壊
++    function updateSunPulse() {
++        if (!sunPulse) return;
++        sunPulse.classList.toggle('ready', collectedPhotos.size >= 20);
++    }
++
++    // 鎾斁褰撳墠闊充箰锛屽苟璁╁彸涓嬭 CD 杩涘叆鏃嬭浆鐘舵€?+    function playCurrentTrack() {
++        return audio.play().then(() => {
++            player.classList.add('playing');
++        });
++    }
++
++    // 鍒囨崲鍒颁笅涓€棣栭煶涔愶紱鎾斁鍒版湯灏炬椂閲嶆柊娲楃墝
++    function switchTrack() {
++        currentTrackIndex += 1;
++        if (currentTrackIndex >= musicTracks.length) {
++            musicTracks = shuffleTracks(baseMusicTracks);
++            currentTrackIndex = 0;
++        }
++        loadTrack(currentTrackIndex);
++        playCurrentTrack().catch(() => {
++            alert('闊充箰鍒囨崲鎴愬姛锛屼絾娴忚鍣ㄩ檺鍒朵簡鑷姩鎾斁锛岃鍐嶇偣涓€娆D銆?);
++        });
++    }
++
++    loadTrack(currentTrackIndex);
++    audio.addEventListener('ended', switchTrack);
++    updateHoneyDisplay();
++    updateSunPulse();
++
++    let isDraggingCan = false;
++    let canGhost = null;
++    const waterPhotoQueue = [22, 23];
++    let waterPhotoCursor = 0;
++
++    // 鍥壓妯″潡锛氭牴鎹嫋鎷戒綅缃珮浜鐗╂姇鏀惧尯
++    function updateDropzoneHighlight(x, y) {
++        const rect = plantDropzone.getBoundingClientRect();
++        const inside = x >= rect.left && x <= rect.right && y >= rect.top && y <= rect.bottom;
++        plantDropzone.classList.toggle('active', inside);
++        return inside;
++    }
++
++    // 鍥壓妯″潡锛氱Щ闄ゆ嫋鎷戒腑鐨勬祰姘村６骞界伒灞?+    function removeGhost() {
++        if (canGhost) {
++            canGhost.remove();
++            canGhost = null;
++        }
++    }
++
++    // 鍒濆鍖栧洯鑹烘祰姘存ā鍧楋細鎷栨嫿娴囨按鎴愬姛鍚庢樉绀哄洯鑹虹収鐗?+    function initWaterGame() {
++        if (!wateringCan || !plantDropzone || !waterStatus) return;
++
++        // 鍥壓娴囨按鎴愬姛鏃剁殑姘存淮鍔ㄧ敾
++        function spawnWaterDrops() {
++            const rect = plantDropzone.getBoundingClientRect();
++            const startX = rect.left + rect.width * 0.5;
++            const startY = rect.top - 6;
++            for (let i = 0; i < 7; i++) {
++                const drop = document.createElement('div');
++                drop.className = 'water-drop';
++                drop.textContent = '馃挧';
++                drop.style.left = `${startX + (Math.random() * 44 - 22)}px`;
++                drop.style.top = `${startY + Math.random() * 8}px`;
++                drop.style.animationDelay = `${i * 55}ms`;
++                document.body.appendChild(drop);
++                setTimeout(() => drop.remove(), 900);
++            }
++        }
++
++        wateringCan.addEventListener('pointerdown', (event) => {
++            isDraggingCan = true;
++            wateringCan.setPointerCapture(event.pointerId);
++
++            canGhost = document.createElement('div');
++            canGhost.className = 'drag-ghost';
++            canGhost.textContent = '馃毧';
++            document.body.appendChild(canGhost);
++            canGhost.style.left = `${event.clientX}px`;
++            canGhost.style.top = `${event.clientY}px`;
++            waterStatus.textContent = '鎷栧埌鍙充晶妞嶇墿涓婃柟鏉炬墜鍗冲彲娴囨按';
++        });
++
++        wateringCan.addEventListener('pointermove', (event) => {
++            if (!isDraggingCan || !canGhost) return;
++            event.preventDefault();
++            canGhost.style.left = `${event.clientX}px`;
++            canGhost.style.top = `${event.clientY}px`;
++            updateDropzoneHighlight(event.clientX, event.clientY);
++        });
++
++        const endDrag = (event) => {
++            if (!isDraggingCan) return;
++            isDraggingCan = false;
++            const hit = updateDropzoneHighlight(event.clientX, event.clientY);
++            plantDropzone.classList.remove('active');
++            removeGhost();
++
++            if (hit) {
++                spawnWaterDrops();
++                plantDropzone.classList.add('watered');
++                plantDropzone.classList.add('grow');
++                plantDropzone.textContent = '馃尡';
++                waterStatus.textContent = '娴囨按鎴愬姛锛佹儕鍠滅収鐗囨鍦ㄥ嚭鐜?..';
++                const photoIndex = waterPhotoQueue[waterPhotoCursor];
++                waterPhotoCursor = (waterPhotoCursor + 1) % waterPhotoQueue.length;
++                setTimeout(() => {
++                    plantDropzone.classList.remove('grow');
++                }, 720);
++                setTimeout(() => {
++                    handleTap(photoIndex, plantDropzone);
++                    waterStatus.textContent = '鍙户缁祰姘达紝鍙嶅瑙﹀彂鎯婂枩鐓х墖 鉁?;
++                }, 450);
++            } else {
++                waterStatus.textContent = '杩樻病娴囧埌妞嶇墿锛屽啀璇曚竴娆★綖';
++            }
++        };
++
++        wateringCan.addEventListener('pointerup', endDrag);
++        wateringCan.addEventListener('pointercancel', endDrag);
++    }
++
++    // 铦磋澏妯″潡锛氬湪鍖哄煙鍐呴殢鏈洪琛岋紝鐢ㄦ埛闇€鐐瑰嚮绉诲姩涓殑铦磋澏瑙﹀彂鐓х墖
++    function initButterflyModule() {
++        if (!butterflyZone || !butterflyTargets.length) return;
++
++        const states = butterflyTargets.map((el) => ({ el, x: 0, y: 0, timer: null }));
++
++        function getBounds() {
++            return {
++                xMax: Math.max(20, butterflyZone.clientWidth - 96),
++                yMax: Math.max(28, butterflyZone.clientHeight - 124)
++            };
++        }
++
++        function moveButterfly(state, immediate = false) {
++            const bounds = getBounds();
++            const nextX = Math.random() * bounds.xMax;
++            const nextY = Math.random() * bounds.yMax;
++            const duration = reducedMotion ? (2200 + Math.random() * 700) : (1300 + Math.random() * 1200);
++            const tilt = Math.random() * 24 - 12;
++            const direction = nextX >= state.x ? 1 : -1;
++
++            state.el.style.transition = immediate ? 'none' : `transform ${duration}ms cubic-bezier(.2,.78,.2,1), opacity 220ms ease`;
++            state.el.style.transform = `translate(${nextX}px, ${nextY}px) scaleX(${direction}) rotate(${tilt}deg)`;
++            state.el.style.opacity = '1';
++
++            state.x = nextX;
++            state.y = nextY;
++            clearTimeout(state.timer);
++            state.timer = setTimeout(() => moveButterfly(state), duration + 140 + Math.random() * 600);
++        }
++
++        states.forEach((state, idx) => {
++            const photoIndex = Number(state.el.dataset.photoIndex);
++            state.el.addEventListener('click', () => handleTap(photoIndex, state.el));
++
++            // 鍏堟斁缃垵濮嬪潗鏍囷紝鍐嶅惎鍔ㄩ琛屽姩鐢?+            setTimeout(() => moveButterfly(state, true), idx * 90);
++            setTimeout(() => moveButterfly(state), 150 + idx * 120);
++        });
++
++        window.addEventListener('resize', () => {
++            states.forEach((state) => moveButterfly(state, true));
++        }, { passive: true });
++    }
++
++    initButterflyModule();
++
++    initWaterGame();
++
++    // 姘旂悆鍗囩┖绉€鐨勪笁缁勬暟鎹細缂╃暐鍥俱€佷富鍥俱€佺绂忚涓庡洖蹇嗘枃妗?+    const balloonItemsData = [
++        {
++            id: 0,
++            index: 19,
++            thumb: 'spring/balloon1.jpg',
++            photo: 'img\\7\\mmexport1739595717751.jpg',
++            color: '#ff8eb9',
++            bless: '鎰挎垜浠案杩滃儚绔ヨ瘽閲岀殑瑙掕壊涓€鏍锋棤蹇ф棤铏?,
++            memory: '杩欏ぉ鎴戜滑涓€璧峰幓浜嗚崚閲庣帇鍥斤紝涓€涓€?
++        },
++        {
++            id: 1,
++            index: 20,
++            thumb: 'spring/balloon2.jpg',
++            photo: 'img\\14\\IMG_20240806_140809.jpg',
++            color: '#f0c36b',
++            bless: '浣犵殑绗戝鏄垜鏀惰棌鐨勫疂钘?,
++            memory: '閭ｅぉ鎴戜滑鎶佃揪瑗垮畨锛屼綘鐏跨儌鐨勭瑧瀹癸紝鎴戜竴鐩磋鍒颁粖澶┿€?
++        },
++        {
++            id: 2,
++            index: 21,
++            thumb: 'spring/balloon3.jpg',
++            photo: 'img\\14\\IMG_20250826_171505.jpg',
++            color: '#b28bff',
++            bless: '鎴愪负鏇村ソ鐨勪汉鏄垜浠殑绾﹀畾',
++            memory: '杩欐槸鎴戞敹鍒拌繃鏈€鐢ㄥ績鐨勭敓鏃ョぜ鐗╋紝璋㈣阿浣狅紝杩欒鎴戞剰璇嗗埌鎰熸儏鐨勭弽璐点€?
++        }
++    ];
++    const balloonState = {
++        locked: false,
++        launched: new Set(),
++        floating: new Map(),
++        mergedDone: false,
++        finaleClosable: false
++    };
++
++    // 鍔犺浇褰撳墠闊充箰鏇茬洰锛屽苟鍚屾鏇存柊鎾斁鍣ㄦ彁绀烘枃妗?+    function loadTrack(index) {
++        audio.src = encodeURI(musicTracks[index].url);
++        player.title = `褰撳墠闊充箰锛?{musicTracks[index].name}锛堢偣鍑诲垏鎹級`;
++    }
++
++    // 鍥剧墖鍏滃簳锛氬綋 spring/ 鎴栨湰鍦板浘鐗囦笉瀛樺湪鏃跺洖閫€涓鸿姳鏈靛浘鏍?+    function setImgWithFallback(imgEl, src) {
++        imgEl.onerror = () => {
++            imgEl.onerror = null;
++            imgEl.src = fallbackFlower;
++        };
++        imgEl.src = src;
++    }
++
++    // 鏀堕泦杩涘害缁熶竴鍏ュ彛锛氭洿鏂拌渹铚滅綈璁℃暟銆佸闃宠В閿佺姸鎬佸拰鏀堕泦瀹屾垚鎻愮ず
++    function collectPhoto(index) {
++        if (!collectedPhotos.has(index)) {
++            collectedPhotos.add(index);
++            updateHoneyDisplay();
++            updateSunPulse();
++            if (collectedPhotos.size === 25) {
++                setTimeout(() => {
++                    alert("馃帀 鏄ュ皬鐕曪紝浣犳壘榻愪簡25涓簿褰╂椂鍒伙紒鐢熸棩蹇箰锛侌煄?);
++                    showLargePhoto(finalCelebrationPhoto);
++                }, 1000);
++            }
++        }
++    }
++
++    // 鍚屾搴曢儴铚傝湝缃愬睍绀轰负 x/25 鏍煎紡
++    function updateHoneyDisplay(value = collectedPhotos.size) {
++        document.getElementById('honey-count').innerText = `${value}/25`;
++    }
++
++    // 鏍规嵁宸插彂鐜扮収鐗囨暟閲忥紝鍒囨崲澶曢槼澶栧湀鑴夊啿棰滆壊
++    function updateSunPulse() {
++        if (!sunPulse) return;
++        sunPulse.classList.toggle('ready', collectedPhotos.size >= 20);
++    }
++
++    // 鎾斁褰撳墠闊充箰锛屽苟璁╁彸涓嬭 CD 杩涘叆鏃嬭浆鐘舵€?+    function playCurrentTrack() {
++        return audio.play().then(() => {
++            player.classList.add('playing');
++        });
++    }
++
++    // 鍒囨崲鍒颁笅涓€棣栭煶涔愶紱鎾斁鍒版湯灏炬椂閲嶆柊娲楃墝
++    function switchTrack() {
++        currentTrackIndex += 1;
++        if (currentTrackIndex >= musicTracks.length) {
++            musicTracks = shuffleTracks(baseMusicTracks);
++            currentTrackIndex = 0;
++        }
++        loadTrack(currentTrackIndex);
++        playCurrentTrack().catch(() => {
++            alert('闊充箰鍒囨崲鎴愬姛锛屼絾娴忚鍣ㄩ檺鍒朵簡鑷姩鎾斁锛岃鍐嶇偣涓€娆D銆?);
++        });
++    }
++
++    loadTrack(currentTrackIndex);
++    audio.addEventListener('ended', switchTrack);
++    updateHoneyDisplay();
++    updateSunPulse();
++
++    let isDraggingCan = false;
++    let canGhost = null;
++    const waterPhotoQueue = [22, 23];
++    let waterPhotoCursor = 0;
++
++    // 鍥壓妯″潡锛氭牴鎹嫋鎷戒綅缃珮浜鐗╂姇鏀惧尯
++    function updateDropzoneHighlight(x, y) {
++        const rect = plantDropzone.getBoundingClientRect();
++        const inside = x >= rect.left && x <= rect.right && y >= rect.top && y <= rect.bottom;
++        plantDropzone.classList.toggle('active', inside);
++        return inside;
++    }
++
++    // 鍥壓妯″潡锛氱Щ闄ゆ嫋鎷戒腑鐨勬祰姘村６骞界伒灞?+    function removeGhost() {
++        if (canGhost) {
++            canGhost.remove();
++            canGhost = null;
++        }
++    }
++
++    // 鍒濆鍖栧洯鑹烘祰姘存ā鍧楋細鎷栨嫿娴囨按鎴愬姛鍚庢樉绀哄洯鑹虹収鐗?+    function initWaterGame() {
++        if (!wateringCan || !plantDropzone || !waterStatus) return;
++
++        // 鍥壓娴囨按鎴愬姛鏃剁殑姘存淮鍔ㄧ敾
++        function spawnWaterDrops() {
++            const rect = plantDropzone.getBoundingClientRect();
++            const startX = rect.left + rect.width * 0.5;
++            const startY = rect.top - 6;
++            for (let i = 0; i < 7; i++) {
++                const drop = document.createElement('div');
++                drop.className = 'water-drop';
++                drop.textContent = '馃挧';
++                drop.style.left = `${startX + (Math.random() * 44 - 22)}px`;
++                drop.style.top = `${startY + Math.random() * 8}px`;
++                drop.style.animationDelay = `${i * 55}ms`;
++                document.body.appendChild(drop);
++                setTimeout(() => drop.remove(), 900);
++            }
++        }
++
++        wateringCan.addEventListener('pointerdown', (event) => {
++            isDraggingCan = true;
++            wateringCan.setPointerCapture(event.pointerId);
++
++            canGhost = document.createElement('div');
++            canGhost.className = 'drag-ghost';
++            canGhost.textContent = '馃毧';
++            document.body.appendChild(canGhost);
++            canGhost.style.left = `${event.clientX}px`;
++            canGhost.style.top = `${event.clientY}px`;
++            waterStatus.textContent = '鎷栧埌鍙充晶妞嶇墿涓婃柟鏉炬墜鍗冲彲娴囨按';
++        });
++
++        wateringCan.addEventListener('pointermove', (event) => {
++            if (!isDraggingCan || !canGhost) return;
++            event.preventDefault();
++            canGhost.style.left = `${event.clientX}px`;
++            canGhost.style.top = `${event.clientY}px`;
++            updateDropzoneHighlight(event.clientX, event.clientY);
++        });
++
++        const endDrag = (event) => {
++            if (!isDraggingCan) return;
++            isDraggingCan = false;
++            const hit = updateDropzoneHighlight(event.clientX, event.clientY);
++            plantDropzone.classList.remove('active');
++            removeGhost();
++
++            if (hit) {
++                spawnWaterDrops();
++                plantDropzone.classList.add('watered');
++                plantDropzone.classList.add('grow');
++                plantDropzone.textContent = '馃尡';
++                waterStatus.textContent = '娴囨按鎴愬姛锛佹儕鍠滅収鐗囨鍦ㄥ嚭鐜?..';
++                const photoIndex = waterPhotoQueue[waterPhotoCursor];
++                waterPhotoCursor = (waterPhotoCursor + 1) % waterPhotoQueue.length;
++                setTimeout(() => {
++                    plantDropzone.classList.remove('grow');
++                }, 720);
++                setTimeout(() => {
++                    handleTap(photoIndex, plantDropzone);
++                    waterStatus.textContent = '鍙户缁祰姘达紝鍙嶅瑙﹀彂鎯婂枩鐓х墖 鉁?;
++                }, 450);
++            } else {
++                waterStatus.textContent = '杩樻病娴囧埌妞嶇墿锛屽啀璇曚竴娆★綖';
++            }
++        };
++
++        wateringCan.addEventListener('pointerup', endDrag);
++        wateringCan.addEventListener('pointercancel', endDrag);
++    }
++
++    // 铦磋澏妯″潡锛氬湪鍖哄煙鍐呴殢鏈洪琛岋紝鐢ㄦ埛闇€鐐瑰嚮绉诲姩涓殑铦磋澏瑙﹀彂鐓х墖
++    function initButterflyModule() {
++        if (!butterflyZone || !butterflyTargets.length) return;
++
++        const states = butterflyTargets.map((el) => ({ el, x: 0, y: 0, timer: null }));
++
++        function getBounds() {
++            return {
++                xMax: Math.max(20, butterflyZone.clientWidth - 96),
++                yMax: Math.max(28, butterflyZone.clientHeight - 124)
++            };
++        }
++
++        function moveButterfly(state, immediate = false) {
++            const bounds = getBounds();
++            const nextX = Math.random() * bounds.xMax;
++            const nextY = Math.random() * bounds.yMax;
++            const duration = reducedMotion ? (2200 + Math.random() * 700) : (1300 + Math.random() * 1200);
++            const tilt = Math.random() * 24 - 12;
++            const direction = nextX >= state.x ? 1 : -1;
++
++            state.el.style.transition = immediate ? 'none' : `transform ${duration}ms cubic-bezier(.2,.78,.2,1), opacity 220ms ease`;
++            state.el.style.transform = `translate(${nextX}px, ${nextY}px) scaleX(${direction}) rotate(${tilt}deg)`;
++            state.el.style.opacity = '1';
++
++            state.x = nextX;
++            state.y = nextY;
++            clearTimeout(state.timer);
++            state.timer = setTimeout(() => moveButterfly(state), duration + 140 + Math.random() * 600);
++        }
++
++        states.forEach((state, idx) => {
++            const photoIndex = Number(state.el.dataset.photoIndex);
++            state.el.addEventListener('click', () => handleTap(photoIndex, state.el));
++
++            // 鍏堟斁缃垵濮嬪潗鏍囷紝鍐嶅惎鍔ㄩ琛屽姩鐢?+            setTimeout(() => moveButterfly(state, true), idx * 90);
++            setTimeout(() => moveButterfly(state), 150 + idx * 120);
++        });
++
++        window.addEventListener('resize', () => {
++            states.forEach((state) => moveButterfly(state, true));
++        }, { passive: true });
++    }
++
++    initButterflyModule();
++
++    initWaterGame();
++
++    // 姘旂悆鍗囩┖绉€鐨勪笁缁勬暟鎹細缂╃暐鍥俱€佷富鍥俱€佺绂忚涓庡洖蹇嗘枃妗?+    const balloonItemsData = [
++        {
++            id: 0,
++            index: 19,
++            thumb: 'spring/balloon1.jpg',
++            photo: 'img\\7\\mmexport1739595717751.jpg',
++            color: '#ff8eb9',
++            bless: '鎰挎垜浠案杩滃儚绔ヨ瘽閲岀殑瑙掕壊涓€鏍锋棤蹇ф棤铏?,
++            memory: '杩欏ぉ鎴戜滑涓€璧峰幓浜嗚崚閲庣帇鍥斤紝涓€涓€?
++        },
++        {
++            id: 1,
++            index: 20,
++            thumb: 'spring/balloon2.jpg',
++            photo: 'img\\14\\IMG_20240806_140809.jpg',
++            color: '#f0c36b',
++            bless: '浣犵殑绗戝鏄垜鏀惰棌鐨勫疂钘?,
++            memory: '閭ｅぉ鎴戜滑鎶佃揪瑗垮畨锛屼綘鐏跨儌鐨勭瑧瀹癸紝鎴戜竴鐩磋鍒颁粖澶┿€?
++        },
++        {
++            id: 2,
++            index: 21,
++            thumb: 'spring/balloon3.jpg',
++            photo: 'img\\14\\IMG_20250826_171505.jpg',
++            color: '#b28bff',
++            bless: '鎴愪负鏇村ソ鐨勪汉鏄垜浠殑绾﹀畾',
++            memory: '杩欐槸鎴戞敹鍒拌繃鏈€鐢ㄥ績鐨勭敓鏃ョぜ鐗╋紝璋㈣阿浣狅紝杩欒鎴戞剰璇嗗埌鎰熸儏鐨勭弽璐点€?
++        }
++    ];
++    const balloonState = {
++        locked: false,
++        launched: new Set(),
++        floating: new Map(),
++        mergedDone: false,
++        finaleClosable: false
++    };
++
++    // 鍔犺浇褰撳墠闊充箰鏇茬洰锛屽苟鍚屾鏇存柊鎾斁鍣ㄦ彁绀烘枃妗?+    function loadTrack(index) {
++        audio.src = encodeURI(musicTracks[index].url);
++        player.title = `褰撳墠闊充箰锛?{musicTracks[index].name}锛堢偣鍑诲垏鎹級`;
++    }
++
++    // 鍥剧墖鍏滃簳锛氬綋 spring/ 鎴栨湰鍦板浘鐗囦笉瀛樺湪鏃跺洖閫€涓鸿姳鏈靛浘鏍?+    function setImgWithFallback(imgEl, src) {
++        imgEl.onerror = () => {
++            imgEl.onerror = null;
++            imgEl.src = fallbackFlower;
++        };
++        imgEl.src = src;
++    }
++
++    // 鏀堕泦杩涘害缁熶竴鍏ュ彛锛氭洿鏂拌渹铚滅綈璁℃暟銆佸闃宠В閿佺姸鎬佸拰鏀堕泦瀹屾垚鎻愮ず
++    function collectPhoto(index) {
++        if (!collectedPhotos.has(index)) {
++            collectedPhotos.add(index);
++            updateHoneyDisplay();
++            updateSunPulse();
++            if (collectedPhotos.size === 25) {
++                setTimeout(() => {
++                    alert("馃帀 鏄ュ皬鐕曪紝浣犳壘榻愪簡25涓簿褰╂椂鍒伙紒鐢熸棩蹇箰锛侌煄?);
++                    showLargePhoto(finalCelebrationPhoto);
++                }, 1000);
++            }
++        }
++    }
++
++    // 鍚屾搴曢儴铚傝湝缃愬睍绀轰负 x/25 鏍煎紡
++    function updateHoneyDisplay(value = collectedPhotos.size) {
++        document.getElementById('honey-count').innerText = `${value}/25`;
++    }
++
++    // 鏍规嵁宸插彂鐜扮収鐗囨暟閲忥紝鍒囨崲澶曢槼澶栧湀鑴夊啿棰滆壊
++    function updateSunPulse() {
++        if (!sunPulse) return;
++        sunPulse.classList.toggle('ready', collectedPhotos.size >= 20);
++    }
++
++    // 鎾斁褰撳墠闊充箰锛屽苟璁╁彸涓嬭 CD 杩涘叆鏃嬭浆鐘舵€?+    function playCurrentTrack() {
++        return audio.play().then(() => {
++            player.classList.add('playing');
++        });
++    }
++
++    // 鍒囨崲鍒颁笅涓€棣栭煶涔愶紱鎾斁鍒版湯灏炬椂閲嶆柊娲楃墝
++    function switchTrack() {
++        currentTrackIndex += 1;
++        if (currentTrackIndex >= musicTracks.length) {
++            musicTracks = shuffleTracks(baseMusicTracks);
++            currentTrackIndex = 0;
++        }
++        loadTrack(currentTrackIndex);
++        playCurrentTrack().catch(() => {
++            alert('闊充箰鍒囨崲鎴愬姛锛屼絾娴忚鍣ㄩ檺鍒朵簡鑷姩鎾斁锛岃鍐嶇偣涓€娆D銆?);
++        });
++    }
++
++    loadTrack(currentTrackIndex);
++    audio.addEventListener('ended', switchTrack);
++    updateHoneyDisplay();
++    updateSunPulse();
++
++    let isDraggingCan = false;
++    let canGhost = null;
++    const waterPhotoQueue = [22, 23];
++    let waterPhotoCursor = 0;
++
++    // 鍥壓妯″潡锛氭牴鎹嫋鎷戒綅缃珮浜鐗╂姇鏀惧尯
++    function updateDropzoneHighlight(x, y) {
++        const rect = plantDropzone.getBoundingClientRect();
++        const inside = x >= rect.left && x <= rect.right && y >= rect.top && y <= rect.bottom;
++        plantDropzone.classList.toggle('active', inside);
++        return inside;
++    }
++
++    // 鍥壓妯″潡锛氱Щ闄ゆ嫋鎷戒腑鐨勬祰姘村６骞界伒灞?+    function removeGhost() {
++        if (canGhost) {
++            canGhost.remove();
++            canGhost = null;
++        }
++    }
++
++    // 鍒濆鍖栧洯鑹烘祰姘存ā鍧楋細鎷栨嫿娴囨按鎴愬姛鍚庢樉绀哄洯鑹虹収鐗?+    function initWaterGame() {
++        if (!wateringCan || !plantDropzone || !waterStatus) return;
++
++        // 鍥壓娴囨按鎴愬姛鏃剁殑姘存淮鍔ㄧ敾
++        function spawnWaterDrops() {
++            const rect = plantDropzone.getBoundingClientRect();
++            const startX = rect.left + rect.width * 0.5;
++            const startY = rect.top - 6;
++            for (let i = 0; i < 7; i++) {
++                const drop = document.createElement('div');
++                drop.className = 'water-drop';
++                drop.textContent = '馃挧';
++                drop.style.left = `${startX + (Math.random() * 44 - 22)}px`;
++                drop.style.top = `${startY + Math.random() * 8}px`;
++                drop.style.animationDelay = `${i * 55}ms`;
++                document.body.appendChild(drop);
++                setTimeout(() => drop.remove(), 900);
++            }
++        }
++
++        wateringCan.addEventListener('pointerdown', (event) => {
++            isDraggingCan = true;
++            wateringCan.setPointerCapture(event.pointerId);
++
++            canGhost = document.createElement('div');
++            canGhost.className = 'drag-ghost';
++            canGhost.textContent = '馃毧';
++            document.body.appendChild(canGhost);
++            canGhost.style.left = `${event.clientX}px`;
++            canGhost.style.top = `${event.clientY}px`;
++            waterStatus.textContent = '鎷栧埌鍙充晶妞嶇墿涓婃柟鏉炬墜鍗冲彲娴囨按';
++        });
++
++        wateringCan.addEventListener('pointermove', (event) => {
++            if (!isDraggingCan || !canGhost) return;
++            event.preventDefault();
++            canGhost.style.left = `${event.clientX}px`;
++            canGhost.style.top = `${event.clientY}px`;
++            updateDropzoneHighlight(event.clientX, event.clientY);
++        });
++
++        const endDrag = (event) => {
++            if (!isDraggingCan) return;
++            isDraggingCan = false;
++            const hit = updateDropzoneHighlight(event.clientX, event.clientY);
++            plantDropzone.classList.remove('active');
++            removeGhost();
++
++            if (hit) {
++                spawnWaterDrops();
++                plantDropzone.classList.add('watered');
++                plantDropzone.classList.add('grow');
++                plantDropzone.textContent = '馃尡';
++                waterStatus.textContent = '娴囨按鎴愬姛锛佹儕鍠滅収鐗囨鍦ㄥ嚭鐜?..';
++                const photoIndex = waterPhotoQueue[waterPhotoCursor];
++                waterPhotoCursor = (waterPhotoCursor + 1) % waterPhotoQueue.length;
++                setTimeout(() => {
++                    plantDropzone.classList.remove('grow');
++                }, 720);
++                setTimeout(() => {
++                    handleTap(photoIndex, plantDropzone);
++                    waterStatus.textContent = '鍙户缁祰姘达紝鍙嶅瑙﹀彂鎯婂枩鐓х墖 鉁?;
++                }, 450);
++            } else {
++                waterStatus.textContent = '杩樻病娴囧埌妞嶇墿锛屽啀璇曚竴娆★綖';
++            }
++        };
++
++        wateringCan.addEventListener('pointerup', endDrag);
++        wateringCan.addEventListener('pointercancel', endDrag);
++    }
++
++    // 铦磋澏妯″潡锛氬湪鍖哄煙鍐呴殢鏈洪琛岋紝鐢ㄦ埛闇€鐐瑰嚮绉诲姩涓殑铦磋澏瑙﹀彂鐓х墖
++    function initButterflyModule() {
++        if (!butterflyZone || !butterflyTargets.length) return;
++
++        const states = butterflyTargets.map((el) => ({ el, x: 0, y: 0, timer: null }));
++
++        function getBounds() {
++            return {
++                xMax: Math.max(20, butterflyZone.clientWidth - 96),
++                yMax: Math.max(28, butterflyZone.clientHeight - 124)
++            };
++        }
++
++        function moveButterfly(state, immediate = false) {
++            const bounds = getBounds();
++            const nextX = Math.random() * bounds.xMax;
++            const nextY = Math.random() * bounds.yMax;
++            const duration = reducedMotion ? (2200 + Math.random() * 700) : (1300 + Math.random() * 1200);
++            const tilt = Math.random() * 24 - 12;
++            const direction = nextX >= state.x ? 1 : -1;
++
++            state.el.style.transition = immediate ? 'none' : `transform ${duration}ms cubic-bezier(.2,.78,.2,1), opacity 220ms ease`;
++            state.el.style.transform = `translate(${nextX}px, ${nextY}px) scaleX(${direction}) rotate(${tilt}deg)`;
++            state.el.style.opacity = '1';
++
++            state.x = nextX;
++            state.y = nextY;
++            clearTimeout(state.timer);
++            state.timer = setTimeout(() => moveButterfly(state), duration + 140 + Math.random() * 600);
++        }
++
++        states.forEach((state, idx) => {
++            const photoIndex = Number(state.el.dataset.photoIndex);
++            state.el.addEventListener('click', () => handleTap(photoIndex, state.el));
++
++            // 鍏堟斁缃垵濮嬪潗鏍囷紝鍐嶅惎鍔ㄩ琛屽姩鐢?+            setTimeout(() => moveButterfly(state, true), idx * 90);
++            setTimeout(() => moveButterfly(state), 150 + idx * 120);
++        });
++
++        window.addEventListener('resize', () => {
++            states.forEach((state) => moveButterfly(state, true));
++        }, { passive: true });
++    }
++
++    initButterflyModule();
++
++    initWaterGame();
++
++    // 姘旂悆鍗囩┖绉€鐨勪笁缁勬暟鎹細缂╃暐鍥俱€佷富鍥俱€佺绂忚涓庡洖蹇嗘枃妗?+    const balloonItemsData = [
++        {
++            id: 0,
++            index: 19,
++            thumb: 'spring/balloon1.jpg',
++            photo: 'img\\7\\mmexport1739595717751.jpg',
++            color: '#ff8eb9',
++            bless: '鎰挎垜浠案杩滃儚绔ヨ瘽閲岀殑瑙掕壊涓€鏍锋棤蹇ф棤铏?,
++            memory: '杩欏ぉ鎴戜滑涓€璧峰幓浜嗚崚閲庣帇鍥斤紝涓€涓€?
++        },
++        {
++            id: 1,
++            index: 20,
++            thumb: 'spring/balloon2.jpg',
++            photo: 'img\\14\\IMG_20240806_140809.jpg',
++            color: '#f0c36b',
++            bless: '浣犵殑绗戝鏄垜鏀惰棌鐨勫疂钘?,
++            memory: '閭ｅぉ鎴戜滑鎶佃揪瑗垮畨锛屼綘鐏跨儌鐨勭瑧瀹癸紝鎴戜竴鐩磋鍒颁粖澶┿€?
++        },
++        {
++            id: 2,
++            index: 21,
++            thumb: 'spring/balloon3.jpg',
++            photo: 'img\\14\\IMG_20250826_171505.jpg',
++            color: '#b28bff',
++            bless: '鎴愪负鏇村ソ鐨勪汉鏄垜浠殑绾﹀畾',
++            memory: '杩欐槸鎴戞敹鍒拌繃鏈€鐢ㄥ績鐨勭敓鏃ョぜ鐗╋紝璋㈣阿浣狅紝杩欒鎴戞剰璇嗗埌鎰熸儏鐨勭弽璐点€?
++        }
++    ];
++    const balloonState = {
++        locked: false,
++        launched: new Set(),
++        floating: new Map(),
++        mergedDone: false,
++        finaleClosable: false
++    };
++
++    // 鍔犺浇褰撳墠闊充箰鏇茬洰锛屽苟鍚屾鏇存柊鎾斁鍣ㄦ彁绀烘枃妗?+    function loadTrack(index) {
++        audio.src = encodeURI(musicTracks[index].url);
++        player.title = `褰撳墠闊充箰锛?{musicTracks[index].name}锛堢偣鍑诲垏鎹級`;
++    }
++
++    // 鍥剧墖鍏滃簳锛氬綋 spring/ 鎴栨湰鍦板浘鐗囦笉瀛樺湪鏃跺洖閫€涓鸿姳鏈靛浘鏍?+    function setImgWithFallback(imgEl, src) {
++        imgEl.onerror = () => {
++            imgEl.onerror = null;
++            imgEl.src = fallbackFlower;
++        };
++        imgEl.src = src;
++    }
++
++    // 鏀堕泦杩涘害缁熶竴鍏ュ彛锛氭洿鏂拌渹铚滅綈璁℃暟銆佸闃宠В閿佺姸鎬佸拰鏀堕泦瀹屾垚鎻愮ず
++    function collectPhoto(index) {
++        if (!collectedPhotos.has(index)) {
++            collectedPhotos.add(index);
++            updateHoneyDisplay();
++            updateSunPulse();
++            if (collectedPhotos.size === 25) {
++                setTimeout(() => {
++                    alert("馃帀 鏄ュ皬鐕曪紝浣犳壘榻愪簡25涓簿褰╂椂鍒伙紒鐢熸棩蹇箰锛侌煄?);
++                    showLargePhoto(finalCelebrationPhoto);
++                }, 1000);
++            }
++        }
++    }
++
++    // 鍚屾搴曢儴铚傝湝缃愬睍绀轰负 x/25 鏍煎紡
++    function updateHoneyDisplay(value = collectedPhotos.size) {
++        document.getElementById('honey-count').innerText = `${value}/25`;
++    }
++
++    // 鏍规嵁宸插彂鐜扮収鐗囨暟閲忥紝鍒囨崲澶曢槼澶栧湀鑴夊啿棰滆壊
++    function updateSunPulse() {
++        if (!sunPulse) return;
++        sunPulse.classList.toggle('ready', collectedPhotos.size >= 20);
++    }
++
++    // 鎾斁褰撳墠闊充箰锛屽苟璁╁彸涓嬭 CD 杩涘叆鏃嬭浆鐘舵€?+    function playCurrentTrack() {
++        return audio.play().then(() => {
++            player.classList.add('playing');
++        });
++    }
++
++    // 鍒囨崲鍒颁笅涓€棣栭煶涔愶紱鎾斁鍒版湯灏炬椂閲嶆柊娲楃墝
++    function switchTrack() {
++        currentTrackIndex += 1;
++        if (currentTrackIndex >= musicTracks.length) {
++            musicTracks = shuffleTracks(baseMusicTracks);
++            currentTrackIndex = 0;
++        }
++        loadTrack(currentTrackIndex);
++        playCurrentTrack().catch(() => {
++            alert('闊充箰鍒囨崲鎴愬姛锛屼絾娴忚鍣ㄩ檺鍒朵簡鑷姩鎾斁锛岃鍐嶇偣涓€娆D銆?);
++        });
++    }
++
++    loadTrack(currentTrackIndex);
++    audio.addEventListener('ended', switchTrack);
++    updateHoneyDisplay();
++    updateSunPulse();
++
++    let isDraggingCan = false;
++    let canGhost = null;
++    const waterPhotoQueue = [22, 23];
++    let waterPhotoCursor = 0;
++
++    // 鍥壓妯″潡锛氭牴鎹嫋鎷戒綅缃珮浜鐗╂姇鏀惧尯
++    function updateDropzoneHighlight(x, y) {
++        const rect = plantDropzone.getBoundingClientRect();
++        const inside = x >= rect.left && x <= rect.right && y >= rect.top && y <= rect.bottom;
++        plantDropzone.classList.toggle('active', inside);
++        return inside;
++    }
++
++    // 鍥壓妯″潡锛氱Щ闄ゆ嫋鎷戒腑鐨勬祰姘村６骞界伒灞?+    function removeGhost() {
++        if (canGhost) {
++            canGhost.remove();
++            canGhost = null;
++        }
++    }
++
++    // 鍒濆鍖栧洯鑹烘祰姘存ā鍧楋細鎷栨嫿娴囨按鎴愬姛鍚庢樉绀哄洯鑹虹収鐗?+    function initWaterGame() {
++        if (!wateringCan || !plantDropzone || !waterStatus) return;
++
++        // 鍥壓娴囨按鎴愬姛鏃剁殑姘存淮鍔ㄧ敾
++        function spawnWaterDrops() {
++            const rect = plantDropzone.getBoundingClientRect();
++            const startX = rect.left + rect.width * 0.5;
++            const startY = rect.top - 6;
++            for (let i = 0; i < 7; i++) {
++                const drop = document.createElement('div');
++                drop.className = 'water-drop';
++                drop.textContent = '馃挧';
++                drop.style.left = `${startX + (Math.random() * 44 - 22)}px`;
++                drop.style.top = `${startY + Math.random() * 8}px`;
++                drop.style.animationDelay = `${i * 55}ms`;
++                document.body.appendChild(drop);
++                setTimeout(() => drop.remove(), 900);
++            }
++        }
++
++        wateringCan.addEventListener('pointerdown', (event) => {
++            isDraggingCan = true;
++            wateringCan.setPointerCapture(event.pointerId);
++
++            canGhost = document.createElement('div');
++            canGhost.className = 'drag-ghost';
++            canGhost.textContent = '馃毧';
++            document.body.appendChild(canGhost);
++            canGhost.style.left = `${event.clientX}px`;
++            canGhost.style.top = `${event.clientY}px`;
++            waterStatus.textContent = '鎷栧埌鍙充晶妞嶇墿涓婃柟鏉炬墜鍗冲彲娴囨按';
++        });
++
++        wateringCan.addEventListener('pointermove', (event) => {
++            if (!isDraggingCan || !canGhost) return;
++            event.preventDefault();
++            canGhost.style.left = `${event.clientX}px`;
++            canGhost.style.top = `${event.clientY}px`;
++            updateDropzoneHighlight(event.clientX, event.clientY);
++        });
++
++        const endDrag = (event) => {
++            if (!isDraggingCan) return;
++            isDraggingCan = false;
++            const hit = updateDropzoneHighlight(event.clientX, event.clientY);
++            plantDropzone.classList.remove('active');
++            removeGhost();
++
++            if (hit) {
++                spawnWaterDrops();
++                plantDropzone.classList.add('watered');
++                plantDropzone.classList.add('grow');
++                plantDropzone.textContent = '馃尡';
++                waterStatus.textContent = '娴囨按鎴愬姛锛佹儕鍠滅収鐗囨鍦ㄥ嚭鐜?..';
++                const photoIndex = waterPhotoQueue[waterPhotoCursor];
++                waterPhotoCursor = (waterPhotoCursor + 1) % waterPhotoQueue.length;
++                setTimeout(() => {
++                    plantDropzone.classList.remove('grow');
++                }, 720);
++                setTimeout(() => {
++                    handleTap(photoIndex, plantDropzone);
++                    waterStatus.textContent = '鍙户缁祰姘达紝鍙嶅瑙﹀彂鎯婂枩鐓х墖 鉁?;
++                }, 450);
++            } else {
++                waterStatus.textContent = '杩樻病娴囧埌妞嶇墿锛屽啀璇曚竴娆★綖';
++            }
++        };
++
++        wateringCan.addEventListener('pointerup', endDrag);
++        wateringCan.addEventListener('pointercancel', endDrag);
++    }
++
++    // 铦磋澏妯″潡锛氬湪鍖哄煙鍐呴殢鏈洪琛岋紝鐢ㄦ埛闇€鐐瑰嚮绉诲姩涓殑铦磋澏瑙﹀彂鐓х墖
++    function initButterflyModule() {
++        if (!butterflyZone || !butterflyTargets.length) return;
++
++        const states = butterflyTargets.map((el) => ({ el, x: 0, y: 0, timer: null }));
++
++        function getBounds() {
++            return {
++                xMax: Math.max(20, butterflyZone.clientWidth - 96),
++                yMax: Math.max(28, butterflyZone.clientHeight - 124)
++            };
++        }
++
++        function moveButterfly(state, immediate = false) {
++            const bounds = getBounds();
++            const nextX = Math.random() * bounds.xMax;
++            const nextY = Math.random() * bounds.yMax;
++            const duration = reducedMotion ? (2200 + Math.random() * 700) : (1300 + Math.random() * 1200);
++            const tilt = Math.random() * 24 - 12;
++            const direction = nextX >= state.x ? 1 : -1;
++
++            state.el.style.transition = immediate ? 'none' : `transform ${duration}ms cubic-bezier(.2,.78,.2,1), opacity 220ms ease`;
++            state.el.style.transform = `translate(${nextX}px, ${nextY}px) scaleX(${direction}) rotate(${tilt}deg)`;
++            state.el.style.opacity = '1';
++
++            state.x = nextX;
++            state.y = nextY;
++            clearTimeout(state.timer);
++            state.timer = setTimeout(() => moveButterfly(state), duration + 140 + Math.random() * 600);
++        }
++
++        states.forEach((state, idx) => {
++            const photoIndex = Number(state.el.dataset.photoIndex);
++            state.el.addEventListener('click', () => handleTap(photoIndex, state.el));
++
++            // 鍏堟斁缃垵濮嬪潗鏍囷紝鍐嶅惎鍔ㄩ琛屽姩鐢?+            setTimeout(() => moveButterfly(state, true), idx * 90);
++            setTimeout(() => moveButterfly(state), 150 + idx * 120);
++        });
++
++        window.addEventListener('resize', () => {
++            states.forEach((state) => moveButterfly(state, true));
++        }, { passive: true });
++    }
++
++    initButterflyModule();
++
++    initWaterGame();
++
++    // 姘旂悆鍗囩┖绉€鐨勪笁缁勬暟鎹細缂╃暐鍥俱€佷富鍥俱€佺绂忚涓庡洖蹇嗘枃妗?+    const balloonItemsData = [
++        {
++            id: 0,
++            index: 19,
++            thumb: 'spring/balloon1.jpg',
++            photo: 'img\\7\\mmexport1739595717751.jpg',
++            color: '#ff8eb9',
++            bless: '鎰挎垜浠案杩滃儚绔ヨ瘽閲岀殑瑙掕壊涓€鏍锋棤蹇ф棤铏?,
++            memory: '杩欏ぉ鎴戜滑涓€璧峰幓浜嗚崚閲庣帇鍥斤紝涓€涓€?
++        },
++        {
++            id: 1,
++            index: 20,
++            thumb: 'spring/balloon2.jpg',
++            photo: 'img\\14\\IMG_20240806_140809.jpg',
++            color: '#f0c36b',
++            bless: '浣犵殑绗戝鏄垜鏀惰棌鐨勫疂钘?,
++            memory: '閭ｅぉ鎴戜滑鎶佃揪瑗垮畨锛屼綘鐏跨儌鐨勭瑧瀹癸紝鎴戜竴鐩磋鍒颁粖澶┿€?
++        },
++        {
++            id: 2,
++            index: 21,
++            thumb: 'spring/balloon3.jpg',
++            photo: 'img\\14\\IMG_20250826_171505.jpg',
++            color: '#b28bff',
++            bless: '鎴愪负鏇村ソ鐨勪汉鏄垜浠殑绾﹀畾',
++            memory: '杩欐槸鎴戞敹鍒拌繃鏈€鐢ㄥ績鐨勭敓鏃ョぜ鐗╋紝璋㈣阿浣狅紝杩欒鎴戞剰璇嗗埌鎰熸儏鐨勭弽璐点€?
++        }
++    ];
++    const balloonState = {
++        locked: false,
++        launched: new Set(),
++        floating: new Map(),
++        mergedDone: false,
++        finaleClosable: false
++    };
++
++    // 鍔犺浇褰撳墠闊充箰鏇茬洰锛屽苟鍚屾鏇存柊鎾斁鍣ㄦ彁绀烘枃妗?+    function loadTrack(index) {
++        audio.src = encodeURI(musicTracks[index].url);
++        player.title = `褰撳墠闊充箰锛?{musicTracks[index].name}锛堢偣鍑诲垏鎹級`;
++    }
++
++    // 鍥剧墖鍏滃簳锛氬綋 spring/ 鎴栨湰鍦板浘鐗囦笉瀛樺湪鏃跺洖閫€涓鸿姳鏈靛浘鏍?+    function setImgWithFallback(imgEl, src) {
++        imgEl.onerror = () => {
++            imgEl.onerror = null;
++            imgEl.src = fallbackFlower;
++        };
++        imgEl.src = src;
++    }
++
++    // 鏀堕泦杩涘害缁熶竴鍏ュ彛锛氭洿鏂拌渹铚滅綈璁℃暟銆佸闃宠В閿佺姸鎬佸拰鏀堕泦瀹屾垚鎻愮ず
++    function collectPhoto(index) {
++        if (!collectedPhotos.has(index)) {
++            collectedPhotos.add(index);
++            updateHoneyDisplay();
++            updateSunPulse();
++            if (collectedPhotos.size === 25) {
++                setTimeout(() => {
++                    alert("馃帀 鏄ュ皬鐕曪紝浣犳壘榻愪簡25涓簿褰╂椂鍒伙紒鐢熸棩蹇箰锛侌煄?);
++                    showLargePhoto(finalCelebrationPhoto);
++                }, 1000);
++            }
++        }
++    }
++
++    // 鍚屾搴曢儴铚傝湝缃愬睍绀轰负 x/25 鏍煎紡
++    function updateHoneyDisplay(value = collectedPhotos.size) {
++        document.getElementById('honey-count').innerText = `${value}/25`;
++    }
++
++    // 鏍规嵁宸插彂鐜扮収鐗囨暟閲忥紝鍒囨崲澶曢槼澶栧湀鑴夊啿棰滆壊
++    function updateSunPulse() {
++        if (!sunPulse) return;
++        sunPulse.classList.toggle('ready', collectedPhotos.size >= 20);
++    }
++
++    // 鎾斁褰撳墠闊充箰锛屽苟璁╁彸涓嬭 CD 杩涘叆鏃嬭浆鐘舵€?+    function playCurrentTrack() {
++        return audio.play().then(() => {
++            player.classList.add('playing');
++        });
++    }
++
++    // 鍒囨崲鍒颁笅涓€棣栭煶涔愶紱鎾斁鍒版湯灏炬椂閲嶆柊娲楃墝
++    function switchTrack() {
++        currentTrackIndex += 1;
++        if (currentTrackIndex >= musicTracks.length) {
++            musicTracks = shuffleTracks(baseMusicTracks);
++            currentTrackIndex = 0;
++        }
++        loadTrack(currentTrackIndex);
++        playCurrentTrack().catch(() => {
++            alert('闊充箰鍒囨崲鎴愬姛锛屼絾娴忚鍣ㄩ檺鍒朵簡鑷姩鎾斁锛岃鍐嶇偣涓€娆D銆?);
++        });
++    }
++
++    loadTrack(currentTrackIndex);
++    audio.addEventListener('ended', switchTrack);
++    updateHoneyDisplay();
++    updateSunPulse();
++
++    let isDraggingCan = false;
++    let canGhost = null;
++    const waterPhotoQueue = [22, 23];
++    let waterPhotoCursor = 0;
++
++    // 鍥壓妯″潡锛氭牴鎹嫋鎷戒綅缃珮浜鐗╂姇鏀惧尯
++    function updateDropzoneHighlight(x, y) {
++        const rect = plantDropzone.getBoundingClientRect();
++        const inside = x >= rect.left && x <= rect.right && y >= rect.top && y <= rect.bottom;
++        plantDropzone.classList.toggle('active', inside);
++        return inside;
++    }
++
++    // 鍥壓妯″潡锛氱Щ闄ゆ嫋鎷戒腑鐨勬祰姘村６骞界伒灞?+    function removeGhost() {
++        if (canGhost) {
++            canGhost.remove();
++            canGhost = null;
++        }
++    }
++
++    // 鍒濆鍖栧洯鑹烘祰姘存ā鍧楋細鎷栨嫿娴囨按鎴愬姛鍚庢樉绀哄洯鑹虹収鐗?+    function initWaterGame() {
++        if (!wateringCan || !plantDropzone || !waterStatus) return;
++
++        // 鍥壓娴囨按鎴愬姛鏃剁殑姘存淮鍔ㄧ敾
++        function spawnWaterDrops() {
++            const rect = plantDropzone.getBoundingClientRect();
++            const startX = rect.left + rect.width * 0.5;
++            const startY = rect.top - 6;
++            for (let i = 0; i < 7; i++) {
++                const drop = document.createElement('div');
++                drop.className = 'water-drop';
++                drop.textContent = '馃挧';
++                drop.style.left = `${startX + (Math.random() * 44 - 22)}px`;
++                drop.style.top = `${startY + Math.random() * 8}px`;
++                drop.style.animationDelay = `${i * 55}ms`;
++                document.body.appendChild(drop);
++                setTimeout(() => drop.remove(), 900);
++            }
++        }
++
++        wateringCan.addEventListener('pointerdown', (event) => {
++            isDraggingCan = true;
++            wateringCan.setPointerCapture(event.pointerId);
++
++            canGhost = document.createElement('div');
++            canGhost.className = 'drag-ghost';
++            canGhost.textContent = '馃毧';
++            document.body.appendChild(canGhost);
++            canGhost.style.left = `${event.clientX}px`;
++            canGhost.style.top = `${event.clientY}px`;
++            waterStatus.textContent = '鎷栧埌鍙充晶妞嶇墿涓婃柟鏉炬墜鍗冲彲娴囨按';
++        });
++
++        wateringCan.addEventListener('pointermove', (event) => {
++            if (!isDraggingCan || !canGhost) return;
++            event.preventDefault();
++            canGhost.style.left = `${event.clientX}px`;
++            canGhost.style.top = `${event.clientY}px`;
++            updateDropzoneHighlight(event.clientX, event.clientY);
++        });
++
++        const endDrag = (event) => {
++            if (!isDraggingCan) return;
++            isDraggingCan = false;
++            const hit = updateDropzoneHighlight(event.clientX, event.clientY);
++            plantDropzone.classList.remove('active');
++            removeGhost();
++
++            if (hit) {
++                spawnWaterDrops();
++                plantDropzone.classList.add('watered');
++                plantDropzone.classList.add('grow');
++                plantDropzone.textContent = '馃尡';
++                waterStatus.textContent = '娴囨按鎴愬姛锛佹儕鍠滅収鐗囨鍦ㄥ嚭鐜?..';
++                const photoIndex = waterPhotoQueue[waterPhotoCursor];
++                waterPhotoCursor = (waterPhotoCursor + 1) % waterPhotoQueue.length;
++                setTimeout(() => {
++                    plantDropzone.classList.remove('grow');
++                }, 720);
++                setTimeout(() => {
++                    handleTap(photoIndex, plantDropzone);
++                    waterStatus.textContent = '鍙户缁祰姘达紝鍙嶅瑙﹀彂鎯婂枩鐓х墖 鉁?;
++                }, 450);
++            } else {
++                waterStatus.textContent = '杩樻病娴囧埌妞嶇墿锛屽啀璇曚竴娆★綖';
++            }
++        };
++
++        wateringCan.addEventListener('pointerup', endDrag);
++        wateringCan.addEventListener('pointercancel', endDrag);
++    }
++
++    // 铦磋澏妯″潡锛氬湪鍖哄煙鍐呴殢鏈洪琛岋紝鐢ㄦ埛闇€鐐瑰嚮绉诲姩涓殑铦磋澏瑙﹀彂鐓х墖
++    function initButterflyModule() {
++        if (!butterflyZone || !butterflyTargets.length) return;
++
++        const states = butterflyTargets.map((el) => ({ el, x: 0, y: 0, timer: null }));
++
++        function getBounds() {
++            return {
++                xMax: Math.max(20, butterflyZone.clientWidth - 96),
++                yMax: Math.max(28, butterflyZone.clientHeight - 124)
++            };
++        }
++
++        function moveButterfly(state, immediate = false) {
++            const bounds = getBounds();
++            const nextX = Math.random() * bounds.xMax;
++            const nextY = Math.random() * bounds.yMax;
++            const duration = reducedMotion ? (2200 + Math.random() * 700) : (1300 + Math.random() * 1200);
++            const tilt = Math.random() * 24 - 12;
++            const direction = nextX >= state.x ? 1 : -1;
++
++            state.el.style.transition = immediate ? 'none' : `transform ${duration}ms cubic-bezier(.2,.78,.2,1), opacity 220ms ease`;
++            state.el.style.transform = `translate(${nextX}px, ${nextY}px) scaleX(${direction}) rotate(${tilt}deg)`;
++            state.el.style.opacity = '1';
++
++            state.x = nextX;
++            state.y = nextY;
++            clearTimeout(state.timer);
++            state.timer = setTimeout(() => moveButterfly(state), duration + 140 + Math.random() * 600);
++        }
++
++        states.forEach((state, idx) => {
++            const photoIndex = Number(state.el.dataset.photoIndex);
++            state.el.addEventListener('click', () => handleTap(photoIndex, state.el));
++
++            // 鍏堟斁缃垵濮嬪潗鏍囷紝鍐嶅惎鍔ㄩ琛屽姩鐢?+            setTimeout(() => moveButterfly(state, true), idx * 90);
++            setTimeout(() => moveButterfly(state), 150 + idx * 120);
++        });
++
++        window.addEventListener('resize', () => {
++            states.forEach((state) => moveButterfly(state, true));
++        }, { passive: true });
++    }
++
++    initButterflyModule();
++
++    initWaterGame();
++
++    // 姘旂悆鍗囩┖绉€鐨勪笁缁勬暟鎹細缂╃暐鍥俱€佷富鍥俱€佺绂忚涓庡洖蹇嗘枃妗?+    const balloonItemsData = [
++        {
++            id: 0,
++            index: 19,
++            thumb: 'spring/balloon1.jpg',
++            photo: 'img\\7\\mmexport1739595717751.jpg',
++            color: '#ff8eb9',
++            bless: '鎰挎垜浠案杩滃儚绔ヨ瘽閲岀殑瑙掕壊涓€鏍锋棤蹇ф棤铏?,
++            memory: '杩欏ぉ鎴戜滑涓€璧峰幓浜嗚崚閲庣帇鍥斤紝涓€涓€?
++        },
++        {
++            id: 1,
++            index: 20,
++            thumb: 'spring/balloon2.jpg',
++            photo: 'img\\14\\IMG_20240806_140809.jpg',
++            color: '#f0c36b',
++            bless: '浣犵殑绗戝鏄垜鏀惰棌鐨勫疂钘?,
++            memory: '閭ｅぉ鎴戜滑鎶佃揪瑗垮畨锛屼綘鐏跨儌鐨勭瑧瀹癸紝鎴戜竴鐩磋鍒颁粖澶┿€?
++        },
++        {
++            id: 2,
++            index: 21,
++            thumb: 'spring/balloon3.jpg',
++            photo: 'img\\14\\IMG_20250826_171505.jpg',
++            color: '#b28bff',
++            bless: '鎴愪负鏇村ソ鐨勪汉鏄垜浠殑绾﹀畾',
++            memory: '杩欐槸鎴戞敹鍒拌繃鏈€鐢ㄥ績鐨勭敓鏃ョぜ鐗╋紝璋㈣阿浣狅紝杩欒鎴戞剰璇嗗埌鎰熸儏鐨勭弽璐点€?
++        }
++    ];
++    const balloonState = {
++        locked: false,
++        launched: new Set(),
++        floating: new Map(),
++        mergedDone: false,
++        finaleClosable: false
++    };
++
++    // 鍔犺浇褰撳墠闊充箰鏇茬洰锛屽苟鍚屾鏇存柊鎾斁鍣ㄦ彁绀烘枃妗?+    function loadTrack(index) {
++        audio.src = encodeURI(musicTracks[index].url);
++        player.title = `褰撳墠闊充箰锛?{musicTracks[index].name}锛堢偣鍑诲垏鎹級`;
++    }
++
++    // 鍥剧墖鍏滃簳锛氬綋 spring/ 鎴栨湰鍦板浘鐗囦笉瀛樺湪鏃跺洖閫€涓鸿姳鏈靛浘鏍?+    function setImgWithFallback(imgEl, src) {
++        imgEl.onerror = () => {
++            imgEl.onerror = null;
++            imgEl.src = fallbackFlower;
++        };
++        imgEl.src = src;
++    }
++
++    // 鏀堕泦杩涘害缁熶竴鍏ュ彛锛氭洿鏂拌渹铚滅綈璁℃暟銆佸闃宠В閿佺姸鎬佸拰鏀堕泦瀹屾垚鎻愮ず
++    function collectPhoto(index) {
++        if (!collectedPhotos.has(index)) {
++            collectedPhotos.add(index);
++            updateHoneyDisplay();
++            updateSunPulse();
++            if (collectedPhotos.size === 25) {
++                setTimeout(() => {
++                    alert("馃帀 鏄ュ皬鐕曪紝浣犳壘榻愪簡25涓簿褰╂椂鍒伙紒鐢熸棩蹇箰锛侌煄?);
++                    showLargePhoto(finalCelebrationPhoto);
++                }, 1000);
++            }
++        }
++    }
++
++    // 鍚屾搴曢儴铚傝湝缃愬睍绀轰负 x/25 鏍煎紡
++    function updateHoneyDisplay(value = collectedPhotos.size) {
++        document.getElementById('honey-count').innerText = `${value}/25`;
++    }
++
++    // 鏍规嵁宸插彂鐜扮収鐗囨暟閲忥紝鍒囨崲澶曢槼澶栧湀鑴夊啿棰滆壊
++    function updateSunPulse() {
++        if (!sunPulse) return;
++        sunPulse.classList.toggle('ready', collectedPhotos.size >= 20);
++    }
++
++    // 鎾斁褰撳墠闊充箰锛屽苟璁╁彸涓嬭 CD 杩涘叆鏃嬭浆鐘舵€?+    function playCurrentTrack() {
++        return audio.play().then(() => {
++            player.classList.add('playing');
++        });
++    }
++
++    // 鍒囨崲鍒颁笅涓€棣栭煶涔愶紱鎾斁鍒版湯灏炬椂閲嶆柊娲楃墝
++    function switchTrack() {
++        currentTrackIndex += 1;
++        if (currentTrackIndex >= musicTracks.length) {
++            musicTracks = shuffleTracks(baseMusicTracks);
++            currentTrackIndex = 0;
++        }
++        loadTrack(currentTrackIndex);
++        playCurrentTrack().catch(() => {
++            alert('闊充箰鍒囨崲鎴愬姛锛屼絾娴忚鍣ㄩ檺鍒朵簡鑷姩鎾斁锛岃鍐嶇偣涓€娆D銆?);
++        });
++    }
++
++    loadTrack(currentTrackIndex);
++    audio.addEventListener('ended', switchTrack);
++    updateHoneyDisplay();
++    updateSunPulse();
++
++    let isDraggingCan = false;
++    let canGhost = null;
++    const waterPhotoQueue = [22, 23];
++    let waterPhotoCursor = 0;
++
++    // 鍥壓妯″潡锛氭牴鎹嫋鎷戒綅缃珮浜鐗╂姇鏀惧尯
++    function updateDropzoneHighlight(x, y) {
++        const rect = plantDropzone.getBoundingClientRect();
++        const inside = x >= rect.left && x <= rect.right && y >= rect.top && y <= rect.bottom;
++        plantDropzone.classList.toggle('active', inside);
++        return inside;
++    }
++
++    // 鍥壓妯″潡锛氱Щ闄ゆ嫋鎷戒腑鐨勬祰姘村６骞界伒灞?+    function removeGhost() {
++        if (canGhost) {
++            canGhost.remove();
++            canGhost = null;
++        }
++    }
++
++    // 鍒濆鍖栧洯鑹烘祰姘存ā鍧楋細鎷栨嫿娴囨按鎴愬姛鍚庢樉绀哄洯鑹虹収鐗?+    function initWaterGame() {
++        if (!wateringCan || !plantDropzone || !waterStatus) return;
++
++        // 鍥壓娴囨按鎴愬姛鏃剁殑姘存淮鍔ㄧ敾
++        function spawnWaterDrops() {
++            const rect = plantDropzone.getBoundingClientRect();
++            const startX = rect.left + rect.width * 0.5;
++            const startY = rect.top - 6;
++            for (let i = 0; i < 7; i++) {
++                const drop = document.createElement('div');
++                drop.className = 'water-drop';
++                drop.textContent = '馃挧';
++                drop.style.left = `${startX + (Math.random() * 44 - 22)}px`;
++                drop.style.top = `${startY + Math.random() * 8}px`;
++                drop.style.animationDelay = `${i * 55}ms`;
++                document.body.appendChild(drop);
++                setTimeout(() => drop.remove(), 900);
++            }
++        }
++
++        wateringCan.addEventListener('pointerdown', (event) => {
++            isDraggingCan = true;
++            wateringCan.setPointerCapture(event.pointerId);
++
++            canGhost = document.createElement('div');
++            canGhost.className = 'drag-ghost';
++            canGhost.textContent = '馃毧';
++            document.body.appendChild(canGhost);
++            canGhost.style.left = `${event.clientX}px`;
++            canGhost.style.top = `${event.clientY}px`;
++            waterStatus.textContent = '鎷栧埌鍙充晶妞嶇墿涓婃柟鏉炬墜鍗冲彲娴囨按';
++        });
++
++        wateringCan.addEventListener('pointermove', (event) => {
++            if (!isDraggingCan || !canGhost) return;
++            event.preventDefault();
++            canGhost.style.left = `${event.clientX}px`;
++            canGhost.style.top = `${event.clientY}px`;
++            updateDropzoneHighlight(event.clientX, event.clientY);
++        });
++
++        const endDrag = (event) => {
++            if (!isDraggingCan) return;
++            isDraggingCan = false;
++            const hit = updateDropzoneHighlight(event.clientX, event.clientY);
++            plantDropzone.classList.remove('active');
++            removeGhost();
++
++            if (hit) {
++                spawnWaterDrops();
++                plantDropzone.classList.add('watered');
++                plantDropzone.classList.add('grow');
++                plantDropzone.textContent = '馃尡';
++                waterStatus.textContent = '娴囨按鎴愬姛锛佹儕鍠滅収鐗囨鍦ㄥ嚭鐜?..';
++                const photoIndex = waterPhotoQueue[waterPhotoCursor];
++                waterPhotoCursor = (waterPhotoCursor + 1) % waterPhotoQueue.length;
++                setTimeout(() => {
++                    plantDropzone.classList.remove('grow');
++                }, 720);
++                setTimeout(() => {
++                    handleTap(photoIndex, plantDropzone);
++                    waterStatus.textContent = '鍙户缁祰姘达紝鍙嶅瑙﹀彂鎯婂枩鐓х墖 鉁?;
++                }, 450);
++            } else {
++                waterStatus.textContent = '杩樻病娴囧埌妞嶇墿锛屽啀璇曚竴娆★綖';
++            }
++        };
++
++        wateringCan.addEventListener('pointerup', endDrag);
++        wateringCan.addEventListener('pointercancel', endDrag);
++    }
++
++    // 铦磋澏妯″潡锛氬湪鍖哄煙鍐呴殢鏈洪琛岋紝鐢ㄦ埛闇€鐐瑰嚮绉诲姩涓殑铦磋澏瑙﹀彂鐓х墖
++    function initButterflyModule() {
++        if (!butterflyZone || !butterflyTargets.length) return;
++
++        const states = butterflyTargets.map((el) => ({ el, x: 0, y: 0, timer: null }));
++
++        function getBounds() {
++            return {
++                xMax: Math.max(20, butterflyZone.clientWidth - 96),
++                yMax: Math.max(28, butterflyZone.clientHeight - 124)
++            };
++        }
++
++        function moveButterfly(state, immediate = false) {
++            const bounds = getBounds();
++            const nextX = Math.random() * bounds.xMax;
++            const nextY = Math.random() * bounds.yMax;
++            const duration = reducedMotion ? (2200 + Math.random() * 700) : (1300 + Math.random() * 1200);
++            const tilt = Math.random() * 24 - 12;
++            const direction = nextX >= state.x ? 1 : -1;
++
++            state.el.style.transition = immediate ? 'none' : `transform ${duration}ms cubic-bezier(.2,.78,.2,1), opacity 220ms ease`;
++            state.el.style.transform = `translate(${nextX}px, ${nextY}px) scaleX(${direction}) rotate(${tilt}deg)`;
++            state.el.style.opacity = '1';
++
++            state.x = nextX;
++            state.y = nextY;
++            clearTimeout(state.timer);
++            state.timer = setTimeout(() => moveButterfly(state), duration + 140 + Math.random() * 600);
++        }
++
++        states.forEach((state, idx) => {
++            const photoIndex = Number(state.el.dataset.photoIndex);
++            state.el.addEventListener('click', () => handleTap(photoIndex, state.el));
++
++            // 鍏堟斁缃垵濮嬪潗鏍囷紝鍐嶅惎鍔ㄩ琛屽姩鐢?+            setTimeout(() => moveButterfly(state, true), idx * 90);
++            setTimeout(() => moveButterfly(state), 150 + idx * 120);
++        });
++
++        window.addEventListener('resize', () => {
++            states.forEach((state) => moveButterfly(state, true));
++        }, { passive: true });
++    }
++
++    initButterflyModule();
++
++    initWaterGame();
++
++    // 姘旂悆鍗囩┖绉€鐨勪笁缁勬暟鎹細缂╃暐鍥俱€佷富鍥俱€佺绂忚涓庡洖蹇嗘枃妗?+    const balloonItemsData = [
++        {
++            id: 0,
++            index: 19,
++            thumb: 'spring/balloon1.jpg',
++            photo: 'img\\7\\mmexport1739595717751.jpg',
++            color: '#ff8eb9',
++            bless: '鎰挎垜浠案杩滃儚绔ヨ瘽閲岀殑瑙掕壊涓€鏍锋棤蹇ф棤铏?,
++            memory: '杩欏ぉ鎴戜滑涓€璧峰幓浜嗚崚閲庣帇鍥斤紝涓€涓€?
++        },
++        {
++            id: 1,
++            index: 20,
++            thumb: 'spring/balloon2.jpg',
++            photo: 'img\\14\\IMG_20240806_140809.jpg',
++            color: '#f0c36b',
++            bless: '浣犵殑绗戝鏄垜鏀惰棌鐨勫疂钘?,
++            memory: '閭ｅぉ鎴戜滑鎶佃揪瑗垮畨锛屼綘鐏跨儌鐨勭瑧瀹癸紝鎴戜竴鐩磋鍒颁粖澶┿€?
++        },
++        {
++            id: 2,
++            index: 21,
++            thumb: 'spring/balloon3.jpg',
++            photo: 'img\\14\\IMG_20250826_171505.jpg',
++            color: '#b28bff',
++            bless: '鎴愪负鏇村ソ鐨勪汉鏄垜浠殑绾﹀畾',
++            memory: '杩欐槸鎴戞敹鍒拌繃鏈€鐢ㄥ績鐨勭敓鏃ョぜ鐗╋紝璋㈣阿浣狅紝杩欒鎴戞剰璇嗗埌鎰熸儏鐨勭弽璐点€?
++        }
++    ];
++    const balloonState = {
++        locked: false,
++        launched: new Set(),
++        floating: new Map(),
++        mergedDone: false,
++        finaleClosable: false
++    };
++
++    // 鍔犺浇褰撳墠闊充箰鏇茬洰锛屽苟鍚屾鏇存柊鎾斁鍣ㄦ彁绀烘枃妗?+    function loadTrack(index) {
++        audio.src = encodeURI(musicTracks[index].url);
++        player.title = `褰撳墠闊充箰锛?{musicTracks[index].name}锛堢偣鍑诲垏鎹級`;
++    }
++
++    // 鍥剧墖鍏滃簳锛氬綋 spring/ 鎴栨湰鍦板浘鐗囦笉瀛樺湪鏃跺洖閫€涓鸿姳鏈靛浘鏍?+    function setImgWithFallback(imgEl, src) {
++        imgEl.onerror = () => {
++            imgEl.onerror = null;
++            imgEl.src = fallbackFlower;
++        };
++        imgEl.src = src;
++    }
++
++    // 鏀堕泦杩涘害缁熶竴鍏ュ彛锛氭洿鏂拌渹铚滅綈璁℃暟銆佸闃宠В閿佺姸鎬佸拰鏀堕泦瀹屾垚鎻愮ず
++    function collectPhoto(index) {
++        if (!collectedPhotos.has(index)) {
++            collectedPhotos.add(index);
++            updateHoneyDisplay();
++            updateSunPulse();
++            if (collectedPhotos.size === 25) {
++                setTimeout(() => {
++                    alert("馃帀 鏄ュ皬鐕曪紝浣犳壘榻愪簡25涓簿褰╂椂鍒伙紒鐢熸棩蹇箰锛侌煄?);
++                    showLargePhoto(finalCelebrationPhoto);
++                }, 1000);
++            }
++        }
++    }
++
++    // 鍚屾搴曢儴铚傝湝缃愬睍绀轰负 x/25 鏍煎紡
++    function updateHoneyDisplay(value = collectedPhotos.size) {
++        document.getElementById('honey-count').innerText = `${value}/25`;
++    }
++
++    // 鏍规嵁宸插彂鐜扮収鐗囨暟閲忥紝鍒囨崲澶曢槼澶栧湀鑴夊啿棰滆壊
++    function updateSunPulse() {
++        if (!sunPulse) return;
++        sunPulse.classList.toggle('ready', collectedPhotos.size >= 20);
++    }
++
++    // 鎾斁褰撳墠闊充箰锛屽苟璁╁彸涓嬭 CD 杩涘叆鏃嬭浆鐘舵€?+    function playCurrentTrack() {
++        return audio.play().then(() => {
++            player.classList.add('playing');
++        });
++    }
++
++    // 鍒囨崲鍒颁笅涓€棣栭煶涔愶紱鎾斁鍒版湯灏炬椂閲嶆柊娲楃墝
++    function switchTrack() {
++        currentTrackIndex += 1;
++        if (currentTrackIndex >= musicTracks.length) {
++            musicTracks = shuffleTracks(baseMusicTracks);
++            currentTrackIndex = 0;
++        }
++        loadTrack(currentTrackIndex);
++        playCurrentTrack().catch(() => {
++            alert('闊充箰鍒囨崲鎴愬姛锛屼絾娴忚鍣ㄩ檺鍒朵簡鑷姩鎾斁锛岃鍐嶇偣涓€娆D銆?);
++        });
++    }
++
++    loadTrack(currentTrackIndex);
++    audio.addEventListener('ended', switchTrack);
++    updateHoneyDisplay();
++    updateSunPulse();
++
++    let isDraggingCan = false;
++    let canGhost = null;
++    const waterPhotoQueue = [22, 23];
++    let waterPhotoCursor = 0;
++
++    // 鍥壓妯″潡锛氭牴鎹嫋鎷戒綅缃珮浜鐗╂姇鏀惧尯
++    function updateDropzoneHighlight(x, y) {
++        const rect = plantDropzone.getBoundingClientRect();
++        const inside = x >= rect.left && x <= rect.right && y >= rect.top && y <= rect.bottom;
++        plantDropzone.classList.toggle('active', inside);
++        return inside;
++    }
++
++    // 鍥壓妯″潡锛氱Щ闄ゆ嫋鎷戒腑鐨勬祰姘村６骞界伒灞?+    function removeGhost() {
++        if (canGhost) {
++            canGhost.remove();
++            canGhost = null;
++        }
++    }
++
++    // 鍒濆鍖栧洯鑹烘祰姘存ā鍧楋細鎷栨嫿娴囨按鎴愬姛鍚庢樉绀哄洯鑹虹収鐗?+    function initWaterGame() {
++        if (!wateringCan || !plantDropzone || !waterStatus) return;
++
++        // 鍥壓娴囨按鎴愬姛鏃剁殑姘存淮鍔ㄧ敾
++        function spawnWaterDrops() {
++            const rect = plantDropzone.getBoundingClientRect();
++            const startX = rect.left + rect.width * 0.5;
++            const startY = rect.top - 6;
++            for (let i = 0; i < 7; i++) {
++                const drop = document.createElement('div');
++                drop.className = 'water-drop';
++                drop.textContent = '馃挧';
++                drop.style.left = `${startX + (Math.random() * 44 - 22)}px`;
++                drop.style.top = `${startY + Math.random() * 8}px`;
++                drop.style.animationDelay = `${i * 55}ms`;
++                document.body.appendChild(drop);
++                setTimeout(() => drop.remove(), 900);
++            }
++        }
++
++        wateringCan.addEventListener('pointerdown', (event) => {
++            isDraggingCan = true;
++            wateringCan.setPointerCapture(event.pointerId);
++
++            canGhost = document.createElement('div');
++            canGhost.className = 'drag-ghost';
++            canGhost.textContent = '馃毧';
++            document.body.appendChild(canGhost);
++            canGhost.style.left = `${event.clientX}px`;
++            canGhost.style.top = `${event.clientY}px`;
++            waterStatus.textContent = '鎷栧埌鍙充晶妞嶇墿涓婃柟鏉炬墜鍗冲彲娴囨按';
++        });
++
++        wateringCan.addEventListener('pointermove', (event) => {
++            if (!isDraggingCan || !canGhost) return;
++            event.preventDefault();
++            canGhost.style.left = `${event.clientX}px`;
++            canGhost.style.top = `${event.clientY}px`;
++            updateDropzoneHighlight(event.clientX, event.clientY);
++        });
++
++        const endDrag = (event) => {
++            if (!isDraggingCan) return;
++            isDraggingCan = false;
++            const hit = updateDropzoneHighlight(event.clientX, event.clientY);
++            plantDropzone.classList.remove('active');
++            removeGhost();
++
++            if (hit) {
++                spawnWaterDrops();
++                plantDropzone.classList.add('watered');
++                plantDropzone.classList.add('grow');
++                plantDropzone.textContent = '馃尡';
++                waterStatus.textContent = '娴囨按鎴愬姛锛佹儕鍠滅収鐗囨鍦ㄥ嚭鐜?..';
++                const photoIndex = waterPhotoQueue[waterPhotoCursor];
++                waterPhotoCursor = (waterPhotoCursor + 1) % waterPhotoQueue.length;
++                setTimeout(() => {
++                    plantDropzone.classList.remove('grow');
++                }, 720);
++                setTimeout(() => {
++                    handleTap(photoIndex, plantDropzone);
++                    waterStatus.textContent = '鍙户缁祰姘达紝鍙嶅瑙﹀彂鎯婂枩鐓х墖 鉁?;
++                }, 450);
++            } else {
++                waterStatus.textContent = '杩樻病娴囧埌妞嶇墿锛屽啀璇曚竴娆★綖';
++            }
++        };
++
++        wateringCan.addEventListener('pointerup', endDrag);
++        wateringCan.addEventListener('pointercancel', endDrag);
++    }
++
++    // 铦磋澏妯″潡锛氬湪鍖哄煙鍐呴殢鏈洪琛岋紝鐢ㄦ埛闇€鐐瑰嚮绉诲姩涓殑铦磋澏瑙﹀彂鐓х墖
++    function initButterflyModule() {
++        if (!butterflyZone || !butterflyTargets.length) return;
++
++        const states = butterflyTargets.map((el) => ({ el, x: 0, y: 0, timer: null }));
++
++        function getBounds() {
++            return {
++                xMax: Math.max(20, butterflyZone.clientWidth - 96),
++                yMax: Math.max(28, butterflyZone.clientHeight - 124)
++            };
++        }
++
++        function moveButterfly(state, immediate = false) {
++            const bounds = getBounds();
++            const nextX = Math.random() * bounds.xMax;
++            const nextY = Math.random() * bounds.yMax;
++            const duration = reducedMotion ? (2200 + Math.random() * 700) : (1300 + Math.random() * 1200);
++            const tilt = Math.random() * 24 - 12;
++            const direction = nextX >= state.x ? 1 : -1;
++
++            state.el.style.transition = immediate ? 'none' : `transform ${duration}ms cubic-bezier(.2,.78,.2,1), opacity 220ms ease`;
++            state.el.style.transform = `translate(${nextX}px, ${nextY}px) scaleX(${direction}) rotate(${tilt}deg)`;
++            state.el.style.opacity = '1';
++
++            state.x = nextX;
++            state.y = nextY;
++            clearTimeout(state.timer);
++            state.timer = setTimeout(() => moveButterfly(state), duration + 140 + Math.random() * 600);
++        }
++
++        states.forEach((state, idx) => {
++            const photoIndex = Number(state.el.dataset.photoIndex);
++            state.el.addEventListener('click', () => handleTap(photoIndex, state.el));
++
++            // 鍏堟斁缃垵濮嬪潗鏍囷紝鍐嶅惎鍔ㄩ琛屽姩鐢?+            setTimeout(() => moveButterfly(state, true), idx * 90);
++            setTimeout(() => moveButterfly(state), 150 + idx * 120);
++        });
++
++        window.addEventListener('resize', () => {
++            states.forEach((state) => moveButterfly(state, true));
++        }, { passive: true });
++    }
++
++    initButterflyModule();
++
++    initWaterGame();
++
++    // 姘旂悆鍗囩┖绉€鐨勪笁缁勬暟鎹細缂╃暐鍥俱€佷富鍥俱€佺绂忚涓庡洖蹇嗘枃妗?+    const balloonItemsData = [
++        {
++            id: 0,
++            index: 19,
++            thumb: 'spring/balloon1.jpg',
++            photo: 'img\\7\\mmexport1739595717751.jpg',
++            color: '#ff8eb9',
++            bless: '鎰挎垜浠案杩滃儚绔ヨ瘽閲岀殑瑙掕壊涓€鏍锋棤蹇ф棤铏?,
++            memory: '杩欏ぉ鎴戜滑涓€璧峰幓浜嗚崚閲庣帇鍥斤紝涓€涓€?
++        },
++        {
++            id: 1,
++            index: 20,
++            thumb: 'spring/balloon2.jpg',
++            photo: 'img\\14\\IMG_20240806_140809.jpg',
++            color: '#f0c36b',
++            bless: '浣犵殑绗戝鏄垜鏀惰棌鐨勫疂钘?,
++            memory: '閭ｅぉ鎴戜滑鎶佃揪瑗垮畨锛屼綘鐏跨儌鐨勭瑧瀹癸紝鎴戜竴鐩磋鍒颁粖澶┿€?
++        },
++        {
++            id: 2,
++            index: 21,
++            thumb: 'spring/balloon3.jpg',
++            photo: 'img\\14\\IMG_20250826_171505.jpg',
++            color: '#b28bff',
++            bless: '鎴愪负鏇村ソ鐨勪汉鏄垜浠殑绾﹀畾',
++            memory: '杩欐槸鎴戞敹鍒拌繃鏈€鐢ㄥ績鐨勭敓鏃ョぜ鐗╋紝璋㈣阿浣狅紝杩欒鎴戞剰璇嗗埌鎰熸儏鐨勭弽璐点€?
++        }
++    ];
++    const balloonState = {
++        locked: false,
++        launched: new Set(),
++        floating: new Map(),
++        mergedDone: false,
++        finaleClosable: false
++    };
++
++    // 鍔犺浇褰撳墠闊充箰鏇茬洰锛屽苟鍚屾鏇存柊鎾斁鍣ㄦ彁绀烘枃妗?+    function loadTrack(index) {
++        audio.src = encodeURI(musicTracks[index].url);
++        player.title = `褰撳墠闊充箰锛?{musicTracks[index].name}锛堢偣鍑诲垏鎹級`;
++    }
++
++    // 鍥剧墖鍏滃簳锛氬綋 spring/ 鎴栨湰鍦板浘鐗囦笉瀛樺湪鏃跺洖閫€涓鸿姳鏈靛浘鏍?+    function setImgWithFallback(imgEl, src) {
++        imgEl.onerror = () => {
++            imgEl.onerror = null;
++            imgEl.src = fallbackFlower;
++        };
++        imgEl.src = src;
++    }
++
++    // 鏀堕泦杩涘害缁熶竴鍏ュ彛锛氭洿鏂拌渹铚滅綈璁℃暟銆佸闃宠В閿佺姸鎬佸拰鏀堕泦瀹屾垚鎻愮ず
++    function collectPhoto(index) {
++        if (!collectedPhotos.has(index)) {
++            collectedPhotos.add(index);
++            updateHoneyDisplay();
++            updateSunPulse();
++            if (collectedPhotos.size === 25) {
++                setTimeout(() => {
++                    alert("馃帀 鏄ュ皬鐕曪紝浣犳壘榻愪簡25涓簿褰╂椂鍒伙紒鐢熸棩蹇箰锛侌煄?);
++                    showLargePhoto(finalCelebrationPhoto);
++                }, 1000);
++            }
++        }
++    }
++
++    // 鍚屾搴曢儴铚傝湝缃愬睍绀轰负 x/25 鏍煎紡
++    function updateHoneyDisplay(value = collectedPhotos.size) {
++        document.getElementById('honey-count').innerText = `${value}/25`;
++    }
++
++    // 鏍规嵁宸插彂鐜扮収鐗囨暟閲忥紝鍒囨崲澶曢槼澶栧湀鑴夊啿棰滆壊
++    function updateSunPulse() {
++        if (!sunPulse) return;
++        sunPulse.classList.toggle('ready', collectedPhotos.size >= 20);
++    }
++
++    // 鎾斁褰撳墠闊充箰锛屽苟璁╁彸涓嬭 CD 杩涘叆鏃嬭浆鐘舵€?+    function playCurrentTrack() {
++        return audio.play().then(() => {
++            player.classList.add('playing');
++        });
++    }
++
++    // 鍒囨崲鍒颁笅涓€棣栭煶涔愶紱鎾斁鍒版湯灏炬椂閲嶆柊娲楃墝
++    function switchTrack() {
++        currentTrackIndex += 1;
++        if (currentTrackIndex >= musicTracks.length) {
++            musicTracks = shuffleTracks(baseMusicTracks);
++            currentTrackIndex = 0;
++        }
++        loadTrack(currentTrackIndex);
++        playCurrentTrack().catch(() => {
++            alert('闊充箰鍒囨崲鎴愬姛锛屼絾娴忚鍣ㄩ檺鍒朵簡鑷姩鎾斁锛岃鍐嶇偣涓€娆D銆?);
++        });
++    }
++
++    loadTrack(currentTrackIndex);
++    audio.addEventListener('ended', switchTrack);
++    updateHoneyDisplay();
++    updateSunPulse();
++
++    let isDraggingCan = false;
++    let canGhost = null;
++    const waterPhotoQueue = [22, 23];
++    let waterPhotoCursor = 0;
++
++    // 鍥壓妯″潡锛氭牴鎹嫋鎷戒綅缃珮浜鐗╂姇鏀惧尯
++    function updateDropzoneHighlight(x, y) {
++        const rect = plantDropzone.getBoundingClientRect();
++        const inside = x >= rect.left && x <= rect.right && y >= rect.top && y <= rect.bottom;
++        plantDropzone.classList.toggle('active', inside);
++        return inside;
++    }
++
++    // 鍥壓妯″潡锛氱Щ闄ゆ嫋鎷戒腑鐨勬祰姘村６骞界伒灞?+    function removeGhost() {
++        if (canGhost) {
++            canGhost.remove();
++            canGhost = null;
++        }
++    }
++
++    // 鍒濆鍖栧洯鑹烘祰姘存ā鍧楋細鎷栨嫿娴囨按鎴愬姛鍚庢樉绀哄洯鑹虹収鐗?+    function initWaterGame() {
++        if (!wateringCan || !plantDropzone || !waterStatus) return;
++
++        // 鍥壓娴囨按鎴愬姛鏃剁殑姘存淮鍔ㄧ敾
++        function spawnWaterDrops() {
++            const rect = plantDropzone.getBoundingClientRect();
++            const startX = rect.left + rect.width * 0.5;
++            const startY = rect.top - 6;
++            for (let i = 0; i < 7; i++) {
++                const drop = document.createElement('div');
++                drop.className = 'water-drop';
++                drop.textContent = '馃挧';
++                drop.style.left = `${startX + (Math.random() * 44 - 22)}px`;
++                drop.style.top = `${startY + Math.random() * 8}px`;
++                drop.style.animationDelay = `${i * 55}ms`;
++                document.body.appendChild(drop);
++                setTimeout(() => drop.remove(), 900);
++            }
++        }
++
++        wateringCan.addEventListener('pointerdown', (event) => {
++            isDraggingCan = true;
++            wateringCan.setPointerCapture(event.pointerId);
++
++            canGhost = document.createElement('div');
++            canGhost.className = 'drag-ghost';
++            canGhost.textContent = '馃毧';
++            document.body.appendChild(canGhost);
++            canGhost.style.left = `${event.clientX}px`;
++            canGhost.style.top = `${event.clientY}px`;
++            waterStatus.textContent = '鎷栧埌鍙充晶妞嶇墿涓婃柟鏉炬墜鍗冲彲娴囨按';
++        });
++
++        wateringCan.addEventListener('pointermove', (event) => {
++            if (!isDraggingCan || !canGhost) return;
++            event.preventDefault();
++            canGhost.style.left = `${event.clientX}px`;
++            canGhost.style.top = `${event.clientY}px`;
++            updateDropzoneHighlight(event.clientX, event.clientY);
++        });
++
++        const endDrag = (event) => {
++            if (!isDraggingCan) return;
++            isDraggingCan = false;
++            const hit = updateDropzoneHighlight(event.clientX, event.clientY);
++            plantDropzone.classList.remove('active');
++            removeGhost();
++
++            if (hit) {
++                spawnWaterDrops();
++                plantDropzone.classList.add('watered');
++                plantDropzone.classList.add('grow');
++                plantDropzone.textContent = '馃尡';
++                waterStatus.textContent = '娴囨按鎴愬姛锛佹儕鍠滅収鐗囨鍦ㄥ嚭鐜?..';
++                const photoIndex = waterPhotoQueue[waterPhotoCursor];
++                waterPhotoCursor = (waterPhotoCursor + 1) % waterPhotoQueue.length;
++                setTimeout(() => {
++                    plantDropzone.classList.remove('grow');
++                }, 720);
++                setTimeout(() => {
++                    handleTap(photoIndex, plantDropzone);
++                    waterStatus.textContent = '鍙户缁祰姘达紝鍙嶅瑙﹀彂鎯婂枩鐓х墖 鉁?;
++                }, 450);
++            } else {
++                waterStatus.textContent = '杩樻病娴囧埌妞嶇墿锛屽啀璇曚竴娆★綖';
++            }
++        };
++
++        wateringCan.addEventListener('pointerup', endDrag);
++        wateringCan.addEventListener('pointercancel', endDrag);
++    }
++
++    // 铦磋澏妯″潡锛氬湪鍖哄煙鍐呴殢鏈洪琛岋紝鐢ㄦ埛闇€鐐瑰嚮绉诲姩涓殑铦磋澏瑙﹀彂鐓х墖
++    function initButterflyModule() {
++        if (!butterflyZone || !butterflyTargets.length) return;
++
++        const states = butterflyTargets.map((el) => ({ el, x: 0, y: 0, timer: null }));
++
++        function getBounds() {
++            return {
++                xMax: Math.max(20, butterflyZone.clientWidth - 96),
++                yMax: Math.max(28, butterflyZone.clientHeight - 124)
++            };
++        }
++
++        function moveButterfly(state, immediate = false) {
++            const bounds = getBounds();
++            const nextX = Math.random() * bounds.xMax;
++            const nextY = Math.random() * bounds.yMax;
++            const duration = reducedMotion ? (2200 + Math.random() * 700) : (1300 + Math.random() * 1200);
++            const tilt = Math.random() * 24 - 12;
++            const direction = nextX >= state.x ? 1 : -1;
++
++            state.el.style.transition = immediate ? 'none' : `transform ${duration}ms cubic-bezier(.2,.78,.2,1), opacity 220ms ease`;
++            state.el.style.transform = `translate(${nextX}px, ${nextY}px) scaleX(${direction}) rotate(${tilt}deg)`;
++            state.el.style.opacity = '1';
++
++            state.x = nextX;
++            state.y = nextY;
++            clearTimeout(state.timer);
++            state.timer = setTimeout(() => moveButterfly(state), duration + 140 + Math.random() * 600);
++        }
++
++        states.forEach((state, idx) => {
++            const photoIndex = Number(state.el.dataset.photoIndex);
++            state.el.addEventListener('click', () => handleTap(photoIndex, state.el));
++
++            // 鍏堟斁缃垵濮嬪潗鏍囷紝鍐嶅惎鍔ㄩ琛屽姩鐢?+            setTimeout(() => moveButterfly(state, true), idx * 90);
++            setTimeout(() => moveButterfly(state), 150 + idx * 120);
++        });
++
++        window.addEventListener('resize', () => {
++            states.forEach((state) => moveButterfly(state, true));
++        }, { passive: true });
++    }
++
++    initButterflyModule();
++
++    initWaterGame();
++
++    // 姘旂悆鍗囩┖绉€鐨勪笁缁勬暟鎹細缂╃暐鍥俱€佷富鍥俱€佺绂忚涓庡洖蹇嗘枃妗?+    const balloonItemsData = [
++        {
++            id: 0,
++            index: 19,
++            thumb: 'spring/balloon1.jpg',
++            photo: 'img\\7\\mmexport1739595717751.jpg',
++            color: '#ff8eb9',
++            bless: '鎰挎垜浠案杩滃儚绔ヨ瘽閲岀殑瑙掕壊涓€鏍锋棤蹇ф棤铏?,
++            memory: '杩欏ぉ鎴戜滑涓€璧峰幓浜嗚崚閲庣帇鍥斤紝涓€涓€?
++        },
++        {
++            id: 1,
++            index: 20,
++            thumb: 'spring/balloon2.jpg',
++            photo: 'img\\14\\IMG_20240806_140809.jpg',
++            color: '#f0c36b',
++            bless: '浣犵殑绗戝鏄垜鏀惰棌鐨勫疂钘?,
++            memory: '閭ｅぉ鎴戜滑鎶佃揪瑗垮畨锛屼綘鐏跨儌鐨勭瑧瀹癸紝鎴戜竴鐩磋鍒颁粖澶┿€?
++        },
++        {
++            id: 2,
++            index: 21,
++            thumb: 'spring/balloon3.jpg',
++            photo: 'img\\14\\IMG_20250826_171505.jpg',
++            color: '#b28bff',
++            bless: '鎴愪负鏇村ソ鐨勪汉鏄垜浠殑绾﹀畾',
++            memory: '杩欐槸鎴戞敹鍒拌繃鏈€鐢ㄥ績鐨勭敓鏃ョぜ鐗╋紝璋㈣阿浣狅紝杩欒鎴戞剰璇嗗埌鎰熸儏鐨勭弽璐点€?
++        }
++    ];
++    const balloonState = {
++        locked: false,
++        launched: new Set(),
++        floating: new Map(),
++        mergedDone: false,
++        finaleClosable: false
++    };
++
++    // 鍔犺浇褰撳墠闊充箰鏇茬洰锛屽苟鍚屾鏇存柊鎾斁鍣ㄦ彁绀烘枃妗?+    function loadTrack(index) {
++        audio.src = encodeURI(musicTracks[index].url);
++        player.title = `褰撳墠闊充箰锛?{musicTracks[index].name}锛堢偣鍑诲垏鎹級`;
++    }
++
++    // 鍥剧墖鍏滃簳锛氬綋 spring/ 鎴栨湰鍦板浘鐗囦笉瀛樺湪鏃跺洖閫€涓鸿姳鏈靛浘鏍?+    function setImgWithFallback(imgEl, src) {
++        imgEl.onerror = () => {
++            imgEl.onerror = null;
++            imgEl.src = fallbackFlower;
++        };
++        imgEl.src = src;
++    }
++
++    // 鏀堕泦杩涘害缁熶竴鍏ュ彛锛氭洿鏂拌渹铚滅綈璁℃暟銆佸闃宠В閿佺姸鎬佸拰鏀堕泦瀹屾垚鎻愮ず
++    function collectPhoto(index) {
++        if (!collectedPhotos.has(index)) {
++            collectedPhotos.add(index);
++            updateHoneyDisplay();
++            updateSunPulse();
++            if (collectedPhotos.size === 25) {
++                setTimeout(() => {
++                    alert("馃帀 鏄ュ皬鐕曪紝浣犳壘榻愪簡25涓簿褰╂椂鍒伙紒鐢熸棩蹇箰锛侌煄?);
++                    showLargePhoto(finalCelebrationPhoto);
++                }, 1000);
++            }
++        }
++    }
++
++    // 鍚屾搴曢儴铚傝湝缃愬睍绀轰负 x/25 鏍煎紡
++    function updateHoneyDisplay(value = collectedPhotos.size) {
++        document.getElementById('honey-count').innerText = `${value}/25`;
++    }
++
++    // 鏍规嵁宸插彂鐜扮収鐗囨暟閲忥紝鍒囨崲澶曢槼澶栧湀鑴夊啿棰滆壊
++    function updateSunPulse() {
++        if (!sunPulse) return;
++        sunPulse.classList.toggle('ready', collectedPhotos.size >= 20);
++    }
++
++    // 鎾斁褰撳墠闊充箰锛屽苟璁╁彸涓嬭 CD 杩涘叆鏃嬭浆鐘舵€?+    function playCurrentTrack() {
++        return audio.play().then(() => {
++            player.classList.add('playing');
++        });
++    }
++
++    // 鍒囨崲鍒颁笅涓€棣栭煶涔愶紱鎾斁鍒版湯灏炬椂閲嶆柊娲楃墝
++    function switchTrack() {
++        currentTrackIndex += 1;
++        if (currentTrackIndex >= musicTracks.length) {
++            musicTracks = shuffleTracks(baseMusicTracks);
++            currentTrackIndex = 0;
++        }
++        loadTrack(currentTrackIndex);
++        playCurrentTrack().catch(() => {
++            alert('闊充箰鍒囨崲鎴愬姛锛屼絾娴忚鍣ㄩ檺鍒朵簡鑷姩鎾斁锛岃鍐嶇偣涓€娆D銆?);
++        });
++    }
++
++    loadTrack(currentTrackIndex);
++    audio.addEventListener('ended', switchTrack);
++    updateHoneyDisplay();
++    updateSunPulse();
++
++    let isDraggingCan = false;
++    let canGhost = null;
++    const waterPhotoQueue = [22, 23];
++    let waterPhotoCursor = 0;
++
++    // 鍥壓妯″潡锛氭牴鎹嫋鎷戒綅缃珮浜鐗╂姇鏀惧尯
++    function updateDropzoneHighlight(x, y) {
++        const rect = plantDropzone.getBoundingClientRect();
++        const inside = x >= rect.left && x <= rect.right && y >= rect.top && y <= rect.bottom;
++        plantDropzone.classList.toggle('active', inside);
++        return inside;
++    }
++
++    // 鍥壓妯″潡锛氱Щ闄ゆ嫋鎷戒腑鐨勬祰姘村６骞界伒灞?+    function removeGhost() {
++        if (canGhost) {
++            canGhost.remove();
++            canGhost = null;
++        }
++    }
++
++    // 鍒濆鍖栧洯鑹烘祰姘存ā鍧楋細鎷栨嫿娴囨按鎴愬姛鍚庢樉绀哄洯鑹虹収鐗?+    function initWaterGame() {
++        if (!wateringCan || !plantDropzone || !waterStatus) return;
++
++        // 鍥壓娴囨按鎴愬姛鏃剁殑姘存淮鍔ㄧ敾
++        function spawnWaterDrops() {
++            const rect = plantDropzone.getBoundingClientRect();
++            const startX = rect.left + rect.width * 0.5;
++            const startY = rect.top - 6;
++            for (let i = 0; i < 7; i++) {
++                const drop = document.createElement('div');
++                drop.className = 'water-drop';
++                drop.textContent = '馃挧';
++                drop.style.left = `${startX + (Math.random() * 44 - 22)}px`;
++                drop.style.top = `${startY + Math.random() * 8}px`;
++                drop.style.animationDelay = `${i * 55}ms`;
++                document.body.appendChild(drop);
++                setTimeout(() => drop.remove(), 900);
++            }
++        }
++
++        wateringCan.addEventListener('pointerdown', (event) => {
++            isDraggingCan = true;
++            wateringCan.setPointerCapture(event.pointerId);
++
++            canGhost = document.createElement('div');
++            canGhost.className = 'drag-ghost';
++            canGhost.textContent = '馃毧';
++            document.body.appendChild(canGhost);
++            canGhost.style.left = `${event.clientX}px`;
++            canGhost.style.top = `${event.clientY}px`;
++            waterStatus.textContent = '鎷栧埌鍙充晶妞嶇墿涓婃柟鏉炬墜鍗冲彲娴囨按';
++        });
++
++        wateringCan.addEventListener('pointermove', (event) => {
++            if (!isDraggingCan || !canGhost) return;
++            event.preventDefault();
++            canGhost.style.left = `${event.clientX}px`;
++            canGhost.style.top = `${event.clientY}px`;
++            updateDropzoneHighlight(event.clientX, event.clientY);
++        });
++
++        const endDrag = (event) => {
++            if (!isDraggingCan) return;
++            isDraggingCan = false;
++            const hit = updateDropzoneHighlight(event.clientX, event.clientY);
++            plantDropzone.classList.remove('active');
++            removeGhost();
++
++            if (hit) {
++                spawnWaterDrops();
++                plantDropzone.classList.add('watered');
++                plantDropzone.classList.add('grow');
++                plantDropzone.textContent = '馃尡';
++                waterStatus.textContent = '娴囨按鎴愬姛锛佹儕鍠滅収鐗囨鍦ㄥ嚭鐜?..';
++                const photoIndex = waterPhotoQueue[waterPhotoCursor];
++                waterPhotoCursor = (waterPhotoCursor + 1) % waterPhotoQueue.length;
++                setTimeout(() => {
++                    plantDropzone.classList.remove('grow');
++                }, 720);
++                setTimeout(() => {
++                    handleTap(photoIndex, plantDropzone);
++                    waterStatus.textContent = '鍙户缁祰姘达紝鍙嶅瑙﹀彂鎯婂枩鐓х墖 鉁?;
++                }, 450);
++            } else {
++                waterStatus.textContent = '杩樻病娴囧埌妞嶇墿锛屽啀璇曚竴娆★綖';
++            }
++        };
++
++        wateringCan.addEventListener('pointerup', endDrag);
++        wateringCan.addEventListener('pointercancel', endDrag);
++    }
++
++    // 铦磋澏妯″潡锛氬湪鍖哄煙鍐呴殢鏈洪琛岋紝鐢ㄦ埛闇€鐐瑰嚮绉诲姩涓殑铦磋澏瑙﹀彂鐓х墖
++    function initButterflyModule() {
++        if (!butterflyZone || !butterflyTargets.length) return;
++
++        const states = butterflyTargets.map((el) => ({ el, x: 0, y: 0, timer: null }));
++
++        function getBounds() {
++            return {
++                xMax: Math.max(20, butterflyZone.clientWidth - 96),
++                yMax: Math.max(28, butterflyZone.clientHeight - 124)
++            };
++        }
++
++        function moveButterfly(state, immediate = false) {
++            const bounds = getBounds();
++            const nextX = Math.random() * bounds.xMax;
++            const nextY = Math.random() * bounds.yMax;
++            const duration = reducedMotion ? (2200 + Math.random() * 700) : (1300 + Math.random() * 1200);
++            const tilt = Math.random() * 24 - 12;
++            const direction = nextX >= state.x ? 1 : -1;
++
++            state.el.style.transition = immediate ? 'none' : `transform ${duration}ms cubic-bezier(.2,.78,.2,1), opacity 220ms ease`;
++            state.el.style.transform = `translate(${nextX}px, ${nextY}px) scaleX(${direction}) rotate(${tilt}deg)`;
++            state.el.style.opacity = '1';
++
++            state.x = nextX;
++            state.y = nextY;
++            clearTimeout(state.timer);
++            state.timer = setTimeout(() => moveButterfly(state), duration + 140 + Math.random() * 600);
++        }
++
++        states.forEach((state, idx) => {
++            const photoIndex = Number(state.el.dataset.photoIndex);
++            state.el.addEventListener('click', () => handleTap(photoIndex, state.el));
++
++            // 鍏堟斁缃垵濮嬪潗鏍囷紝鍐嶅惎鍔ㄩ琛屽姩鐢?+            setTimeout(() => moveButterfly(state, true), idx * 90);
++            setTimeout(() => moveButterfly(state), 150 + idx * 120);
++        });
++
++        window.addEventListener('resize', () => {
++            states.forEach((state) => moveButterfly(state, true));
++        }, { passive: true });
++    }
++
++    initButterflyModule();
++
++    initWaterGame();
++
++    // 姘旂悆鍗囩┖绉€鐨勪笁缁勬暟鎹細缂╃暐鍥俱€佷富鍥俱€佺绂忚涓庡洖蹇嗘枃妗?+    const balloonItemsData = [
++        {
++            id: 0,
++            index: 19,
++            thumb: 'spring/balloon1.jpg',
++            photo: 'img\\7\\mmexport1739595717751.jpg',
++            color: '#ff8eb9',
++            bless: '鎰挎垜浠案杩滃儚绔ヨ瘽閲岀殑瑙掕壊涓€鏍锋棤蹇ф棤铏?,
++            memory: '杩欏ぉ鎴戜滑涓€璧峰幓浜嗚崚閲庣帇鍥斤紝涓€涓€?
++        },
++        {
++            id: 1,
++            index: 20,
++            thumb: 'spring/balloon2.jpg',
++            photo: 'img\\14\\IMG_20240806_140809.jpg',
++            color: '#f0c36b',
++            bless: '浣犵殑绗戝鏄垜鏀惰棌鐨勫疂钘?,
++            memory: '閭ｅぉ鎴戜滑鎶佃揪瑗垮畨锛屼綘鐏跨儌鐨勭瑧瀹癸紝鎴戜竴鐩磋鍒颁粖澶┿€?
++        },
++        {
++            id: 2,
++            index: 21,
++            thumb: 'spring/balloon3.jpg',
++            photo: 'img\\14\\IMG_20250826_171505.jpg',
++            color: '#b28bff',
++            bless: '鎴愪负鏇村ソ鐨勪汉鏄垜浠殑绾﹀畾',
++            memory: '杩欐槸鎴戞敹鍒拌繃鏈€鐢ㄥ績鐨勭敓鏃ョぜ鐗╋紝璋㈣阿浣狅紝杩欒鎴戞剰璇嗗埌鎰熸儏鐨勭弽璐点€?
++        }
++    ];
++    const balloonState = {
++        locked: false,
++        launched: new Set(),
++        floating: new Map(),
++        mergedDone: false,
++        finaleClosable: false
++    };
++
++    // 鍔犺浇褰撳墠闊充箰鏇茬洰锛屽苟鍚屾鏇存柊鎾斁鍣ㄦ彁绀烘枃妗?+    function loadTrack(index) {
++        audio.src = encodeURI(musicTracks[index].url);
++        player.title = `褰撳墠闊充箰锛?{musicTracks[index].name}锛堢偣鍑诲垏鎹級`;
++    }
++
++    // 鍥剧墖鍏滃簳锛氬綋 spring/ 鎴栨湰鍦板浘鐗囦笉瀛樺湪鏃跺洖閫€涓鸿姳鏈靛浘鏍?+    function setImgWithFallback(imgEl, src) {
++        imgEl.onerror = () => {
++            imgEl.onerror = null;
++            imgEl.src = fallbackFlower;
++        };
++        imgEl.src = src;
++    }
++
++    // 鏀堕泦杩涘害缁熶竴鍏ュ彛锛氭洿鏂拌渹铚滅綈璁℃暟銆佸闃宠В閿佺姸鎬佸拰鏀堕泦瀹屾垚鎻愮ず
++    function collectPhoto(index) {
++        if (!collectedPhotos.has(index)) {
++            collectedPhotos.add(index);
++            updateHoneyDisplay();
++            updateSunPulse();
++            if (collectedPhotos.size === 25) {
++                setTimeout(() => {
++                    alert("馃帀 鏄ュ皬鐕曪紝浣犳壘榻愪簡25涓簿褰╂椂鍒伙紒鐢熸棩蹇箰锛侌煄?);
++                    showLargePhoto(finalCelebrationPhoto);
++                }, 1000);
++            }
++        }
++    }
++
++    // 鍚屾搴曢儴铚傝湝缃愬睍绀轰负 x/25 鏍煎紡
++    function updateHoneyDisplay(value = collectedPhotos.size) {
++        document.getElementById('honey-count').innerText = `${value}/25`;
++    }
++
++    // 鏍规嵁宸插彂鐜扮収鐗囨暟閲忥紝鍒囨崲澶曢槼澶栧湀鑴夊啿棰滆壊
++    function updateSunPulse() {
++        if (!sunPulse) return;
++        sunPulse.classList.toggle('ready', collectedPhotos.size >= 20);
++    }
++
++    // 鎾斁褰撳墠闊充箰锛屽苟璁╁彸涓嬭 CD 杩涘叆鏃嬭浆鐘舵€?+    function playCurrentTrack() {
++        return audio.play().then(() => {
++            player.classList.add('playing');
++        });
++    }
++
++    // 鍒囨崲鍒颁笅涓€棣栭煶涔愶紱鎾斁鍒版湯灏炬椂閲嶆柊娲楃墝
++    function switchTrack() {
++        currentTrackIndex += 1;
++        if (currentTrackIndex >= musicTracks.length) {
++            musicTracks = shuffleTracks(baseMusicTracks);
++            currentTrackIndex = 0;
++        }
++        loadTrack(currentTrackIndex);
++        playCurrentTrack().catch(() => {
++            alert('闊充箰鍒囨崲鎴愬姛锛屼絾娴忚鍣ㄩ檺鍒朵簡鑷姩鎾斁锛岃鍐嶇偣涓€娆D銆?);
++        });
++    }
++
++    loadTrack(currentTrackIndex);
++    audio.addEventListener('ended', switchTrack);
++    updateHoneyDisplay();
++    updateSunPulse();
++
++    let isDraggingCan = false;
++    let canGhost = null;
++    const waterPhotoQueue = [22, 23];
++    let waterPhotoCursor = 0;
++
++    // 鍥壓妯″潡锛氭牴鎹嫋鎷戒綅缃珮浜鐗╂姇鏀惧尯
++    function updateDropzoneHighlight(x, y) {
++        const rect = plantDropzone.getBoundingClientRect();
++        const inside = x >= rect.left && x <= rect.right && y >= rect.top && y <= rect.bottom;
++        plantDropzone.classList.toggle('active', inside);
++        return inside;
++    }
++
++    // 鍥壓妯″潡锛氱Щ闄ゆ嫋鎷戒腑鐨勬祰姘村６骞界伒灞?+    function removeGhost() {
++        if (canGhost) {
++            canGhost.remove();
++            canGhost = null;
++        }
++    }
++
++    // 鍒濆鍖栧洯鑹烘祰姘存ā鍧楋細鎷栨嫿娴囨按鎴愬姛鍚庢樉绀哄洯鑹虹収鐗?+    function initWaterGame() {
++        if (!wateringCan || !plantDropzone || !waterStatus) return;
++
++        // 鍥壓娴囨按鎴愬姛鏃剁殑姘存淮鍔ㄧ敾
++        function spawnWaterDrops() {
++            const rect = plantDropzone.getBoundingClientRect();
++            const startX = rect.left + rect.width * 0.5;
++            const startY = rect.top - 6;
++            for (let i = 0; i < 7; i++) {
++                const drop = document.createElement('div');
++                drop.className = 'water-drop';
++                drop.textContent = '馃挧';
++                drop.style.left = `${startX + (Math.random() * 44 - 22)}px`;
++                drop.style.top = `${startY + Math.random() * 8}px`;
++                drop.style.animationDelay = `${i * 55}ms`;
++                document.body.appendChild(drop);
++                setTimeout(() => drop.remove(), 900);
++            }
++        }
++
++        wateringCan.addEventListener('pointerdown', (event) => {
++            isDraggingCan = true;
++            wateringCan.setPointerCapture(event.pointerId);
++
++            canGhost = document.createElement('div');
++            canGhost.className = 'drag-ghost';
++            canGhost.textContent = '馃毧';
++            document.body.appendChild(canGhost);
++            canGhost.style.left = `${event.clientX}px`;
++            canGhost.style.top = `${event.clientY}px`;
++            waterStatus.textContent = '鎷栧埌鍙充晶妞嶇墿涓婃柟鏉炬墜鍗冲彲娴囨按';
++        });
++
++        wateringCan.addEventListener('pointermove', (event) => {
++            if (!isDraggingCan || !canGhost) return;
++            event.preventDefault();
++            canGhost.style.left = `${event.clientX}px`;
++            canGhost.style.top = `${event.clientY}px`;
++            updateDropzoneHighlight(event.clientX, event.clientY);
++        });
++
++        const endDrag = (event) => {
++            if (!isDraggingCan) return;
++            isDraggingCan = false;
++            const hit = updateDropzoneHighlight(event.clientX, event.clientY);
++            plantDropzone.classList.remove('active');
++            removeGhost();
++
++            if (hit) {
++                spawnWaterDrops();
++                plantDropzone.classList.add('watered');
++                plantDropzone.classList.add('grow');
++                plantDropzone.textContent = '馃尡';
++                waterStatus.textContent = '娴囨按鎴愬姛锛佹儕鍠滅収鐗囨鍦ㄥ嚭鐜?..';
++                const photoIndex = waterPhotoQueue[waterPhotoCursor];
++                waterPhotoCursor = (waterPhotoCursor + 1) % waterPhotoQueue.length;
++                setTimeout(() => {
++                    plantDropzone.classList.remove('grow');
++                }, 720);
++                setTimeout(() => {
++                    handleTap(photoIndex, plantDropzone);
++                    waterStatus.textContent = '鍙户缁祰姘达紝鍙嶅瑙﹀彂鎯婂枩鐓х墖 鉁?;
++                }, 450);
++            } else {
++                waterStatus.textContent = '杩樻病娴?\ No newline at end of file
