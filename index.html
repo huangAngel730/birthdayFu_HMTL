@@ -78,7 +78,7 @@
         @keyframes fall { 0% { transform: translateY(-10vh) rotate(0deg); } 100% { transform: translateY(110vh) rotate(360deg); } }
 
         /* 交互图标样式：通用图标、露珠、浇水壶、花盆等基础视觉 */
-        .wish-tag { width: 80px; height: 100px; background: #8d6e63; color: #fff; border-radius: 8px; font-size: 16px; writing-mode: vertical-lr; padding: 10px; margin: 10px; border-top: 4px solid #5d4037; }
+        .wish-tag { width: 80px; height: 100px; background: #8d6e63; color: #fff; border-radius: 8px; font-size: 16px; writing-mode: vertical-lr; padding: 10px; margin: 10px; border-top: 4px solid #5d4037; display: flex; align-items: center; justify-content: center; text-align: center; }
         .flower-bud, .butterfly, .dandelion, .stone, .mushroom, .wind-bell, .dewdrop, .watering-can, .flower-pot, .painted-stone, .sunset { font-size: 80px; filter: drop-shadow(0 5px 5px rgba(0,0,0,0.1)); cursor: pointer; position: relative; }
         .dewdrop { font-size: 60px; color: #81d4fa; }
         .watering-can { font-size: 100px; color: #ffab91; }
@@ -1024,9 +1024,9 @@
     <div class="interactive-zone">
         <div style="font-size: 100px; width: 100%; text-align: center;">🌳</div>
         <div style="display:flex; justify-content:center; width:100%;">
-            <div class="tap-target wish-tag" onclick="handleTap(1, this)">【快乐无限】</div>
-            <div class="tap-target wish-tag" onclick="handleTap(2, this)">【永远十八】</div>
-            <div class="tap-target wish-tag" onclick="handleTap(3, this)">【暴富暴美】</div>
+            <div class="tap-target wish-tag" onclick="handleTap(1, this)">   【       --快乐无限】</div>
+            <div class="tap-target wish-tag" onclick="handleTap(2, this)">   【       --勇往直前】</div>
+            <div class="tap-target wish-tag" onclick="handleTap(3, this)">   【       --梦想成真】</div>
         </div>
         <p class="hint-text">春小燕，先点亮樱花树上的心愿牌</p>
     </div>
@@ -1186,7 +1186,9 @@
 <div id="sunset-stage" class="sunset-stage">
     <div id="silhouette-wrap" class="silhouette-wrap">
         <img id="silhouette-img" class="silhouette-img" alt="夕阳剪影合照">
-        <div class="silhouette-text">To 春小燕 · 生日快乐</div>
+        <div class="silhouette-text">To 春小燕<br>
+            生日快乐<br>
+        一岁一礼<br>一寸欢喜</div>
     </div>
 </div>
 
@@ -1209,17 +1211,17 @@
 <script>
     // 主照片池：用于大部分隐藏照片的统一索引映射
     const photoUrls = [
-        "img/1/IMG_20220820_131125.jpg", "img/1/IMG_20220821_101429.jpg", "img/1/IMG_20220821_134939.jpg",
-        "img/1/IMG_20221003_104432.jpg", "img/1/IMG_20230325_205825.jpg", "img/12/IMG_20220404_211813.jpg",
-        "img/1/IMG_20230622_201648.jpg", "img/4/IMG_20220430_141157.jpg", "img/1/IMG_20230622_201700.jpg",
-        "img/2/-1ebe23db85da539b.jpg", "img/2/-4307697817d3c0b1.jpg", "img/2/-75da7e6488bae183.jpg",
-        "img/2/MYXJ_20230605201630274_fast.jpg", "img/2/MYXJ_20230605201655911_fast.jpg",
-        "img/2/MYXJ_20230605201700593_fast.jpg", "img/2/MYXJ_20230605201720466_fast.jpg",
-        "img/2/MYXJ_20230605201727535_fast.jpg", "img/3/-4b257800301d8118.jpg",
-        "img/3/2c6c828ae4487389.jpg", "img/3/mmexport1651292600636.jpg",
-        "img/3/mmexport1651292668224.jpg", "img/3/mmexport1651292669496.jpg",
+        "img/14/IMG_20240806_140809.jpg", "img/7/mmexport1739595746367.jpg", "img/1/IMG_20220821_134939.jpg",
+        "img/8/IMG_20251003_162458_1.jpg", "img/1/IMG_20230325_205825.jpg", "img/12/IMG_20220404_211813.jpg",
+        "img/1/IMG_20230622_201648.jpg", "img/11/MTXX_20220120140158.jpg", "img/11/-7276ba36328fac9e.jpg",
+        "img/2/-1ebe23db85da539b.jpg", "img/7/mmexport1739595724063.jpg", "img/11/MTXX_20220120135216.jpg",
+        "img/2/MYXJ_20230605201630274_fast.jpg", "img/7/IMG_20250214_112311.jpg",
+        "img/2/MYXJ_20230605201700593_fast.jpg", "img/7/IMG_20250214_113734.jpg",
+        "img/7/mmexport1739595733738.jpg", "img/3/-4b257800301d8118.jpg",
+        "img/8/mmexport1769350926228.jpg", "img/3/mmexport1651292600636.jpg",
+        "img/8/IMG_20260124_174658.jpg", "img/3/mmexport1651292669496.jpg",
         "img/3/mmexport1651292671962.jpg", "img/3/mmexport1651327058799.jpg",
-        "img/3/mmexport1651327061476.jpg"
+        "img/8/IMG_20251003_162458_1.jpg"
     ];
 
     // 全局 DOM 引用与交互状态
@@ -1498,7 +1500,7 @@
 
     initWaterGame();
 
-    // 气球模块：动画进行时的防误触提示
+    // 气球升空秀的防误触提示
     function showBalloonLock(text = '等一等，让祝福飞一会儿~') {
         if (!balloonStatusLock) return;
         balloonStatusLock.textContent = text;
@@ -1953,7 +1955,7 @@
         sunDisc.style.transform = 'scale(1.65)';
         setTimeout(() => {
             sunsetStage.classList.add('show');
-            setImgWithFallback(silhouetteImg, 'spring/pic25.jpg');
+            setImgWithFallback(silhouetteImg, 'img\\8\\IMG_20260124_155253.jpg');
             sparkleAroundSun();
         }, 900);
         setTimeout(() => {
@@ -2098,6 +2100,26 @@
         document.querySelector('.petal-container').appendChild(petal);
         setTimeout(() => petal.remove(), 8000);
     }
+
+    // 初始化时，隐藏所有气球照片浮层
+    document.addEventListener('DOMContentLoaded', () => {
+        const balloonPhotoFloat = document.querySelector('.balloon-photo-float');
+
+        if (balloonPhotoFloat) {
+            // Listen for animation end to enable keydown listener
+            balloonPhotoFloat.addEventListener('animationend', () => {
+                document.addEventListener('keydown', hideBalloonPhoto);
+            });
+
+            // Function to hide the balloon photo float
+            function hideBalloonPhoto() {
+                if (balloonPhotoFloat.style.display === 'block') {
+                    balloonPhotoFloat.style.display = 'none';
+                    document.removeEventListener('keydown', hideBalloonPhoto);
+                }
+            }
+        }
+    });
 </script>
 
 </body>
