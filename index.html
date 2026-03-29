@@ -1000,6 +1000,8 @@
             animation: none;
         }
     </style>
+    <!-- 预加载夕阳氛围曲，缩短等待时间并加快播放响应 -->
+    <link rel="preload" href="music/retrosunrise-rise-emotion-243759.mp3" as="audio">
     <link rel="preload" href="img/14/IMG_20240806_140809.jpg" as="image">
     <link rel="preload" href="img/7/mmexport1739595746367.jpg" as="image">
     <link rel="preload" href="img/1/IMG_20220821_134939.jpg" as="image">
@@ -1231,7 +1233,7 @@
 </div>
 <div id="balloon-ultimate-msg" class="balloon-ultimate-msg">我们一起，飞向更好的天空</div>
 
-<audio id="bg-music"></audio>
+<audio id="bg-music" preload="auto"></audio>
 
 <script>
     // 主照片池：用于大部分隐藏照片的统一索引映射
@@ -1979,13 +1981,13 @@
         skyOverlay.classList.add('show');
         sunDisc.style.transform = 'scale(1.65)';
         setTimeout(() => {
-            sunsetStage.classList.add('show');
-            setImgWithFallback(silhouetteImg, 'img\\8\\IMG_20260124_155253.jpg');
-            sparkleAroundSun();
-        }, 900);
-        setTimeout(() => {
-            sunDisc.style.transform = 'scale(1)';
-        }, 1400);
+                sunsetStage.classList.add('show');
+                setImgWithFallback(silhouetteImg, 'img\\8\\IMG_20260124_155253.jpg');
+                sparkleAroundSun();
+            }, 300);
+            setTimeout(() => {
+                sunDisc.style.transform = 'scale(1)';
+            }, 600);
     }
 
     // 夕阳点击不足条件时的提示气泡
