@@ -999,6 +999,67 @@
             background: radial-gradient(circle, #ffe08a, #ffbf3f 60%, #dca52d 100%);
             animation: none;
         }
+        /* === 蝴蝶动画样式 (开始) === */
+        /* 路径动画（外层 .butterfly）：只修改外层 transform，避免与身体浮动冲突。调整 8s 可改变飞行周期 */
+        @keyframes butterflyPath {
+            0%   { transform: translate(0, 0) rotate(0deg); }
+            20%  { transform: translate(40px, -28px) rotate(12deg); }
+            40%  { transform: translate(92px, 6px)  rotate(-10deg); }
+            60%  { transform: translate(56px, 36px) rotate(8deg); }
+            80%  { transform: translate(-10px, 18px) rotate(-6deg); }
+            100% { transform: translate(0, 0) rotate(0deg); }
+        }
+
+        /* 身体浮动（内层 .butterfly-core）：只修改内层 transform，让身体轻微上下浮动 */
+        @keyframes butterflyFloat {
+            0%,100% { transform: translateY(0); }
+            50%     { transform: translateY(-10px); }
+        }
+
+        /* 外层负责路径 */
+        .butterfly {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            /* 使用匀速 (linear) 让路径移动无缓动停顿，保持连续飞行 */
+            animation: butterflyPath 2s linear infinite;
+            will-change: transform;
+            backface-visibility: hidden;
+            -webkit-transform: translateZ(0);
+        }
+
+        /* 内层核心负责身体浮动和残影 */
+        .butterfly-core {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            animation: butterflyFloat 3s ease-in-out infinite;
+            position: relative;
+            will-change: transform;
+        }
+
+        /* 残影：放在内层伪元素，与身体浮动同步 */
+        .butterfly-core::after {
+            content: '🦋';
+            position: absolute;
+            left: 2px;
+            top: 2px;
+            opacity: 0.35;
+            filter: blur(4px) saturate(120%);
+            transform: translateY(2px) scale(0.98);
+            pointer-events: none;
+            animation: butterflyFloat 3s ease-in-out infinite;
+        }
+
+        /* 为第二只蝴蝶添加类名 .delay，分别对路径和浮动加时间偏移，避免完全同步 */
+        .butterfly.delay { animation-delay: 1.2s; }
+        .butterfly.delay .butterfly-core { animation-delay: 0.6s; }
+
+        /* WebKit 前缀（备用） */
+        @-webkit-keyframes butterflyPath { 0%{ -webkit-transform: translate(0,0) rotate(0deg);} 100%{ -webkit-transform: translate(0,0) rotate(0deg);} }
+        @-webkit-keyframes butterflyFloat { 0%,100%{ -webkit-transform: translateY(0);} 50%{ -webkit-transform: translateY(-10px);} }
+        /* === 蝴蝶动画样式 (结束) === */
     </style>
     <!-- 预加载夕阳氛围曲，缩短等待时间并加快播放响应 -->
     <link rel="preload" href="music/retrosunrise-rise-emotion-243759.mp3" as="audio">
@@ -1084,8 +1145,8 @@
 
     <!-- 蝴蝶模块 -->
     <div class="interactive-zone">
-        <div class="tap-target butterfly" onclick="handleTap(13, this)">🦋</div>
-        <div class="tap-target butterfly" onclick="handleTap(14, this)">🦋</div>
+        <div class="tap-target butterfly" onclick="handleTap(13, this)"><span class="butterfly-core">🦋</span></div>
+        <div class="tap-target butterfly delay" onclick="handleTap(14, this)"><span class="butterfly-core">🦋</span></div>
         <p class="hint-text">春小燕，抓住那两只为你飞舞的蝴蝶</p>
     </div>
 
@@ -1581,7 +1642,7 @@
         back.innerText = data.memory;
         const tip = document.createElement('div');
         tip.className = 'balloon-memory-tip';
-        tip.innerText = '长按保存这一刻';
+        tip.innerText = '点击查看回忆';
 
         const ribbon = document.createElement('div');
         ribbon.className = 'balloon-ribbon';
@@ -2145,6 +2206,14 @@
                 }
             }
         }
+    });
+
+    // 确保蝴蝶动画触发
+    document.addEventListener('DOMContentLoaded', () => {
+        const butterflies = document.querySelectorAll('.butterfly');
+        butterflies.forEach(butterfly => {
+            butterfly.classList.add('animated');
+        });
     });
 </script>
 
