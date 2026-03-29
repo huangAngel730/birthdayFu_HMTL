@@ -1026,6 +1026,7 @@
             animation: butterflyPath 2s linear infinite;
             will-change: transform;
             backface-visibility: hidden;
+            transform: translateZ(0);
             -webkit-transform: translateZ(0);
         }
 
@@ -1098,6 +1099,7 @@
     <p style="color: #666; margin-bottom: 20px;">嘿春小燕！输入你的生日日期作为开启暗号吧<br>(提示：4位数字)</p>
     <input type="tel" id="pin-input" placeholder="输入暗号" maxlength="4">
     <button id="unlock-btn" onclick="checkPin()">开启秘密花园</button>
+    <div id="loading-status" style="display:none;color:#666;margin-top:12px;font-size:16px;">正在准备资源，请稍候…</div>
 </div>
 
 <!-- 主内容容器 -->
@@ -2130,19 +2132,71 @@
     });
     ultimateEgg?.addEventListener('click', () => closeSunsetSequence(true));
 
-    // 首屏暗号校验：正确后解锁花园并尝试自动播放音乐
+    // 预加载所有图片（photoUrls + 页面 link[rel=preload|prefetch][as=image]）
+    // options: { timeout, onProgress }
+    function preloadAllImages({ timeout = 12000, onProgress } = {}) {
+        const linkImgs = Array.from(document.querySelectorAll('link[rel="preload"][as="image"], link[rel="prefetch"][as="image"]'))
+            .map(l => l.getAttribute('href'))
+            .filter(Boolean);
+        const pool = Array.from(new Set([...(typeof photoUrls !== 'undefined' ? photoUrls : []), ...linkImgs])).filter(Boolean);
+        if (!pool.length) return Promise.resolve();
+
+        let loaded = 0;
+        let finished = false;
+        return new Promise(resolve => {
+            const timer = setTimeout(() => {
+                if (!finished) { finished = true; resolve(); }
+            }, timeout);
+
+            const maybeDone = () => {
+                loaded++;
+                if (typeof onProgress === 'function') onProgress(loaded, pool.length);
+                if (!finished && loaded >= pool.length) {
+                    finished = true;
+                    clearTimeout(timer);
+                    resolve();
+                }
+            };
+
+            pool.forEach(src => {
+                try {
+                    const img = new Image();
+                    img.onload = img.onerror = maybeDone;
+                    img.src = src;
+                } catch (e) {
+                    maybeDone();
+                }
+            });
+        });
+    }
+
+    // 首屏暗号校验：暗号正确后先等待资源预加载（或超时）再进入花园并尝试自动播放音乐
     function checkPin() {
         const input = document.getElementById('pin-input').value;
         if (input === '0330') {
-            document.getElementById('access-lock').style.display = 'none';
-            const garden = document.getElementById('garden-container');
-            garden.classList.add('unlocked');
-            setInterval(createPetal, 400);
-            playCurrentTrack().then(() => {
-                player.classList.add('playing');
-                alert("🌸 欢迎你，春小燕！\n花园已经为你奏响音乐，开始寻找合照吧！");
-            }).catch(() => {
-                alert("🌸 欢迎你，春小燕！\n音乐因浏览器限制未自动播放，点右下角CD即可播放。");
+            const loadingEl = document.getElementById('loading-status');
+            if (loadingEl) {
+                loadingEl.style.display = 'block';
+                loadingEl.textContent = '正在准备资源（0/0）…';
+            }
+
+            preloadAllImages({
+                timeout: 12000,
+                onProgress: (loaded, total) => {
+                    if (loadingEl) loadingEl.textContent = `正在准备资源（${loaded}/${total}）…`;
+                }
+            }).then(() => {
+                if (loadingEl) loadingEl.style.display = 'none';
+                document.getElementById('access-lock').style.display = 'none';
+                const garden = document.getElementById('garden-container');
+                garden.classList.add('unlocked');
+                setInterval(createPetal, 400);
+                playCurrentTrack().then(() => {
+                    player.classList.add('playing');
+                    alert("🌸 欢迎你，春小燕！\n花园已经为你奏响音乐，开始寻找合照吧！");
+                }).catch(() => {
+                    alert("🌸 欢迎你，春小燕！\n音乐因浏览器限制未自动播放，点右下角CD即可播放。");
+                });
             });
         } else {
             alert("❌ 春小燕，再想想暗号呀～");
